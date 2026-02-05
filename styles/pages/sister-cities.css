@@ -200,31 +200,3 @@
 .posts-grid-small .post-card-small h3 {
     margin-bottom: 8px;
 }
-
-/* Responsive */
-@media (max-width: 900px) {
-    .sister-city-card {
-        grid-template-rows: 180px 1fr;
-    }
-    .city-image {
-        height: 180px;
-    }
-    .city-info {
-        padding: 18px;
-    }
-    .flag-large {
-        font-size: 36px;
-    }
-}
-
-@media (max-width: 520px) {
-    .sister-cities-grid {
-        grid-template-columns: 1fr;
-    }
-    .city-detail-item {
-        text-align: left;
-    }
-    .city-info {
-        text-align: left;
-    }
-}

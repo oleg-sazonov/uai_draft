@@ -74,18 +74,3 @@
     gap: 12px;
     margin-bottom: 18px;
 }
-
-/* Responsive */
-@media (max-width: 900px) {
-    .contact-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .contact-form .form-row {
-        grid-template-columns: 1fr;
-    }
-
-    .contact-info-panel {
-        margin-top: 20px;
-    }
-}
