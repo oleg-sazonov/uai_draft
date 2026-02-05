@@ -1,0 +1,104 @@
+        <!-- Related Posts Section -->
+        <section class="related-posts">
+            <div class="container">
+                <h2>Recent Mission Reports</h2>
+                <p class="section-subtitle">
+                    More stories from our humanitarian missions
+                </p>
+                <div class="posts-grid-preview">
+                    <!-- Post 1 -->
+                    <article class="post-card">
+                        <div class="post-image">
+                            <img
+                                src="https://via.placeholder.com/400x250?text=Medical+Aid"
+                                alt="Medical Supplies"
+                            />
+                            <span class="post-category">Mission Report</span>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span class="post-date">December 28, 2025</span>
+                                <span class="post-location"
+                                    >Kostiantynivka 🇺🇦 & Fairfield 🇺🇸</span
+                                >
+                            </div>
+                            <h3>
+                                <a href="mission-log-post.html"
+                                    >Medical Supplies Reach Kostiantynivka
+                                    Hospital</a
+                                >
+                            </h3>
+                            <p>
+                                Thanks to generous donations from Fairfield
+                                residents, we delivered critical medical
+                                supplies...
+                            </p>
+                            <a href="mission-log-post.html" class="read-more"
+                                >Read More →</a
+                            >
+                        </div>
+                    </article>
+
+                    <!-- Post 2 -->
+                    <article class="post-card">
+                        <div class="post-image">
+                            <img
+                                src="https://via.placeholder.com/400x250?text=Thanksgiving+Mission"
+                                alt="Thanksgiving Mission"
+                            />
+                            <span class="post-category">Mission Report</span>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span class="post-date">November 22, 2025</span>
+                                <span class="post-location"
+                                    >Kramatorsk 🇺🇦 & Stamford 🇺🇸</span
+                                >
+                            </div>
+                            <h3>
+                                <a href="mission-log-post.html"
+                                    >Thanksgiving Mission: 500 Families Receive
+                                    Food Packages</a
+                                >
+                            </h3>
+                            <p>
+                                In the spirit of Thanksgiving, our team
+                                distributed food packages to 500 families...
+                            </p>
+                            <a href="mission-log-post.html" class="read-more"
+                                >Read More →</a
+                            >
+                        </div>
+                    </article>
+
+                    <!-- Post 3 -->
+                    <article class="post-card">
+                        <div class="post-image">
+                            <img
+                                src="https://via.placeholder.com/400x250?text=Community+Event"
+                                alt="Fundraising Gala"
+                            />
+                            <span class="post-category event">Event</span>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span class="post-date">February 5, 2026</span>
+                                <span class="post-location">Stamford 🇺🇸</span>
+                            </div>
+                            <h3>
+                                <a href="mission-log-post.html"
+                                    >Upcoming: Fundraising Gala in Stamford</a
+                                >
+                            </h3>
+                            <p>
+                                Join us for an evening of solidarity and support
+                                at our annual fundraising gala...
+                            </p>
+                            <a href="mission-log-post.html" class="read-more"
+                                >Read More →</a
+                            >
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>

@@ -1,0 +1,38 @@
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: 1.2;
+    margin-bottom: var(--spacing-md);
+}
+
+h1 {
+    font-size: var(--font-5xl);
+    color: var(--primary-blue);
+}
+
+h2 {
+    font-size: var(--font-4xl);
+    color: var(--primary-blue);
+}
+
+h3 {
+    font-size: var(--font-2xl);
+}
+
+p {
+    margin-bottom: var(--spacing-md);
+}
+
+a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+a:hover {
+    opacity: 0.8;
+}

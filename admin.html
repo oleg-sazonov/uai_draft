@@ -1,0 +1,1360 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Admin Panel - Ukraine Aid International</title>
+        <link rel="stylesheet" href="styles/draft.css" />
+    </head>
+    <body>
+        <!-- Admin Header -->
+        <header class="admin-header">
+            <div class="container">
+                <div class="admin-header-content">
+                    <div class="logo">
+                        <a href="index.html">
+                            <img
+                                class="logo-img"
+                                src="https://i0.wp.com/ukraineaidinternational.org/wp-content/uploads/2023/05/logo-uai.png?fit=654%2C202&ssl=1"
+                                alt="Ukraine Aid International logo"
+                            />
+                        </a>
+                    </div>
+                    <div class="admin-user">
+                        <span>👤 Admin User</span>
+                        <a href="login.html" class="btn-logout">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Admin Navigation -->
+        <nav class="admin-nav">
+            <div class="container">
+                <ul class="admin-menu">
+                    <li><a href="#posts" class="active">Mission Reports</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#sister-cities">Sister Cities</a></li>
+                    <li><a href="#moderation">Moderation</a></li>
+                    <li><a href="#settings">Settings</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Admin Content -->
+        <section class="admin-content">
+            <div class="container">
+                <div class="admin-grid">
+                    <!-- Sidebar -->
+                    <aside class="admin-sidebar">
+                        <div class="sidebar-section">
+                            <h3>Quick Stats</h3>
+                            <div class="quick-stats">
+                                <div class="stat-item">
+                                    <strong>Total Posts:</strong> 24
+                                </div>
+                                <div class="stat-item">
+                                    <strong>Total Events:</strong> 8
+                                </div>
+                                <div class="stat-item">
+                                    <strong>Sister Cities:</strong> 18
+                                </div>
+                                <div class="stat-item">
+                                    <strong>Pending Moderation:</strong> 12
+                                </div>
+                                <div class="stat-item">
+                                    <strong>Last Updated:</strong> Jan 15, 2026
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- Main Admin Area -->
+                    <main class="admin-main">
+                        <h1>Content Management</h1>
+
+                        <!-- Tabs -->
+                        <div class="admin-tabs">
+                            <button
+                                class="tab-button active"
+                                data-tab="mission-reports"
+                            >
+                                Mission Reports
+                            </button>
+                            <button class="tab-button" data-tab="events">
+                                Events
+                            </button>
+                            <button class="tab-button" data-tab="sister-cities">
+                                Sister Cities
+                            </button>
+                            <button class="tab-button" data-tab="moderation">
+                                Moderation
+                            </button>
+                        </div>
+
+                        <!-- Mission Reports Form -->
+                        <div id="mission-reports" class="tab-content active">
+                            <div class="form-section">
+                                <h2>Create New Mission Report</h2>
+                                <form class="admin-form">
+                                    <div class="form-group">
+                                        <label for="post-title"
+                                            >Post Title *</label
+                                        >
+                                        <input
+                                            type="text"
+                                            id="post-title"
+                                            name="title"
+                                            placeholder="Enter post title"
+                                            required
+                                        />
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="post-date"
+                                                >Date *</label
+                                            >
+                                            <input
+                                                type="date"
+                                                id="post-date"
+                                                name="date"
+                                                required
+                                            />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="post-category"
+                                                >Category *</label
+                                            >
+                                            <select
+                                                id="post-category"
+                                                name="category"
+                                                required
+                                            >
+                                                <option value="">
+                                                    Select category
+                                                </option>
+                                                <option value="mission-report">
+                                                    Mission Report
+                                                </option>
+                                                <option value="news">
+                                                    News
+                                                </option>
+                                                <option value="update">
+                                                    Update
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="aid-type"
+                                                >Type of Aid *</label
+                                            >
+                                            <select
+                                                id="aid-type"
+                                                name="aid_type"
+                                                required
+                                            >
+                                                <option value="">
+                                                    Select aid type
+                                                </option>
+                                                <option value="water">
+                                                    Water & Sanitation
+                                                </option>
+                                                <option value="heat">
+                                                    Heating & Energy
+                                                </option>
+                                                <option value="vehicles">
+                                                    Vehicles & Transportation
+                                                </option>
+                                                <option value="child">
+                                                    Child Support & Education
+                                                </option>
+                                                <option value="mental">
+                                                    Mental Health & Counseling
+                                                </option>
+                                                <option value="medical">
+                                                    Medical Supplies
+                                                </option>
+                                                <option value="food">
+                                                    Food & Nutrition
+                                                </option>
+                                                <option value="shelter">
+                                                    Shelter & Housing
+                                                </option>
+                                                <option value="general">
+                                                    General Humanitarian Aid
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="post-city"
+                                                >Sister City Partnership
+                                                *</label
+                                            >
+                                            <select
+                                                id="post-city"
+                                                name="city"
+                                                required
+                                            >
+                                                <option value="">
+                                                    Select sister city
+                                                </option>
+                                                <option
+                                                    value="kramatorsk-stamford"
+                                                >
+                                                    Kramatorsk & Stamford
+                                                </option>
+                                                <option
+                                                    value="kostiantynivka-fairfield"
+                                                >
+                                                    Kostiantynivka & Fairfield
+                                                </option>
+                                                <option value="lyman-westport">
+                                                    Lyman & Westport
+                                                </option>
+                                                <option
+                                                    value="sviatohirsk-easton-ashland"
+                                                >
+                                                    Sviatohirsk & Easton &
+                                                    Ashland
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="post-subtitle"
+                                            >Subtitle</label
+                                        >
+                                        <input
+                                            type="text"
+                                            id="post-subtitle"
+                                            name="subtitle"
+                                            placeholder="Brief description"
+                                        />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="post-image"
+                                            >Featured Image</label
+                                        >
+                                        <input
+                                            type="file"
+                                            id="post-image"
+                                            name="image"
+                                            accept="image/*"
+                                        />
+                                        <small
+                                            >Recommended size: 1200x600px</small
+                                        >
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="post-content"
+                                            >Content *</label
+                                        >
+                                        <div class="editor-toolbar">
+                                            <button
+                                                type="button"
+                                                class="editor-btn"
+                                                title="Bold"
+                                            >
+                                                <strong>B</strong>
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="editor-btn"
+                                                title="Italic"
+                                            >
+                                                <em>I</em>
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="editor-btn"
+                                                title="Underline"
+                                            >
+                                                <u>U</u>
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="editor-btn"
+                                                title="Heading"
+                                            >
+                                                H
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="editor-btn"
+                                                title="Link"
+                                            >
+                                                🔗
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="editor-btn"
+                                                title="List"
+                                            >
+                                                ≡
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="editor-btn"
+                                                title="Quote"
+                                            >
+                                                ❝❞
+                                            </button>
+                                        </div>
+                                        <textarea
+                                            id="post-content"
+                                            name="content"
+                                            rows="15"
+                                            placeholder="Write your post content here..."
+                                            required
+                                        ></textarea>
+                                        <small
+                                            >Supports basic formatting. Use the
+                                            toolbar above.</small
+                                        >
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="post-video"
+                                            >Video URL (Optional)</label
+                                        >
+                                        <input
+                                            type="url"
+                                            id="post-video"
+                                            name="video"
+                                            placeholder="https://youtube.com/watch?v=..."
+                                        />
+                                        <small
+                                            >YouTube, Vimeo, or direct video
+                                            link</small
+                                        >
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="post-gallery"
+                                            >Gallery Images (Optional)</label
+                                        >
+                                        <input
+                                            type="file"
+                                            id="post-gallery"
+                                            name="gallery"
+                                            accept="image/*"
+                                            multiple
+                                        />
+                                        <small
+                                            >Select multiple images for
+                                            gallery</small
+                                        >
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="post-tags">Tags</label>
+                                        <input
+                                            type="text"
+                                            id="post-tags"
+                                            name="tags"
+                                            placeholder="Separate tags with commas"
+                                        />
+                                    </div>
+
+                                    <div class="form-actions">
+                                        <button
+                                            type="button"
+                                            class="btn-secondary"
+                                        >
+                                            Save as Draft
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            class="btn-primary"
+                                        >
+                                            Publish Post
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Recent Posts List -->
+                            <div class="recent-posts-admin">
+                                <h3>Recent Posts</h3>
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Category</th>
+                                            <th>Aid Type</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                Winter Relief: 15 Tons of Aid
+                                                Delivered
+                                            </td>
+                                            <td>Mission Report</td>
+                                            <td>Heat & Food</td>
+                                            <td>Jan 15, 2026</td>
+                                            <td>
+                                                <span
+                                                    class="status-badge published"
+                                                    >Published</span
+                                                >
+                                            </td>
+                                            <td>
+                                                <button class="btn-edit">
+                                                    Edit
+                                                </button>
+                                                <button class="btn-delete">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Medical Supplies Reach
+                                                Kostiantynivka
+                                            </td>
+                                            <td>Mission Report</td>
+                                            <td>Medical</td>
+                                            <td>Dec 28, 2025</td>
+                                            <td>
+                                                <span
+                                                    class="status-badge published"
+                                                    >Published</span
+                                                >
+                                            </td>
+                                            <td>
+                                                <button class="btn-edit">
+                                                    Edit
+                                                </button>
+                                                <button class="btn-delete">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Thanksgiving Mission Success
+                                            </td>
+                                            <td>Mission Report</td>
+                                            <td>Food</td>
+                                            <td>Nov 22, 2025</td>
+                                            <td>
+                                                <span
+                                                    class="status-badge published"
+                                                    >Published</span
+                                                >
+                                            </td>
+                                            <td>
+                                                <button class="btn-edit">
+                                                    Edit
+                                                </button>
+                                                <button class="btn-delete">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Events Form -->
+                        <div id="events" class="tab-content">
+                            <div class="form-section">
+                                <h2>Create New Event</h2>
+                                <form class="admin-form">
+                                    <div class="form-group">
+                                        <label for="event-title"
+                                            >Event Title *</label
+                                        >
+                                        <input
+                                            type="text"
+                                            id="event-title"
+                                            name="title"
+                                            placeholder="Enter event title"
+                                            required
+                                        />
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="event-date"
+                                                >Event Date *</label
+                                            >
+                                            <input
+                                                type="date"
+                                                id="event-date"
+                                                name="date"
+                                                required
+                                            />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="event-time"
+                                                >Event Time</label
+                                            >
+                                            <input
+                                                type="time"
+                                                id="event-time"
+                                                name="time"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="event-location"
+                                            >Location *</label
+                                        >
+                                        <input
+                                            type="text"
+                                            id="event-location"
+                                            name="location"
+                                            placeholder="Event location"
+                                            required
+                                        />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="event-type"
+                                            >Event Type *</label
+                                        >
+                                        <select
+                                            id="event-type"
+                                            name="type"
+                                            required
+                                        >
+                                            <option value="">
+                                                Select type
+                                            </option>
+                                            <option value="fundraiser">
+                                                Fundraiser
+                                            </option>
+                                            <option value="awareness">
+                                                Awareness Event
+                                            </option>
+                                            <option value="gala">Gala</option>
+                                            <option value="community">
+                                                Community Gathering
+                                            </option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="event-image"
+                                            >Event Image</label
+                                        >
+                                        <input
+                                            type="file"
+                                            id="event-image"
+                                            name="image"
+                                            accept="image/*"
+                                        />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="event-description"
+                                            >Event Description *</label
+                                        >
+                                        <textarea
+                                            id="event-description"
+                                            name="description"
+                                            rows="10"
+                                            placeholder="Describe the event..."
+                                            required
+                                        ></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="event-registration"
+                                            >Registration Link</label
+                                        >
+                                        <input
+                                            type="url"
+                                            id="event-registration"
+                                            name="registration"
+                                            placeholder="https://..."
+                                        />
+                                    </div>
+
+                                    <div class="form-actions">
+                                        <button
+                                            type="button"
+                                            class="btn-secondary"
+                                        >
+                                            Save as Draft
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            class="btn-primary"
+                                        >
+                                            Publish Event
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Recent Events List -->
+                            <div class="recent-posts-admin">
+                                <h3>Upcoming Events</h3>
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Type</th>
+                                            <th>Date</th>
+                                            <th>Location</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                Fundraising Gala in Stamford
+                                            </td>
+                                            <td>Gala</td>
+                                            <td>Feb 5, 2026</td>
+                                            <td>Stamford, CT</td>
+                                            <td>
+                                                <button class="btn-edit">
+                                                    Edit
+                                                </button>
+                                                <button class="btn-delete">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Volunteer Training Day</td>
+                                            <td>Community</td>
+                                            <td>Mar 12, 2026</td>
+                                            <td>Fairfield, CT</td>
+                                            <td>
+                                                <button class="btn-edit">
+                                                    Edit
+                                                </button>
+                                                <button class="btn-delete">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Sister Cities Management -->
+                        <div id="sister-cities" class="tab-content">
+                            <div class="form-section">
+                                <h2>Add New Sister City Partnership</h2>
+                                <form class="admin-form">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="ukrainian-city"
+                                                >Ukrainian City *</label
+                                            >
+                                            <input
+                                                type="text"
+                                                id="ukrainian-city"
+                                                name="ukrainian_city"
+                                                placeholder="e.g., Kramatorsk"
+                                                required
+                                            />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="ukrainian-population"
+                                                >Population</label
+                                            >
+                                            <input
+                                                type="text"
+                                                id="ukrainian-population"
+                                                name="ukrainian_population"
+                                                placeholder="e.g., ~150,000"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="american-city"
+                                                >American City *</label
+                                            >
+                                            <input
+                                                type="text"
+                                                id="american-city"
+                                                name="american_city"
+                                                placeholder="e.g., Stamford, CT"
+                                                required
+                                            />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="american-population"
+                                                >Population</label
+                                            >
+                                            <input
+                                                type="text"
+                                                id="american-population"
+                                                name="american_population"
+                                                placeholder="e.g., ~135,000"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="partnership-date"
+                                                >Partnership Since *</label
+                                            >
+                                            <input
+                                                type="text"
+                                                id="partnership-date"
+                                                name="partnership_date"
+                                                placeholder="e.g., May 2023"
+                                                required
+                                            />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="city-status"
+                                                >Status *</label
+                                            >
+                                            <select
+                                                id="city-status"
+                                                name="status"
+                                                required
+                                            >
+                                                <option value="">
+                                                    Select status
+                                                </option>
+                                                <option value="active">
+                                                    Active
+                                                </option>
+                                                <option value="pending">
+                                                    Pending
+                                                </option>
+                                                <option value="inactive">
+                                                    Inactive
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="ukrainian-city-image"
+                                            >Ukrainian City Image</label
+                                        >
+                                        <input
+                                            type="file"
+                                            id="ukrainian-city-image"
+                                            name="ukrainian_image"
+                                            accept="image/*"
+                                        />
+                                        <small
+                                            >Recommended size: 400x250px</small
+                                        >
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="american-city-image"
+                                            >American City Image</label
+                                        >
+                                        <input
+                                            type="file"
+                                            id="american-city-image"
+                                            name="american_image"
+                                            accept="image/*"
+                                        />
+                                        <small
+                                            >Recommended size: 400x250px</small
+                                        >
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="city-description"
+                                            >Partnership Description *</label
+                                        >
+                                        <textarea
+                                            id="city-description"
+                                            name="description"
+                                            rows="5"
+                                            placeholder="Describe the partnership and its impact..."
+                                            required
+                                        ></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="city-page-url"
+                                            >Dedicated Page URL</label
+                                        >
+                                        <input
+                                            type="url"
+                                            id="city-page-url"
+                                            name="page_url"
+                                            placeholder="https://..."
+                                        />
+                                        <small
+                                            >Link to detailed partnership page
+                                            (optional)</small
+                                        >
+                                    </div>
+
+                                    <div class="form-actions">
+                                        <button
+                                            type="button"
+                                            class="btn-secondary"
+                                        >
+                                            Save as Draft
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            class="btn-primary"
+                                        >
+                                            Publish Sister City
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Sister Cities List -->
+                            <div class="recent-posts-admin">
+                                <h3>Existing Sister City Partnerships</h3>
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Partnership</th>
+                                            <th>Since</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Kramatorsk 🇺🇦 & Stamford 🇺🇸</td>
+                                            <td>May 2023</td>
+                                            <td>
+                                                <span
+                                                    class="status-badge published"
+                                                    >Active</span
+                                                >
+                                            </td>
+                                            <td>
+                                                <button class="btn-edit">
+                                                    Edit
+                                                </button>
+                                                <button class="btn-delete">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Kostiantynivka 🇺🇦 & Fairfield 🇺🇸
+                                            </td>
+                                            <td>August 2023</td>
+                                            <td>
+                                                <span
+                                                    class="status-badge published"
+                                                    >Active</span
+                                                >
+                                            </td>
+                                            <td>
+                                                <button class="btn-edit">
+                                                    Edit
+                                                </button>
+                                                <button class="btn-delete">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Kyiv 🇺🇦 & Chicago 🇺🇸</td>
+                                            <td>March 1991</td>
+                                            <td>
+                                                <span
+                                                    class="status-badge published"
+                                                    >Active</span
+                                                >
+                                            </td>
+                                            <td>
+                                                <button class="btn-edit">
+                                                    Edit
+                                                </button>
+                                                <button class="btn-delete">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Moderation Panel -->
+                        <div id="moderation" class="tab-content">
+                            <div class="form-section">
+                                <h2>Moderation Dashboard</h2>
+
+                                <!-- Sub-tabs for different moderation types -->
+                                <div class="admin-tabs">
+                                    <button
+                                        class="tab-button active"
+                                        data-subtab="contact-forms"
+                                    >
+                                        Contact Forms (8)
+                                    </button>
+                                    <button
+                                        class="tab-button"
+                                        data-subtab="comments"
+                                    >
+                                        Comments (4)
+                                    </button>
+                                    <button
+                                        class="tab-button"
+                                        data-subtab="newsletter"
+                                    >
+                                        Newsletter Subscribers
+                                    </button>
+                                </div>
+
+                                <!-- Contact Forms Moderation -->
+                                <div
+                                    id="contact-forms"
+                                    class="tab-content active"
+                                >
+                                    <h3>Contact Form Submissions</h3>
+                                    <!-- Contact Forms Moderation -->
+                                    <!-- <div
+                                        class="admin-filters"
+                                        style="margin-bottom: 12px"
+                                    >
+                                        <label
+                                            for="contact-subject-filter"
+                                            style="margin-right: 8px"
+                                            >Filter by Subject:</label
+                                        >
+                                        <select id="contact-subject-filter">
+                                            <option value="">
+                                                All Subjects
+                                            </option>
+                                            <option
+                                                value="Join an existing Friendship City"
+                                            >
+                                                Join an existing Friendship City
+                                            </option>
+                                            <option
+                                                value="Initiate our city as a Friendship City"
+                                            >
+                                                Initiate our city as a
+                                                Friendship City
+                                            </option>
+                                            <option
+                                                value="Volunteer / Vendor at local events"
+                                            >
+                                                Volunteer / Vendor at local
+                                                events
+                                            </option>
+                                            <option
+                                                value="General inquiry / Contact us"
+                                            >
+                                                General inquiry / Contact us
+                                            </option>
+                                        </select>
+                                    </div> -->
+
+                                    <table
+                                        class="admin-table"
+                                        id="contact-forms-table"
+                                    >
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Subject</th>
+                                                <th>Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Jan 17, 2026</td>
+                                                <td>John Smith</td>
+                                                <td>john@example.com</td>
+                                                <td>
+                                                    Join an existing Friendship
+                                                    City
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        class="status-badge"
+                                                        style="
+                                                            background-color: #ffc107;
+                                                        "
+                                                        >Pending</span
+                                                    >
+                                                </td>
+                                                <td>
+                                                    <button class="btn-edit">
+                                                        View
+                                                    </button>
+                                                    <button class="btn-delete">
+                                                        Archive
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Jan 16, 2026</td>
+                                                <td>Sarah Johnson</td>
+                                                <td>sarah@example.com</td>
+                                                <td>
+                                                    Volunteer / Vendor at local
+                                                    events
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        class="status-badge"
+                                                        style="
+                                                            background-color: #ffc107;
+                                                        "
+                                                        >Pending</span
+                                                    >
+                                                </td>
+                                                <td>
+                                                    <button class="btn-edit">
+                                                        View
+                                                    </button>
+                                                    <button class="btn-delete">
+                                                        Archive
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Jan 15, 2026</td>
+                                                <td>Michael Brown</td>
+                                                <td>michael@example.com</td>
+                                                <td>
+                                                    General inquiry / Contact us
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        class="status-badge published"
+                                                        >Responded</span
+                                                    >
+                                                </td>
+                                                <td>
+                                                    <button class="btn-edit">
+                                                        View
+                                                    </button>
+                                                    <button class="btn-delete">
+                                                        Archive
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <!-- Message Detail Modal (shown when clicking View) -->
+                                    <div
+                                        class="message-detail"
+                                        style="
+                                            display: none;
+                                            margin-top: 30px;
+                                            background-color: #f9f9f9;
+                                            padding: 20px;
+                                            border-radius: 10px;
+                                        "
+                                    >
+                                        <h4>Message from John Smith</h4>
+                                        <p>
+                                            <strong>Email:</strong>
+                                            john@example.com
+                                        </p>
+                                        <p>
+                                            <strong>Date:</strong> Jan 17, 2026
+                                        </p>
+                                        <p>
+                                            <strong>Subject:</strong> Volunteer
+                                            Inquiry
+                                        </p>
+                                        <p><strong>Message:</strong></p>
+                                        <p>
+                                            Hi, I'm interested in volunteering
+                                            for your upcoming missions to
+                                            Ukraine. I have experience in
+                                            humanitarian work and would love to
+                                            contribute. Could you provide more
+                                            information about volunteer
+                                            opportunities?
+                                        </p>
+                                        <div class="form-actions">
+                                            <button class="btn-primary">
+                                                Mark as Responded
+                                            </button>
+                                            <button class="btn-secondary">
+                                                Reply via Email
+                                            </button>
+                                            <button class="btn-delete">
+                                                Archive
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Comments Moderation -->
+                                <div id="comments" class="tab-content">
+                                    <h3>Blog Post Comments</h3>
+                                    <table class="admin-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Post</th>
+                                                <th>Author</th>
+                                                <th>Comment</th>
+                                                <th>Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Jan 17, 2026</td>
+                                                <td>Winter Relief Mission</td>
+                                                <td>Anonymous</td>
+                                                <td>
+                                                    Amazing work! Keep it up...
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        class="status-badge"
+                                                        style="
+                                                            background-color: #ffc107;
+                                                        "
+                                                        >Pending</span
+                                                    >
+                                                </td>
+                                                <td>
+                                                    <button class="btn-edit">
+                                                        Approve
+                                                    </button>
+                                                    <button class="btn-delete">
+                                                        Reject
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Jan 16, 2026</td>
+                                                <td>Thanksgiving Mission</td>
+                                                <td>Mary K.</td>
+                                                <td>
+                                                    This is so inspiring. How
+                                                    can I help?
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        class="status-badge published"
+                                                        >Approved</span
+                                                    >
+                                                </td>
+                                                <td>
+                                                    <button class="btn-edit">
+                                                        Edit
+                                                    </button>
+                                                    <button class="btn-delete">
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Jan 15, 2026</td>
+                                                <td>Winter Relief Mission</td>
+                                                <td>David L.</td>
+                                                <td>
+                                                    Proud to see Stamford
+                                                    supporting Ukraine!
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        class="status-badge published"
+                                                        >Approved</span
+                                                    >
+                                                </td>
+                                                <td>
+                                                    <button class="btn-edit">
+                                                        Edit
+                                                    </button>
+                                                    <button class="btn-delete">
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- Newsletter Subscribers -->
+                                <div id="newsletter" class="tab-content">
+                                    <h3>Newsletter Subscribers</h3>
+                                    <div style="margin-bottom: 20px">
+                                        <button class="btn-primary">
+                                            Export to CSV
+                                        </button>
+                                        <button class="btn-secondary">
+                                            Send Newsletter
+                                        </button>
+                                    </div>
+                                    <table class="admin-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Email</th>
+                                                <th>Subscribe Date</th>
+                                                <th>Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>subscriber1@example.com</td>
+                                                <td>Jan 10, 2026</td>
+                                                <td>
+                                                    <span
+                                                        class="status-badge published"
+                                                        >Active</span
+                                                    >
+                                                </td>
+                                                <td>
+                                                    <button class="btn-delete">
+                                                        Unsubscribe
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>subscriber2@example.com</td>
+                                                <td>Jan 8, 2026</td>
+                                                <td>
+                                                    <span
+                                                        class="status-badge published"
+                                                        >Active</span
+                                                    >
+                                                </td>
+                                                <td>
+                                                    <button class="btn-delete">
+                                                        Unsubscribe
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>subscriber3@example.com</td>
+                                                <td>Jan 5, 2026</td>
+                                                <td>
+                                                    <span
+                                                        class="status-badge published"
+                                                        >Active</span
+                                                    >
+                                                </td>
+                                                <td>
+                                                    <button class="btn-delete">
+                                                        Unsubscribe
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer admin-footer">
+            <div class="container">
+                <p>&copy; 2026 Ukraine Aid International - Admin Panel</p>
+            </div>
+        </footer>
+
+        <script>
+            /* Simple client-side filter for Contact Forms by Subject */
+            (function () {
+                var filter = document.getElementById("contact-subject-filter");
+                if (!filter) return;
+                filter.addEventListener("change", function () {
+                    var val = this.value.trim();
+                    var rows = document.querySelectorAll(
+                        "#contact-forms-table tbody tr"
+                    );
+                    rows.forEach(function (row) {
+                        var subjectCell = row.querySelector("td:nth-child(4)");
+                        var subjectText = subjectCell
+                            ? subjectCell.textContent.trim()
+                            : "";
+                        row.style.display =
+                            !val || subjectText === val ? "" : "none";
+                    });
+                });
+            })();
+        </script>
+
+        <script>
+            // Tab switching functionality
+            document.querySelectorAll(".tab-button").forEach((button) => {
+                button.addEventListener("click", function () {
+                    const tabName =
+                        this.getAttribute("data-tab") ||
+                        this.getAttribute("data-subtab");
+                    const isSubTab = this.hasAttribute("data-subtab");
+
+                    // Get parent container
+                    const parentContainer = isSubTab
+                        ? this.closest(".form-section")
+                        : this.closest(".admin-main");
+
+                    // Hide all tab contents in this container
+                    if (isSubTab) {
+                        // For sub-tabs, only hide siblings
+                        const allSubTabs = parentContainer.querySelectorAll(
+                            "#contact-forms, #comments, #newsletter"
+                        );
+                        allSubTabs.forEach((content) => {
+                            content.classList.remove("active");
+                        });
+                    } else {
+                        // For main tabs, hide all main tab contents
+                        document
+                            .querySelectorAll(
+                                "#mission-reports, #events, #sister-cities, #moderation"
+                            )
+                            .forEach((content) => {
+                                content.classList.remove("active");
+                            });
+                    }
+
+                    // Remove active class from buttons in same group
+                    this.parentElement
+                        .querySelectorAll(".tab-button")
+                        .forEach((btn) => {
+                            btn.classList.remove("active");
+                        });
+
+                    // Show selected tab content
+                    const targetContent = document.getElementById(tabName);
+                    if (targetContent) {
+                        targetContent.classList.add("active");
+                    }
+
+                    // Add active class to clicked button
+                    this.classList.add("active");
+                });
+            });
+        </script>
+    </body>
+</html>

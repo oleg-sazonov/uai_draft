@@ -1,0 +1,112 @@
+/* Newsletter Section */
+.newsletter {
+    padding: var(--spacing-xl) 0;
+    background: linear-gradient(
+        135deg,
+        var(--primary-blue) 0%,
+        var(--primary-blue-dark) 100%
+    );
+    color: var(--white);
+}
+
+.newsletter-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.newsletter-text h2 {
+    font-size: var(--font-4xl);
+    margin-bottom: var(--spacing-md);
+    color: var(--white);
+}
+
+.newsletter-text p {
+    font-size: var(--font-lg);
+    margin-bottom: var(--spacing-lg);
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+.newsletter-form {
+    margin-top: var(--spacing-lg);
+}
+
+.newsletter-input-wrapper {
+    display: flex;
+    gap: 10px;
+    max-width: 600px;
+    margin: 0 auto var(--spacing-sm);
+}
+
+.newsletter-input-wrapper input[type="email"] {
+    flex: 1;
+    padding: 15px 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-md);
+    font-size: var(--font-md);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    transition: all var(--transition-fast);
+}
+
+.newsletter-input-wrapper input[type="email"]::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.newsletter-input-wrapper input[type="email"]:focus {
+    outline: none;
+    border-color: var(--primary-yellow);
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.btn-newsletter {
+    padding: 15px 35px;
+    background-color: var(--primary-yellow);
+    color: var(--primary-blue);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: var(--font-md);
+    font-weight: bold;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+}
+
+.btn-newsletter:hover {
+    opacity: 0.8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-newsletter:active {
+    transform: translateY(0);
+}
+
+.newsletter-privacy {
+    display: block;
+    font-size: var(--font-sm);
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: var(--spacing-sm);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .newsletter-text h2 {
+        font-size: var(--font-3xl);
+    }
+
+    .newsletter-text p {
+        font-size: var(--font-md);
+    }
+
+    .newsletter-input-wrapper {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .btn-newsletter {
+        width: 100%;
+        padding: 15px;
+    }
+}

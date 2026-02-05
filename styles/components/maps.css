@@ -1,0 +1,148 @@
+/* Maps Components */
+.maps-display {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin-bottom: var(--spacing-xl);
+}
+
+.donor-maps-container {
+    background-color: var(--gray-100);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.donor-maps-title {
+    color: var(--primary-blue);
+    font-size: var(--font-2xl);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.donor-maps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+}
+
+.state-map-section {
+    background-color: var(--white);
+    padding: 25px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+}
+
+.state-map-section h4 {
+    color: var(--primary-blue);
+    font-size: var(--font-xl);
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--primary-yellow);
+}
+
+.geography-map {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: auto;
+}
+
+.donor-cities-list {
+    margin-top: 15px;
+    background-color: var(--gray-100);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.donor-cities-list ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.donor-cities-list li {
+    padding: 6px 0 6px 20px;
+    position: relative;
+}
+
+.donor-cities-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--primary-blue);
+    font-weight: bold;
+}
+
+/* Ukraine Map */
+.ukraine-map-container {
+    background-color: var(--gray-100);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.ukraine-map-title {
+    color: var(--primary-blue);
+    font-size: 28px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.ukraine-map-wrapper {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: var(--radius-lg);
+    margin-bottom: 30px;
+}
+
+.ukrainian-cities-list {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: var(--radius-lg);
+}
+
+.ukrainian-cities-list h4 {
+    color: var(--primary-blue);
+    font-size: var(--font-xl);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-yellow);
+    text-align: center;
+}
+
+.cities-columns li a {
+    color: var(--gray-700);
+    text-decoration: none;
+    font-size: var(--font-md);
+    transition: color var(--transition-fast);
+}
+
+.cities-columns li a:hover {
+    color: var(--primary-blue);
+    text-decoration: underline;
+}
+
+.cities-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 5px;
+}
+
+.cities-columns ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.cities-columns li {
+    padding: 8px 0 8px 25px;
+    position: relative;
+}
+
+.cities-columns li::before {
+    content: "📍";
+    position: absolute;
+    left: 0;
+}

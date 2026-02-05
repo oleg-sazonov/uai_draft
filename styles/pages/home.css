@@ -1,0 +1,145 @@
+/* Home Page Styles */
+.hero {
+    background: linear-gradient(
+        135deg,
+        var(--primary-blue) 0%,
+        var(--primary-blue-dark) 100%
+    );
+    color: var(--white);
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: var(--font-6xl);
+    margin-bottom: var(--spacing-md);
+    color: var(--white);
+}
+
+.hero-subtitle {
+    font-size: var(--font-xl);
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+/* Hero link - subtle secondary action */
+.hero-link {
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: 20px;
+    color: var(--white);
+    text-decoration: none;
+    font-size: var(--font-lg);
+    font-weight: 500;
+    transition: all var(--transition-fast);
+    border-bottom: 2px solid transparent;
+}
+
+.hero-link:hover {
+    color: var(--primary-yellow);
+    border-bottom-color: var(--primary-yellow);
+    transform: translateX(5px);
+}
+
+.impact {
+    padding: var(--spacing-2xl) 0;
+    background-color: var(--gray-100);
+}
+
+.impact h2 {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.impact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+/* Latest Posts Preview Section */
+.latest-posts {
+    padding: var(--spacing-2xl) 0;
+    background-color: var(--white);
+}
+
+.latest-posts h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.posts-grid-preview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.section-cta {
+    text-align: center;
+    margin-top: var(--spacing-lg);
+}
+
+/* Sister Cities Geography */
+.sister-cities-geography {
+    padding: var(--spacing-2xl) 0;
+    background-color: var(--white);
+}
+
+.sister-cities-geography h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: var(--font-lg);
+    color: var(--gray-500);
+    margin-bottom: 50px;
+}
+
+/* Sister Cities Preview */
+.sister-cities-preview {
+    padding: var(--spacing-2xl) 0;
+}
+
+.sister-cities-preview h2 {
+    text-align: center;
+}
+
+.cities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.city-pair {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.connector {
+    font-size: 32px;
+}
+
+/* CTA Section */
+.cta {
+    background-color: var(--primary-yellow);
+    padding: var(--spacing-2xl) 0;
+    text-align: center;
+}
+
+.cta h2 {
+    font-size: var(--font-4xl);
+    margin-bottom: var(--spacing-md);
+    color: var(--primary-blue);
+}
+
+.cta p {
+    font-size: var(--font-lg);
+    margin-bottom: 30px;
+    color: var(--gray-700);
+}

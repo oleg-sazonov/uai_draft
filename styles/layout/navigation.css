@@ -1,0 +1,140 @@
+/* Navigation Styles */
+.navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    align-items: center;
+}
+
+.navbar a {
+    color: var(--white);
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.navbar a:hover {
+    opacity: 0.8;
+}
+
+/* Dropdown Menu */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--primary-blue);
+    min-width: 220px;
+    padding: 10px 0;
+    box-shadow: var(--shadow-md);
+    z-index: 1000;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu li {
+    padding: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-menu li:last-child {
+    border-bottom: none;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 12px 20px;
+    color: var(--white);
+    text-decoration: none;
+    transition: background-color var(--transition-fast);
+}
+
+.dropdown-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-donate-nav {
+    background-color: var(--primary-yellow);
+    color: var(--primary-blue) !important;
+    padding: 8px 20px;
+    border-radius: var(--radius-md);
+    font-weight: bold;
+    transition: all var(--transition-fast);
+}
+
+/* Hamburger Menu */
+.menu-toggle {
+    display: none;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    cursor: pointer;
+    position: relative;
+    z-index: 1001;
+}
+
+.hamburger-line {
+    width: 30px;
+    height: 3px;
+    background-color: var(--primary-yellow);
+    margin-bottom: 4px;
+    transition: var(--transition-medium);
+    border-radius: var(--radius-sm);
+}
+
+.hamburger-line:last-child {
+    margin-bottom: 0;
+}
+
+/* Hamburger Animation */
+.menu-toggle:checked ~ .hamburger .hamburger-line:nth-child(1) {
+    transform: translateY(9px) rotate(-45deg);
+}
+
+.menu-toggle:checked ~ .hamburger .hamburger-line:nth-child(2) {
+    display: none;
+}
+
+.menu-toggle:checked ~ .hamburger .hamburger-line:nth-child(3) {
+    transform: translateY(3px) rotate(45deg);
+}
+
+/* Admin Navigation */
+.admin-nav {
+    background-color: var(--gray-100);
+    padding: 15px 0;
+    border-bottom: 2px solid var(--gray-300);
+}
+
+.admin-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.admin-menu a {
+    color: var(--gray-700);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+}
+
+.admin-menu a.active {
+    background-color: var(--primary-blue);
+    color: var(--white);
+}

@@ -1,0 +1,165 @@
+/* Card Components */
+.impact-card {
+    background-color: var(--white);
+    padding: var(--spacing-lg) var(--spacing-md);
+    text-align: center;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.impact-number {
+    font-size: var(--font-6xl);
+    font-weight: bold;
+    color: var(--primary-blue);
+    margin-bottom: var(--spacing-sm);
+}
+
+.impact-label {
+    font-size: var(--font-lg);
+    color: var(--gray-500);
+}
+
+/* City Cards */
+.city-card {
+    background-color: var(--gray-100);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    width: 100%;
+}
+
+.flag {
+    font-size: 36px;
+    display: block;
+    margin-bottom: var(--spacing-sm);
+}
+
+.city-card h3 {
+    font-size: var(--font-2xl);
+    margin-bottom: 5px;
+}
+
+.city-card p {
+    color: var(--gray-500);
+}
+
+/* Post Cards */
+.post-card {
+    background-color: var(--white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition-fast);
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+}
+
+.post-image {
+    position: relative;
+    height: 250px;
+}
+
+.post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.post-category {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: var(--primary-blue);
+    color: var(--white);
+    padding: 5px 15px;
+    border-radius: var(--radius-md);
+    font-size: var(--font-xs);
+    font-weight: bold;
+}
+
+.post-category.event {
+    background-color: var(--success-green);
+}
+
+.post-content {
+    padding: 25px;
+}
+
+.post-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: var(--gray-500);
+    font-size: var(--font-sm);
+}
+
+/* Sister City Cards */
+.sister-city-card {
+    background-color: var(--white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.city-image {
+    height: 250px;
+}
+
+.city-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.city-flags {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: var(--spacing-md);
+}
+
+.flag-large {
+    font-size: 48px;
+}
+
+.connector-icon {
+    font-size: 32px;
+}
+
+/* Partnership Details Notice */
+.partnership-details-notice {
+    background: linear-gradient(
+        135deg,
+        var(--primary-blue) 0%,
+        var(--primary-blue-dark) 100%
+    );
+    color: var(--white);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    text-align: center;
+}
+
+.partnership-details-notice p {
+    font-size: var(--font-lg);
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.partnership-details-notice strong {
+    color: var(--primary-yellow);
+}
+
+.partnership-details-notice .btn-secondary {
+    background-color: var(--white);
+    color: var(--primary-blue);
+    border-color: var(--white);
+}
+
+.partnership-details-notice .btn-secondary:hover {
+    background-color: var(--primary-yellow);
+    color: var(--primary-blue);
+    border-color: var(--primary-yellow);
+}

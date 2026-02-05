@@ -1,0 +1,12 @@
+/* Mobile Accordion Styles */
+.state-header-mobile {
+    display: none;
+}
+
+.accordion-toggle-mobile {
+    display: none;
+}
+
+.state-content-mobile {
+    display: contents;
+}

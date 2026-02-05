@@ -1,0 +1,91 @@
+/* Contact page styles - consistent with site variables */
+.contact-page {
+    padding: 60px 0;
+    background-color: var(--white);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 40px;
+    align-items: start;
+}
+
+.contact-form-panel h2,
+.contact-info-panel h2 {
+    color: var(--primary-blue);
+    margin-bottom: 10px;
+}
+
+.contact-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.contact-form .form-group {
+    margin-bottom: 15px;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: var(--gray-700);
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--gray-300);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    background: var(--white);
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.map-placeholder img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+}
+
+.contact-info-panel .mailing-address {
+    background-color: var(--gray-100);
+    padding: 12px;
+    border-radius: var(--radius-sm);
+    margin: 12px 0;
+    border-left: 4px solid var(--primary-blue);
+}
+
+.social-links {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-info-panel {
+        margin-top: 20px;
+    }
+}
