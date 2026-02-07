@@ -308,9 +308,16 @@ a:hover {
 /* Admin Footer */
 .admin-footer {
     background-color: var(--black);
-    padding: var(--spacing-md) 0;
+    padding: var(--spacing-xl) 0;
     text-align: center;
     color: var(--gray-400);
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+}
+
+.admin-footer .container {
+    width: 100%;
 }
 
 /* Tax & Legal Information Section */

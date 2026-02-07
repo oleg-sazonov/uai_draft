@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Admin Panel - Ukraine Aid International</title>
-        <link rel="stylesheet" href="styles/index.css" />
+        <link rel="stylesheet" href="styles/draft.css" />
     </head>
     <body>
         <!-- Admin Header -->
@@ -28,24 +28,11 @@
             </div>
         </header>
 
-        <!-- Admin Navigation -->
-        <nav class="admin-nav">
-            <div class="container">
-                <ul class="admin-menu">
-                    <li><a href="#posts" class="active">Mission Reports</a></li>
-                    <li><a href="#events">Events</a></li>
-                    <li><a href="#sister-cities">Sister Cities</a></li>
-                    <li><a href="#moderation">Moderation</a></li>
-                    <li><a href="#settings">Settings</a></li>
-                </ul>
-            </div>
-        </nav>
-
         <!-- Admin Content -->
         <section class="admin-content">
             <div class="container">
                 <div class="admin-grid">
-                    <!-- Sidebar -->
+                    <!-- Sidebar - Informational Only -->
                     <aside class="admin-sidebar">
                         <div class="sidebar-section">
                             <h3>Quick Stats</h3>
@@ -57,13 +44,10 @@
                                     <strong>Total Events:</strong> 8
                                 </div>
                                 <div class="stat-item">
-                                    <strong>Sister Cities:</strong> 18
+                                    <strong>Pending Forms:</strong> 12
                                 </div>
                                 <div class="stat-item">
-                                    <strong>Pending Moderation:</strong> 12
-                                </div>
-                                <div class="stat-item">
-                                    <strong>Last Updated:</strong> Jan 15, 2026
+                                    <strong>Newsletter Subscribers:</strong> 156
                                 </div>
                             </div>
                         </div>
@@ -71,9 +55,7 @@
 
                     <!-- Main Admin Area -->
                     <main class="admin-main">
-                        <h1>Content Management</h1>
-
-                        <!-- Tabs -->
+                        <!-- Admin Tabs - ONLY Navigation -->
                         <div class="admin-tabs">
                             <button
                                 class="tab-button active"
@@ -84,15 +66,15 @@
                             <button class="tab-button" data-tab="events">
                                 Events
                             </button>
-                            <button class="tab-button" data-tab="sister-cities">
-                                Sister Cities
+                            <button class="tab-button" data-tab="forms">
+                                Forms
                             </button>
-                            <button class="tab-button" data-tab="moderation">
-                                Moderation
+                            <button class="tab-button" data-tab="newsletter">
+                                Newsletter
                             </button>
                         </div>
 
-                        <!-- Mission Reports Form -->
+                        <!-- Mission Reports Section -->
                         <div id="mission-reports" class="tab-content active">
                             <div class="form-section">
                                 <h2>Create New Mission Report</h2>
@@ -144,21 +126,24 @@
                                                     Update
                                                 </option>
                                             </select>
+                                            <small
+                                                >Used for filtering on Mission
+                                                Log page.</small
+                                            >
                                         </div>
                                     </div>
 
                                     <div class="form-row">
                                         <div class="form-group">
                                             <label for="aid-type"
-                                                >Type of Aid *</label
+                                                >Type of Aid (Optional)</label
                                             >
                                             <select
                                                 id="aid-type"
                                                 name="aid_type"
-                                                required
                                             >
                                                 <option value="">
-                                                    Select aid type
+                                                    — Not specified —
                                                 </option>
                                                 <option value="water">
                                                     Water & Sanitation
@@ -188,20 +173,20 @@
                                                     General Humanitarian Aid
                                                 </option>
                                             </select>
+                                            <small
+                                                >Leave unspecified for general
+                                                updates or news.</small
+                                            >
                                         </div>
 
                                         <div class="form-group">
                                             <label for="post-city"
                                                 >Sister City Partnership
-                                                *</label
+                                                (Optional)</label
                                             >
-                                            <select
-                                                id="post-city"
-                                                name="city"
-                                                required
-                                            >
+                                            <select id="post-city" name="city">
                                                 <option value="">
-                                                    Select sister city
+                                                    — Not specified —
                                                 </option>
                                                 <option
                                                     value="kramatorsk-stamford"
@@ -223,7 +208,36 @@
                                                     Ashland
                                                 </option>
                                             </select>
+                                            <small
+                                                >Leave unspecified for
+                                                organization-wide posts.</small
+                                            >
                                         </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="post-visibility"
+                                            >Visibility *</label
+                                        >
+                                        <select
+                                            id="post-visibility"
+                                            name="visibility"
+                                            required
+                                        >
+                                            <option value="public" selected>
+                                                Public
+                                            </option>
+                                            <option value="internal">
+                                                Internal
+                                            </option>
+                                            <option value="archived">
+                                                Archived
+                                            </option>
+                                        </select>
+                                        <small
+                                            >Controls whether this post appears
+                                            on the public website.</small
+                                        >
                                     </div>
 
                                     <div class="form-group">
@@ -369,6 +383,12 @@
                                             type="button"
                                             class="btn-secondary"
                                         >
+                                            Preview
+                                        </button>
+                                        <button
+                                            type="button"
+                                            class="btn-secondary"
+                                        >
                                             Save as Draft
                                         </button>
                                         <button
@@ -469,7 +489,7 @@
                             </div>
                         </div>
 
-                        <!-- Events Form -->
+                        <!-- Events Section -->
                         <div id="events" class="tab-content">
                             <div class="form-section">
                                 <h2>Create New Event</h2>
@@ -587,7 +607,38 @@
                                         />
                                     </div>
 
+                                    <div class="form-group">
+                                        <label for="event-visibility"
+                                            >Visibility *</label
+                                        >
+                                        <select
+                                            id="event-visibility"
+                                            name="visibility"
+                                            required
+                                        >
+                                            <option value="public" selected>
+                                                Public
+                                            </option>
+                                            <option value="internal">
+                                                Internal
+                                            </option>
+                                            <option value="archived">
+                                                Archived
+                                            </option>
+                                        </select>
+                                        <small
+                                            >Controls whether this event appears
+                                            on the public website.</small
+                                        >
+                                    </div>
+
                                     <div class="form-actions">
+                                        <button
+                                            type="button"
+                                            class="btn-secondary"
+                                        >
+                                            Preview
+                                        </button>
                                         <button
                                             type="button"
                                             class="btn-secondary"
@@ -653,243 +704,92 @@
                             </div>
                         </div>
 
-                        <!-- Sister Cities Management -->
-                        <div id="sister-cities" class="tab-content">
+                        <!-- Forms Section -->
+                        <div id="forms" class="tab-content">
                             <div class="form-section">
-                                <h2>Add New Sister City Partnership</h2>
-                                <form class="admin-form">
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label for="ukrainian-city"
-                                                >Ukrainian City *</label
-                                            >
-                                            <input
-                                                type="text"
-                                                id="ukrainian-city"
-                                                name="ukrainian_city"
-                                                placeholder="e.g., Kramatorsk"
-                                                required
-                                            />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="ukrainian-population"
-                                                >Population</label
-                                            >
-                                            <input
-                                                type="text"
-                                                id="ukrainian-population"
-                                                name="ukrainian_population"
-                                                placeholder="e.g., ~150,000"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label for="american-city"
-                                                >American City *</label
-                                            >
-                                            <input
-                                                type="text"
-                                                id="american-city"
-                                                name="american_city"
-                                                placeholder="e.g., Stamford, CT"
-                                                required
-                                            />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="american-population"
-                                                >Population</label
-                                            >
-                                            <input
-                                                type="text"
-                                                id="american-population"
-                                                name="american_population"
-                                                placeholder="e.g., ~135,000"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label for="partnership-date"
-                                                >Partnership Since *</label
-                                            >
-                                            <input
-                                                type="text"
-                                                id="partnership-date"
-                                                name="partnership_date"
-                                                placeholder="e.g., May 2023"
-                                                required
-                                            />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="city-status"
-                                                >Status *</label
-                                            >
-                                            <select
-                                                id="city-status"
-                                                name="status"
-                                                required
-                                            >
-                                                <option value="">
-                                                    Select status
-                                                </option>
-                                                <option value="active">
-                                                    Active
-                                                </option>
-                                                <option value="pending">
-                                                    Pending
-                                                </option>
-                                                <option value="inactive">
-                                                    Inactive
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="ukrainian-city-image"
-                                            >Ukrainian City Image</label
-                                        >
-                                        <input
-                                            type="file"
-                                            id="ukrainian-city-image"
-                                            name="ukrainian_image"
-                                            accept="image/*"
-                                        />
-                                        <small
-                                            >Recommended size: 400x250px</small
-                                        >
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="american-city-image"
-                                            >American City Image</label
-                                        >
-                                        <input
-                                            type="file"
-                                            id="american-city-image"
-                                            name="american_image"
-                                            accept="image/*"
-                                        />
-                                        <small
-                                            >Recommended size: 400x250px</small
-                                        >
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="city-description"
-                                            >Partnership Description *</label
-                                        >
-                                        <textarea
-                                            id="city-description"
-                                            name="description"
-                                            rows="5"
-                                            placeholder="Describe the partnership and its impact..."
-                                            required
-                                        ></textarea>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="city-page-url"
-                                            >Dedicated Page URL</label
-                                        >
-                                        <input
-                                            type="url"
-                                            id="city-page-url"
-                                            name="page_url"
-                                            placeholder="https://..."
-                                        />
-                                        <small
-                                            >Link to detailed partnership page
-                                            (optional)</small
-                                        >
-                                    </div>
-
-                                    <div class="form-actions">
-                                        <button
-                                            type="button"
-                                            class="btn-secondary"
-                                        >
-                                            Save as Draft
-                                        </button>
-                                        <button
-                                            type="submit"
-                                            class="btn-primary"
-                                        >
-                                            Publish Sister City
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <!-- Sister Cities List -->
-                            <div class="recent-posts-admin">
-                                <h3>Existing Sister City Partnerships</h3>
+                                <h2>Contact Form Submissions</h2>
                                 <table class="admin-table">
                                     <thead>
                                         <tr>
-                                            <th>Partnership</th>
-                                            <th>Since</th>
+                                            <th>Date</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Subject</th>
                                             <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Kramatorsk 🇺🇦 & Stamford 🇺🇸</td>
-                                            <td>May 2023</td>
+                                            <td>Jan 17, 2026</td>
+                                            <td>John Smith</td>
+                                            <td>john@example.com</td>
+                                            <td>
+                                                Join an existing Friendship City
+                                            </td>
                                             <td>
                                                 <span
-                                                    class="status-badge published"
-                                                    >Active</span
+                                                    class="status-badge"
+                                                    style="
+                                                        background-color: #ffc107;
+                                                    "
+                                                    >Pending</span
                                                 >
                                             </td>
                                             <td>
                                                 <button class="btn-edit">
-                                                    Edit
+                                                    View
                                                 </button>
                                                 <button class="btn-delete">
-                                                    Delete
+                                                    Archive
                                                 </button>
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td>Jan 16, 2026</td>
+                                            <td>Sarah Johnson</td>
+                                            <td>sarah@example.com</td>
                                             <td>
-                                                Kostiantynivka 🇺🇦 & Fairfield 🇺🇸
+                                                Volunteer / Vendor at local
+                                                events
                                             </td>
-                                            <td>August 2023</td>
                                             <td>
                                                 <span
-                                                    class="status-badge published"
-                                                    >Active</span
+                                                    class="status-badge"
+                                                    style="
+                                                        background-color: #ffc107;
+                                                    "
+                                                    >Pending</span
                                                 >
                                             </td>
                                             <td>
                                                 <button class="btn-edit">
-                                                    Edit
+                                                    View
                                                 </button>
                                                 <button class="btn-delete">
-                                                    Delete
+                                                    Archive
                                                 </button>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Kyiv 🇺🇦 & Chicago 🇺🇸</td>
-                                            <td>March 1991</td>
+                                            <td>Jan 15, 2026</td>
+                                            <td>Michael Brown</td>
+                                            <td>michael@example.com</td>
+                                            <td>
+                                                General inquiry / Contact us
+                                            </td>
                                             <td>
                                                 <span
                                                     class="status-badge published"
-                                                    >Active</span
+                                                    >Responded</span
                                                 >
                                             </td>
                                             <td>
                                                 <button class="btn-edit">
-                                                    Edit
+                                                    View
                                                 </button>
                                                 <button class="btn-delete">
-                                                    Delete
+                                                    Archive
                                                 </button>
                                             </td>
                                         </tr>
@@ -898,376 +798,75 @@
                             </div>
                         </div>
 
-                        <!-- Moderation Panel -->
-                        <div id="moderation" class="tab-content">
+                        <!-- Newsletter Section -->
+                        <div id="newsletter" class="tab-content">
                             <div class="form-section">
-                                <h2>Moderation Dashboard</h2>
-
-                                <!-- Sub-tabs for different moderation types -->
-                                <div class="admin-tabs">
-                                    <button
-                                        class="tab-button active"
-                                        data-subtab="contact-forms"
-                                    >
-                                        Contact Forms (8)
+                                <h2>Newsletter Subscribers</h2>
+                                <div style="margin-bottom: 20px">
+                                    <button class="btn-primary">
+                                        Export to CSV
                                     </button>
-                                    <button
-                                        class="tab-button"
-                                        data-subtab="comments"
-                                    >
-                                        Comments (4)
-                                    </button>
-                                    <button
-                                        class="tab-button"
-                                        data-subtab="newsletter"
-                                    >
-                                        Newsletter Subscribers
+                                    <button class="btn-secondary">
+                                        Send Newsletter
                                     </button>
                                 </div>
-
-                                <!-- Contact Forms Moderation -->
-                                <div
-                                    id="contact-forms"
-                                    class="tab-content active"
-                                >
-                                    <h3>Contact Form Submissions</h3>
-                                    <!-- Contact Forms Moderation -->
-                                    <!-- <div
-                                        class="admin-filters"
-                                        style="margin-bottom: 12px"
-                                    >
-                                        <label
-                                            for="contact-subject-filter"
-                                            style="margin-right: 8px"
-                                            >Filter by Subject:</label
-                                        >
-                                        <select id="contact-subject-filter">
-                                            <option value="">
-                                                All Subjects
-                                            </option>
-                                            <option
-                                                value="Join an existing Friendship City"
-                                            >
-                                                Join an existing Friendship City
-                                            </option>
-                                            <option
-                                                value="Initiate our city as a Friendship City"
-                                            >
-                                                Initiate our city as a
-                                                Friendship City
-                                            </option>
-                                            <option
-                                                value="Volunteer / Vendor at local events"
-                                            >
-                                                Volunteer / Vendor at local
-                                                events
-                                            </option>
-                                            <option
-                                                value="General inquiry / Contact us"
-                                            >
-                                                General inquiry / Contact us
-                                            </option>
-                                        </select>
-                                    </div> -->
-
-                                    <table
-                                        class="admin-table"
-                                        id="contact-forms-table"
-                                    >
-                                        <thead>
-                                            <tr>
-                                                <th>Date</th>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Subject</th>
-                                                <th>Status</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Jan 17, 2026</td>
-                                                <td>John Smith</td>
-                                                <td>john@example.com</td>
-                                                <td>
-                                                    Join an existing Friendship
-                                                    City
-                                                </td>
-                                                <td>
-                                                    <span
-                                                        class="status-badge"
-                                                        style="
-                                                            background-color: #ffc107;
-                                                        "
-                                                        >Pending</span
-                                                    >
-                                                </td>
-                                                <td>
-                                                    <button class="btn-edit">
-                                                        View
-                                                    </button>
-                                                    <button class="btn-delete">
-                                                        Archive
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Jan 16, 2026</td>
-                                                <td>Sarah Johnson</td>
-                                                <td>sarah@example.com</td>
-                                                <td>
-                                                    Volunteer / Vendor at local
-                                                    events
-                                                </td>
-                                                <td>
-                                                    <span
-                                                        class="status-badge"
-                                                        style="
-                                                            background-color: #ffc107;
-                                                        "
-                                                        >Pending</span
-                                                    >
-                                                </td>
-                                                <td>
-                                                    <button class="btn-edit">
-                                                        View
-                                                    </button>
-                                                    <button class="btn-delete">
-                                                        Archive
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Jan 15, 2026</td>
-                                                <td>Michael Brown</td>
-                                                <td>michael@example.com</td>
-                                                <td>
-                                                    General inquiry / Contact us
-                                                </td>
-                                                <td>
-                                                    <span
-                                                        class="status-badge published"
-                                                        >Responded</span
-                                                    >
-                                                </td>
-                                                <td>
-                                                    <button class="btn-edit">
-                                                        View
-                                                    </button>
-                                                    <button class="btn-delete">
-                                                        Archive
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
-                                    <!-- Message Detail Modal (shown when clicking View) -->
-                                    <div
-                                        class="message-detail"
-                                        style="
-                                            display: none;
-                                            margin-top: 30px;
-                                            background-color: #f9f9f9;
-                                            padding: 20px;
-                                            border-radius: 10px;
-                                        "
-                                    >
-                                        <h4>Message from John Smith</h4>
-                                        <p>
-                                            <strong>Email:</strong>
-                                            john@example.com
-                                        </p>
-                                        <p>
-                                            <strong>Date:</strong> Jan 17, 2026
-                                        </p>
-                                        <p>
-                                            <strong>Subject:</strong> Volunteer
-                                            Inquiry
-                                        </p>
-                                        <p><strong>Message:</strong></p>
-                                        <p>
-                                            Hi, I'm interested in volunteering
-                                            for your upcoming missions to
-                                            Ukraine. I have experience in
-                                            humanitarian work and would love to
-                                            contribute. Could you provide more
-                                            information about volunteer
-                                            opportunities?
-                                        </p>
-                                        <div class="form-actions">
-                                            <button class="btn-primary">
-                                                Mark as Responded
-                                            </button>
-                                            <button class="btn-secondary">
-                                                Reply via Email
-                                            </button>
-                                            <button class="btn-delete">
-                                                Archive
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Comments Moderation -->
-                                <div id="comments" class="tab-content">
-                                    <h3>Blog Post Comments</h3>
-                                    <table class="admin-table">
-                                        <thead>
-                                            <tr>
-                                                <th>Date</th>
-                                                <th>Post</th>
-                                                <th>Author</th>
-                                                <th>Comment</th>
-                                                <th>Status</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Jan 17, 2026</td>
-                                                <td>Winter Relief Mission</td>
-                                                <td>Anonymous</td>
-                                                <td>
-                                                    Amazing work! Keep it up...
-                                                </td>
-                                                <td>
-                                                    <span
-                                                        class="status-badge"
-                                                        style="
-                                                            background-color: #ffc107;
-                                                        "
-                                                        >Pending</span
-                                                    >
-                                                </td>
-                                                <td>
-                                                    <button class="btn-edit">
-                                                        Approve
-                                                    </button>
-                                                    <button class="btn-delete">
-                                                        Reject
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Jan 16, 2026</td>
-                                                <td>Thanksgiving Mission</td>
-                                                <td>Mary K.</td>
-                                                <td>
-                                                    This is so inspiring. How
-                                                    can I help?
-                                                </td>
-                                                <td>
-                                                    <span
-                                                        class="status-badge published"
-                                                        >Approved</span
-                                                    >
-                                                </td>
-                                                <td>
-                                                    <button class="btn-edit">
-                                                        Edit
-                                                    </button>
-                                                    <button class="btn-delete">
-                                                        Delete
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Jan 15, 2026</td>
-                                                <td>Winter Relief Mission</td>
-                                                <td>David L.</td>
-                                                <td>
-                                                    Proud to see Stamford
-                                                    supporting Ukraine!
-                                                </td>
-                                                <td>
-                                                    <span
-                                                        class="status-badge published"
-                                                        >Approved</span
-                                                    >
-                                                </td>
-                                                <td>
-                                                    <button class="btn-edit">
-                                                        Edit
-                                                    </button>
-                                                    <button class="btn-delete">
-                                                        Delete
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <!-- Newsletter Subscribers -->
-                                <div id="newsletter" class="tab-content">
-                                    <h3>Newsletter Subscribers</h3>
-                                    <div style="margin-bottom: 20px">
-                                        <button class="btn-primary">
-                                            Export to CSV
-                                        </button>
-                                        <button class="btn-secondary">
-                                            Send Newsletter
-                                        </button>
-                                    </div>
-                                    <table class="admin-table">
-                                        <thead>
-                                            <tr>
-                                                <th>Email</th>
-                                                <th>Subscribe Date</th>
-                                                <th>Status</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>subscriber1@example.com</td>
-                                                <td>Jan 10, 2026</td>
-                                                <td>
-                                                    <span
-                                                        class="status-badge published"
-                                                        >Active</span
-                                                    >
-                                                </td>
-                                                <td>
-                                                    <button class="btn-delete">
-                                                        Unsubscribe
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>subscriber2@example.com</td>
-                                                <td>Jan 8, 2026</td>
-                                                <td>
-                                                    <span
-                                                        class="status-badge published"
-                                                        >Active</span
-                                                    >
-                                                </td>
-                                                <td>
-                                                    <button class="btn-delete">
-                                                        Unsubscribe
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>subscriber3@example.com</td>
-                                                <td>Jan 5, 2026</td>
-                                                <td>
-                                                    <span
-                                                        class="status-badge published"
-                                                        >Active</span
-                                                    >
-                                                </td>
-                                                <td>
-                                                    <button class="btn-delete">
-                                                        Unsubscribe
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Email</th>
+                                            <th>Subscribe Date</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>subscriber1@example.com</td>
+                                            <td>Jan 10, 2026</td>
+                                            <td>
+                                                <span
+                                                    class="status-badge published"
+                                                    >Active</span
+                                                >
+                                            </td>
+                                            <td>
+                                                <button class="btn-delete">
+                                                    Unsubscribe
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>subscriber2@example.com</td>
+                                            <td>Jan 8, 2026</td>
+                                            <td>
+                                                <span
+                                                    class="status-badge published"
+                                                    >Active</span
+                                                >
+                                            </td>
+                                            <td>
+                                                <button class="btn-delete">
+                                                    Unsubscribe
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>subscriber3@example.com</td>
+                                            <td>Jan 5, 2026</td>
+                                            <td>
+                                                <span
+                                                    class="status-badge published"
+                                                    >Active</span
+                                                >
+                                            </td>
+                                            <td>
+                                                <button class="btn-delete">
+                                                    Unsubscribe
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </main>
@@ -1282,79 +881,6 @@
             </div>
         </footer>
 
-        <script>
-            /* Simple client-side filter for Contact Forms by Subject */
-            (function () {
-                var filter = document.getElementById("contact-subject-filter");
-                if (!filter) return;
-                filter.addEventListener("change", function () {
-                    var val = this.value.trim();
-                    var rows = document.querySelectorAll(
-                        "#contact-forms-table tbody tr"
-                    );
-                    rows.forEach(function (row) {
-                        var subjectCell = row.querySelector("td:nth-child(4)");
-                        var subjectText = subjectCell
-                            ? subjectCell.textContent.trim()
-                            : "";
-                        row.style.display =
-                            !val || subjectText === val ? "" : "none";
-                    });
-                });
-            })();
-        </script>
-
-        <script>
-            // Tab switching functionality
-            document.querySelectorAll(".tab-button").forEach((button) => {
-                button.addEventListener("click", function () {
-                    const tabName =
-                        this.getAttribute("data-tab") ||
-                        this.getAttribute("data-subtab");
-                    const isSubTab = this.hasAttribute("data-subtab");
-
-                    // Get parent container
-                    const parentContainer = isSubTab
-                        ? this.closest(".form-section")
-                        : this.closest(".admin-main");
-
-                    // Hide all tab contents in this container
-                    if (isSubTab) {
-                        // For sub-tabs, only hide siblings
-                        const allSubTabs = parentContainer.querySelectorAll(
-                            "#contact-forms, #comments, #newsletter"
-                        );
-                        allSubTabs.forEach((content) => {
-                            content.classList.remove("active");
-                        });
-                    } else {
-                        // For main tabs, hide all main tab contents
-                        document
-                            .querySelectorAll(
-                                "#mission-reports, #events, #sister-cities, #moderation"
-                            )
-                            .forEach((content) => {
-                                content.classList.remove("active");
-                            });
-                    }
-
-                    // Remove active class from buttons in same group
-                    this.parentElement
-                        .querySelectorAll(".tab-button")
-                        .forEach((btn) => {
-                            btn.classList.remove("active");
-                        });
-
-                    // Show selected tab content
-                    const targetContent = document.getElementById(tabName);
-                    if (targetContent) {
-                        targetContent.classList.add("active");
-                    }
-
-                    // Add active class to clicked button
-                    this.classList.add("active");
-                });
-            });
-        </script>
+        <script src="js/admin-tab.js"></script>
     </body>
 </html>
