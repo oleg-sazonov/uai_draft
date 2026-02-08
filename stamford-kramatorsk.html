@@ -4,9 +4,10 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>
-            Stamford & Kramatorsk - Sister Cities - Ukraine Aid International
+            Stamford & Kramatorsk Sister Cities Partnership - Ukraine Aid
+            International
         </title>
-        <link rel="stylesheet" href="styles/index.css" />
+        <link rel="stylesheet" href="styles/draft.css" />
     </head>
     <body>
         <!-- Header -->
@@ -37,23 +38,23 @@
 
                     <nav class="navbar">
                         <ul>
-                            <li class="dropdown">
-                                <a href="#">Meet the Team ▾</a>
-                                <!-- <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#ground-team">Ground Team</a>
-                                    </li>
-                                    <li>
-                                        <a href="#board">Board of Directors</a>
-                                    </li>
-                                </ul> -->
-                            </li>
+                            <li><a href="index.html">Home</a></li>
                             <li><a href="mission-log.html">Blog</a></li>
                             <li>
                                 <a href="sister-cities.html">Sister Cities</a>
                             </li>
                             <li><a href="#sister-states">Sister States</a></li>
-                            <li><a href="#events">Events</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle">About ▾</a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#about">Our Work</a>
+                                    </li>
+                                    <li><a href="#team">Meet the Team</a></li>
+                                    <li><a href="#partners">Partners</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#press">Press</a></li>
                             <li><a href="contact-us.html">Contact Us</a></li>
                             <li>
                                 <a href="donate-now.html" class="btn-donate-nav"
@@ -66,7 +67,7 @@
             </div>
         </header>
 
-        <!-- City Pair Header -->
+        <!-- City Pair Hero -->
         <section class="city-pair-header">
             <div class="container">
                 <div class="breadcrumb">
@@ -85,23 +86,67 @@
                     </div>
                 </div>
                 <p class="partnership-tagline">
-                    Friends since May 2023 • Stronger Together
+                    A friendship forged in solidarity • Supporting Ukraine's
+                    resilience since April 2023
                 </p>
             </div>
         </section>
 
-        <!-- City Overview -->
+        <!-- Partnership Overview -->
+        <section class="partnership-story">
+            <div class="container">
+                <h2>A Symbolic Date for an Important Friendship</h2>
+                <div class="story-content">
+                    <p>
+                        On <strong>April 6, 2023</strong>, the cities of
+                        Stamford, Connecticut, USA and Kramatorsk, Donetsk,
+                        Ukraine signed a memorandum formally establishing a
+                        relationship of friendship and support. Mayor Caroline
+                        Simmons of Stamford and Mayor Oleksandr Honcharenko of
+                        Kramatorsk exchanged words of hope for the future of
+                        Kramatorsk and the friendship between their two cities.
+                    </p>
+
+                    <p>
+                        This date holds deep significance. Exactly one year
+                        prior, on April 6, 2022, a missile strike on the
+                        Kramatorsk railway station killed over 60 civilians and
+                        wounded more than 100 individuals in the early days of
+                        the war. This attack was widely condemned as an act of
+                        terrorism and a war crime. One year later, the people of
+                        Stamford agreed to rally together in support of
+                        Kramatorsk to bring much-needed aid to this vital city
+                        in eastern Ukraine.
+                    </p>
+
+                    <blockquote class="mayor-quote">
+                        <p>
+                            "Thank you to the generous citizens of Stamford for
+                            supporting our people during our hour of greatest
+                            need."
+                        </p>
+                        <cite
+                            >— Oleksandr Honcharenko, Mayor of Kramatorsk<br />April
+                            6, 2023</cite
+                        >
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cities at a Glance -->
         <section class="city-overview">
             <div class="container">
+                <h2>Two Cities, One Mission</h2>
                 <div class="overview-grid">
                     <div class="city-column">
                         <div class="city-image-large">
                             <img
                                 src="https://via.placeholder.com/600x400?text=Kramatorsk+Ukraine"
-                                alt="Kramatorsk"
+                                alt="Kramatorsk, Ukraine"
                             />
                         </div>
-                        <h2>🇺🇦 Kramatorsk, Ukraine</h2>
+                        <h3>🇺🇦 Kramatorsk, Ukraine</h3>
                         <div class="city-stats">
                             <div class="stat-item">
                                 <strong>Population:</strong> ~150,000
@@ -117,18 +162,20 @@
                             Kramatorsk is a major industrial city in eastern
                             Ukraine, known for its machine-building industry and
                             rich cultural heritage. Despite facing significant
-                            challenges, the city remains resilient and continues
-                            to support its residents through difficult times.
+                            challenges due to its proximity to the conflict
+                            zone, the city remains resilient. Its residents
+                            continue to rebuild, support one another, and
+                            maintain hope for a peaceful future.
                         </p>
                     </div>
                     <div class="city-column">
                         <div class="city-image-large">
                             <img
                                 src="https://via.placeholder.com/600x400?text=Stamford+Connecticut"
-                                alt="Stamford"
+                                alt="Stamford, Connecticut"
                             />
                         </div>
-                        <h2>🇺🇸 Stamford, Connecticut</h2>
+                        <h3>🇺🇸 Stamford, Connecticut</h3>
                         <div class="city-stats">
                             <div class="stat-item">
                                 <strong>Population:</strong> ~135,000
@@ -145,166 +192,325 @@
                             Coast, home to numerous Fortune 500 companies and a
                             vibrant, diverse community. The city has embraced
                             its role as a sister city to Kramatorsk with
-                            enthusiasm and generosity.
+                            enthusiasm and generosity, demonstrating the power
+                            of community-driven humanitarian action.
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Partnership Story -->
-        <section class="partnership-story">
+        <!-- Direct Aid & Activities -->
+        <section class="partnership-impact">
             <div class="container">
-                <h2>Our Partnership Story</h2>
-                <div class="story-content">
-                    <p>
-                        The partnership between Stamford and Kramatorsk began in
-                        May 2023, born from a desire to provide direct,
-                        meaningful support to a Ukrainian community in need.
-                        What started as a humanitarian initiative has blossomed
-                        into a deep friendship between two cities separated by
-                        an ocean but united in spirit.
-                    </p>
+                <h2>Direct Aid to Kramatorsk</h2>
+                <p class="section-intro">
+                    In accordance with our core principles, we work diligently
+                    to maintain real-time relationships with community
+                    leadership in Kramatorsk. This allows us to focus donations
+                    on the specific needs of the city and deliver aid where it
+                    matters most.
+                </p>
 
-                    <p>
-                        Stamford residents, businesses, and civic organizations
-                        have rallied together to support their sister city
-                        through fundraising events, supply drives, and advocacy.
-                        The connection has brought both communities closer,
-                        fostering cultural exchange and mutual understanding.
-                    </p>
+                <div class="activities-grid">
+                    <div class="activity-card">
+                        <div class="activity-icon">🚚</div>
+                        <h3>Humanitarian Missions</h3>
+                        <p>
+                            Regular deliveries of food, medical supplies, winter
+                            clothing, and essential goods to families in need.
+                        </p>
+                    </div>
+                    <div class="activity-card">
+                        <div class="activity-icon">💰</div>
+                        <h3>Fundraising Campaigns</h3>
+                        <p>
+                            Community-driven donation drives in Stamford
+                            supporting specific relief efforts in Kramatorsk.
+                        </p>
+                    </div>
+                    <div class="activity-card">
+                        <div class="activity-icon">🤝</div>
+                        <h3>Community Support</h3>
+                        <p>
+                            Building lasting connections between residents of
+                            both cities through shared values and mutual aid.
+                        </p>
+                    </div>
+                    <div class="activity-card">
+                        <div class="activity-icon">📦</div>
+                        <h3>Logistics Coordination</h3>
+                        <p>
+                            Efficient supply chain management ensuring aid
+                            reaches Kramatorsk safely and promptly.
+                        </p>
+                    </div>
+                </div>
 
-                    <div class="milestone-timeline">
-                        <h3>Key Milestones</h3>
-                        <div class="timeline">
-                            <div class="timeline-item">
-                                <div class="timeline-date">May 2023</div>
-                                <div class="timeline-content">
-                                    <h4>Official Partnership Established</h4>
-                                    <p>
-                                        Mayors from both cities signed the
-                                        sister city agreement
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-date">July 2023</div>
-                                <div class="timeline-content">
-                                    <h4>First Humanitarian Mission</h4>
-                                    <p>
-                                        Delivered 8 tons of essential supplies
-                                        to Kramatorsk
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-date">October 2023</div>
-                                <div class="timeline-content">
-                                    <h4>Cultural Exchange Program</h4>
-                                    <p>
-                                        Virtual exchange between Stamford and
-                                        Kramatorsk schools
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-date">January 2026</div>
-                                <div class="timeline-content">
-                                    <h4>Winter Relief Mission</h4>
-                                    <p>
-                                        15 tons of aid delivered during coldest
-                                        months
-                                    </p>
-                                </div>
-                            </div>
+                <div class="impact-stats-highlight">
+                    <h3>Partnership Impact So Far</h3>
+                    <div class="impact-grid">
+                        <div class="impact-stat">
+                            <div class="stat-number">45+</div>
+                            <div class="stat-label">Tons of Aid Delivered</div>
+                        </div>
+                        <div class="impact-stat">
+                            <div class="stat-number">12</div>
+                            <div class="stat-label">Humanitarian Missions</div>
+                        </div>
+                        <div class="impact-stat">
+                            <div class="stat-number">3,500+</div>
+                            <div class="stat-label">Families Assisted</div>
+                        </div>
+                        <div class="impact-stat">
+                            <div class="stat-number">$250K+</div>
+                            <div class="stat-label">Funds Raised</div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Impact Statistics -->
-        <section class="partnership-impact">
+        <!-- Milestone Timeline -->
+        <section class="milestone-section">
             <div class="container">
-                <h2>Partnership Impact</h2>
-                <div class="impact-grid">
-                    <div class="impact-stat">
-                        <div class="stat-number">45+</div>
-                        <div class="stat-label">Tons of Aid Delivered</div>
+                <h2>Key Milestones</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">April 6, 2023</div>
+                        <div class="timeline-content">
+                            <h4>Partnership Established</h4>
+                            <p>
+                                Mayors Caroline Simmons and Oleksandr
+                                Honcharenko signed the official memorandum of
+                                friendship.
+                            </p>
+                        </div>
                     </div>
-                    <div class="impact-stat">
-                        <div class="stat-number">12</div>
-                        <div class="stat-label">Humanitarian Missions</div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">July 2023</div>
+                        <div class="timeline-content">
+                            <h4>First Humanitarian Mission</h4>
+                            <p>
+                                Delivered 8 tons of essential supplies including
+                                food, medical equipment, and hygiene products to
+                                Kramatorsk families.
+                            </p>
+                        </div>
                     </div>
-                    <div class="impact-stat">
-                        <div class="stat-number">3,500+</div>
-                        <div class="stat-label">Families Assisted</div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">October 2023</div>
+                        <div class="timeline-content">
+                            <h4>Cultural Exchange Program</h4>
+                            <p>
+                                Virtual exchange initiative launched between
+                                schools in Stamford and Kramatorsk, fostering
+                                youth connections.
+                            </p>
+                        </div>
                     </div>
-                    <div class="impact-stat">
-                        <div class="stat-number">$250K+</div>
-                        <div class="stat-label">Funds Raised</div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">November 2025</div>
+                        <div class="timeline-content">
+                            <h4>Thanksgiving Mission</h4>
+                            <p>
+                                500 families in Kramatorsk received food
+                                packages in the spirit of Thanksgiving
+                                solidarity.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">January 2026</div>
+                        <div class="timeline-content">
+                            <h4>Winter Relief Mission</h4>
+                            <p>
+                                15 tons of aid delivered during the coldest
+                                months, including heating supplies and winter
+                                clothing.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Related Posts Section (Placeholder for Future) -->
-        <section class="related-posts">
+        <!-- Media Section (Photos) -->
+        <section class="partnership-gallery">
             <div class="container">
-                <h2>Recent News & Updates</h2>
-                <p class="section-note">
-                    Related posts from Stamford & Kramatorsk partnership
+                <h2>Partnership in Action</h2>
+                <p class="section-intro">
+                    Photos from our missions and community events
                 </p>
-                <div class="posts-grid-small">
-                    <article class="post-card-small">
-                        <div class="post-date-small">Jan 15, 2026</div>
-                        <h3>
-                            <a href="mission-log-post.html"
-                                >Winter Relief Mission Delivers 15 Tons of
-                                Aid</a
+                <div class="gallery-grid">
+                    <img
+                        src="https://via.placeholder.com/400x300?text=Aid+Distribution"
+                        alt="Aid distribution in Kramatorsk"
+                    />
+                    <img
+                        src="https://via.placeholder.com/400x300?text=Community+Event"
+                        alt="Community event in Stamford"
+                    />
+                    <img
+                        src="https://via.placeholder.com/400x300?text=Volunteer+Team"
+                        alt="Volunteer team preparing supplies"
+                    />
+                    <img
+                        src="https://via.placeholder.com/400x300?text=Kramatorsk+Families"
+                        alt="Families receiving aid in Kramatorsk"
+                    />
+                </div>
+                <p class="gallery-note">
+                    <em
+                        >More photos and updates coming soon as our missions
+                        continue.</em
+                    >
+                </p>
+            </div>
+        </section>
+
+        <!-- Related Mission Reports -->
+        <section class="latest-posts">
+            <div class="container">
+                <h2>Recent Mission Reports</h2>
+                <p class="section-subtitle">
+                    Follow the impact of your support through our mission log
+                </p>
+
+                <div class="posts-grid-preview">
+                    <!-- Post 1 -->
+                    <article class="post-card">
+                        <div class="post-image">
+                            <img
+                                src="https://via.placeholder.com/400x250?text=Winter+Relief"
+                                alt="Winter Relief Mission"
+                            />
+                            <span class="post-category">Mission Report</span>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span class="post-date">Jan 15, 2026</span>
+                                <span class="post-location"
+                                    >Kramatorsk 🇺🇦 & Stamford 🇺🇸</span
+                                >
+                            </div>
+                            <h3>
+                                <a href="mission-log-post.html"
+                                    >Winter Relief: 15 Tons of Aid Delivered to
+                                    Kramatorsk</a
+                                >
+                            </h3>
+                            <p>
+                                Our team successfully delivered essential
+                                supplies including food, medical equipment, and
+                                winter clothing to families in Kramatorsk during
+                                our January mission...
+                            </p>
+                            <a href="mission-log-post.html" class="read-more"
+                                >Read More →</a
                             >
-                        </h3>
-                        <a href="mission-log-post.html" class="read-more-small"
-                            >Read More →</a
-                        >
+                        </div>
                     </article>
-                    <article class="post-card-small">
-                        <div class="post-date-small">Nov 22, 2025</div>
-                        <h3>
-                            <a href="#"
-                                >Thanksgiving Mission: 500 Families Served</a
-                            >
-                        </h3>
-                        <a href="#" class="read-more-small">Read More →</a>
+
+                    <!-- Post 2 -->
+                    <article class="post-card">
+                        <div class="post-image">
+                            <img
+                                src="https://via.placeholder.com/400x250?text=Thanksgiving"
+                                alt="Thanksgiving Mission"
+                            />
+                            <span class="post-category">Mission Report</span>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span class="post-date">Nov 22, 2025</span>
+                                <span class="post-location"
+                                    >Kramatorsk 🇺🇦 & Stamford 🇺🇸</span
+                                >
+                            </div>
+                            <h3>
+                                <a href="#"
+                                    >Thanksgiving Mission: 500 Families
+                                    Served</a
+                                >
+                            </h3>
+                            <p>
+                                In the spirit of Thanksgiving, our team
+                                distributed food packages to 500 families in
+                                Kramatorsk, bringing warmth and support during
+                                difficult times...
+                            </p>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
                     </article>
-                    <article class="post-card-small">
-                        <div class="post-date-small">Jul 4, 2025</div>
-                        <h3>
-                            <a href="#"
-                                >Independence Day Celebration Honors
-                                Partnership</a
-                            >
-                        </h3>
-                        <a href="#" class="read-more-small">Read More →</a>
+
+                    <!-- Post 3 -->
+                    <article class="post-card">
+                        <div class="post-image">
+                            <img
+                                src="https://via.placeholder.com/400x250?text=Independence+Day"
+                                alt="Independence Day Celebration"
+                            />
+                            <span class="post-category">News</span>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span class="post-date">Jul 4, 2025</span>
+                                <span class="post-location"
+                                    >Kramatorsk 🇺🇦 & Stamford 🇺🇸</span
+                                >
+                            </div>
+                            <h3>
+                                <a href="#"
+                                    >Independence Day Celebration Honors
+                                    Partnership</a
+                                >
+                            </h3>
+                            <p>
+                                Join us for a special Independence Day event
+                                celebrating the strong bond between Stamford and
+                                Kramatorsk. All proceeds support humanitarian
+                                aid...
+                            </p>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
                     </article>
                 </div>
+
                 <div class="section-cta">
-                    <a href="mission-log.html" class="btn-secondary"
-                        >View All Updates</a
+                    <a
+                        href="mission-log.html?city=kramatorsk-stamford"
+                        class="btn-secondary"
+                        >View All Kramatorsk Updates</a
                     >
                 </div>
             </div>
         </section>
 
-        <!-- Support CTA -->
+        <!-- Call to Action -->
         <section class="cta">
             <div class="container">
                 <h2>Support the Stamford-Kramatorsk Partnership</h2>
                 <p>
-                    Your donation directly supports humanitarian aid to
-                    Kramatorsk families
+                    Your donation goes directly to humanitarian assistance for
+                    Kramatorsk families. 100% of your contribution supports our
+                    relief efforts. All donations are tax-deductible.
                 </p>
-                <a href="donate-now.html" class="btn-cta">Donate Now</a>
+                <div class="cta-buttons">
+                    <a href="donate-now.html" class="btn-cta"
+                        >Donate to Kramatorsk Fund</a
+                    >
+                    <a href="donate-now.html" class="btn-primary--dark"
+                        >Make a General Donation</a
+                    >
+                </div>
+                <p class="cta-note">
+                    <small
+                        >Want your funds to go wherever the greatest needs are?
+                        Make a general donation, and we'll allocate it to the
+                        most urgent relief efforts.</small
+                    >
+                </p>
             </div>
         </section>
 
@@ -334,27 +540,9 @@
                                 <li>
                                     <a href="#privacy-policy">Privacy Policy</a>
                                 </li>
-                                <!-- <li>
-                                    <a href="#terms-of-use">Terms of Use</a>
-                                </li> -->
                             </ul>
                         </nav>
                     </div>
-                    <!-- <div class="footer-column">
-                        <h3>Quick Links</h3>
-                        <ul>
-                            <li><a href="mission-log.html">Blog</a></li>
-                            <li>
-                                <a href="sister-cities.html">Sister Cities</a>
-                            </li>
-                            <li><a href="#events">Events</a></li>
-                            <li><a href="#press">Press</a></li>
-                            <li><a href="#faq">FAQ</a></li>
-                            <li>
-                                <a href="#privacy-policy">Privacy Policy</a>
-                            </li>
-                        </ul>
-                    </div> -->
                     <div class="footer-column">
                         <h3>Contact Us</h3>
                         <p>
@@ -474,5 +662,6 @@
                 </div>
             </div>
         </footer>
+        <script src="js/dropdown.js"></script>
     </body>
 </html>

@@ -1,0 +1,424 @@
+/* City Pair Page Styles */
+
+/* Breadcrumb */
+.breadcrumb {
+    font-size: var(--font-sm);
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: var(--spacing-md);
+}
+
+.breadcrumb a {
+    color: var(--white);
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.breadcrumb a:hover {
+    color: var(--primary-yellow);
+}
+
+/* City Pair Title */
+.city-pair-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.city-name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.city-name h1 {
+    color: var(--white);
+    margin: 0;
+    font-size: var(--font-5xl);
+}
+
+.flag-xlarge {
+    font-size: 72px;
+    line-height: 1;
+}
+
+.connector-large {
+    font-size: 48px;
+    color: var(--primary-yellow);
+}
+
+.partnership-tagline {
+    text-align: center;
+    font-size: var(--font-lg);
+    color: rgba(255, 255, 255, 0.9);
+    font-style: italic;
+}
+
+/* Partnership Story Section */
+.partnership-story {
+    padding: var(--spacing-2xl) 0;
+    background-color: var(--white);
+}
+
+.partnership-story h2 {
+    text-align: center;
+    color: var(--primary-blue);
+    margin-bottom: var(--spacing-xl);
+}
+
+.story-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.story-content p {
+    font-size: var(--font-lg);
+    line-height: 1.8;
+    color: var(--gray-700);
+    margin-bottom: var(--spacing-lg);
+}
+
+.mayor-quote {
+    background-color: var(--gray-100);
+    border-left: 4px solid var(--primary-blue);
+    padding: var(--spacing-xl);
+    margin: var(--spacing-2xl) 0;
+    border-radius: var(--radius-md);
+}
+
+.mayor-quote p {
+    font-size: var(--font-xl);
+    font-style: italic;
+    color: var(--gray-700);
+    margin-bottom: var(--spacing-md);
+}
+
+.mayor-quote cite {
+    display: block;
+    font-style: normal;
+    color: var(--primary-blue);
+    font-weight: 600;
+    text-align: right;
+}
+
+/* City Overview Section */
+.city-overview {
+    padding: var(--spacing-2xl) 0;
+    background-color: var(--gray-100);
+}
+
+.city-overview h2 {
+    text-align: center;
+    color: var(--primary-blue);
+    margin-bottom: var(--spacing-xl);
+}
+
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-xl);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.city-column {
+    background-color: var(--white);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.city-image-large {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.city-image-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.city-column h3 {
+    text-align: center;
+    color: var(--primary-blue);
+    font-size: var(--font-2xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.city-stats {
+    background-color: var(--gray-100);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.city-stats .stat-item {
+    padding: var(--spacing-xs) 0;
+    border-bottom: 1px solid var(--gray-300);
+}
+
+.city-stats .stat-item:last-child {
+    border-bottom: none;
+}
+
+.city-stats strong {
+    color: var(--primary-blue);
+}
+
+.city-column p {
+    font-size: var(--font-md);
+    line-height: 1.7;
+    color: var(--gray-700);
+}
+
+/* Partnership Impact Section */
+.partnership-impact {
+    padding: var(--spacing-2xl) 0;
+    background-color: var(--white);
+}
+
+.partnership-impact h2 {
+    text-align: center;
+    color: var(--primary-blue);
+    margin-bottom: var(--spacing-md);
+}
+
+.section-intro {
+    text-align: center;
+    font-size: var(--font-lg);
+    color: var(--gray-600);
+    max-width: 800px;
+    margin: 0 auto var(--spacing-xl);
+}
+
+.activities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.activity-card {
+    background-color: var(--gray-100);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    transition: var(--transition-fast);
+}
+
+.activity-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.activity-icon {
+    font-size: 48px;
+    margin-bottom: var(--spacing-md);
+}
+
+.activity-card h3 {
+    color: var(--primary-blue);
+    font-size: var(--font-xl);
+    margin-bottom: var(--spacing-sm);
+}
+
+.activity-card p {
+    color: var(--gray-700);
+    line-height: 1.6;
+}
+
+/* Impact Stats Highlight */
+.impact-stats-highlight {
+    background: linear-gradient(
+        135deg,
+        var(--primary-blue) 0%,
+        var(--primary-blue-dark) 100%
+    );
+    padding: var(--spacing-2xl);
+    border-radius: var(--radius-lg);
+    color: var(--white);
+}
+
+.impact-stats-highlight h3 {
+    text-align: center;
+    color: var(--white);
+    font-size: var(--font-2xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+.impact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.impact-stat {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: var(--font-5xl);
+    font-weight: bold;
+    color: var(--primary-yellow);
+    margin-bottom: var(--spacing-xs);
+}
+
+.stat-label {
+    font-size: var(--font-md);
+    color: var(--white);
+}
+
+/* Milestone Timeline Section */
+.milestone-section {
+    padding: var(--spacing-2xl) 0;
+    background-color: var(--gray-100);
+}
+
+.milestone-section h2 {
+    text-align: center;
+    color: var(--primary-blue);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.timeline {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-color: var(--primary-blue);
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    position: relative;
+}
+
+.timeline-item:nth-child(odd) {
+    flex-direction: row;
+}
+
+.timeline-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.timeline-date {
+    flex: 0 0 150px;
+    text-align: right;
+    font-weight: bold;
+    color: var(--primary-blue);
+    padding-top: 5px;
+}
+
+.timeline-item:nth-child(even) .timeline-date {
+    text-align: left;
+}
+
+.timeline-content {
+    flex: 1;
+    background-color: var(--white);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+}
+
+.timeline-content::before {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: var(--primary-yellow);
+    border: 3px solid var(--primary-blue);
+    border-radius: 50%;
+    top: 10px;
+}
+
+.timeline-item:nth-child(odd) .timeline-content::before {
+    left: -32px;
+}
+
+.timeline-item:nth-child(even) .timeline-content::before {
+    right: -32px;
+}
+
+.timeline-content h4 {
+    color: var(--primary-blue);
+    margin-bottom: var(--spacing-sm);
+}
+
+.timeline-content p {
+    color: var(--gray-700);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Partnership Gallery Section */
+.partnership-gallery {
+    padding: var(--spacing-2xl) 0;
+    background-color: var(--white);
+}
+
+.partnership-gallery h2 {
+    text-align: center;
+    color: var(--primary-blue);
+    margin-bottom: var(--spacing-md);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-lg);
+}
+
+.gallery-note {
+    text-align: center;
+    color: var(--gray-600);
+    font-size: var(--font-sm);
+}
+
+/* CTA Buttons Grid */
+.cta-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    margin-bottom: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.cta-note {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+}

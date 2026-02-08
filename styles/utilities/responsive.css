@@ -209,6 +209,68 @@
         margin-bottom: var(--spacing-lg);
         padding: var(--spacing-lg);
     }
+
+    .overview-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .city-pair-title {
+        gap: var(--spacing-md);
+    }
+
+    .flag-xlarge {
+        font-size: 56px;
+    }
+
+    .connector-large {
+        font-size: 36px;
+    }
+
+    .city-name h1 {
+        font-size: var(--font-4xl);
+    }
+
+    .timeline::before {
+        left: 40px;
+        top: -30px;
+    }
+
+    .timeline-item {
+        flex-direction: row !important;
+        padding-left: 50px;
+    }
+
+    .timeline-item::before {
+        left: 50px;
+        top: -30px;
+    }
+
+    .timeline-date {
+        position: absolute;
+        left: 70px;
+        top: -42px;
+        flex: none;
+        width: auto;
+        text-align: left;
+    }
+
+    .timeline-item:nth-child(even) .timeline-date {
+        text-align: left;
+    }
+
+    .timeline-content::before {
+        /* left: -32px !important;
+        right: auto !important; */
+        display: none;
+    }
+
+    .activities-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .impact-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 /* ===========================
@@ -291,6 +353,109 @@
     .sidebar-post-content h3 {
         font-size: var(--font-md);
     }
+
+    .city-pair-title {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .connector-large {
+        transform: rotate(90deg);
+    }
+
+    .flag-xlarge {
+        font-size: 48px;
+    }
+
+    .city-name h1 {
+        font-size: var(--font-3xl);
+    }
+
+    .partnership-tagline {
+        font-size: var(--font-md);
+    }
+
+    .story-content p {
+        font-size: var(--font-md);
+    }
+
+    .mayor-quote p {
+        font-size: var(--font-lg);
+    }
+
+    .city-column {
+        padding: var(--spacing-lg);
+    }
+
+    .city-image-large {
+        height: 200px;
+    }
+
+    .activities-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .impact-stats-highlight {
+        padding: var(--spacing-lg);
+    }
+
+    .impact-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .stat-number {
+        font-size: var(--font-4xl);
+    }
+
+    .timeline {
+        padding-left: 30px;
+    }
+
+    .timeline::before {
+        left: 15px;
+    }
+
+    .timeline-item {
+        padding-left: 40px;
+    }
+
+    .timeline-item::before {
+        left: 40px;
+        top: -30px;
+    }
+
+    .timeline-date {
+        font-size: var(--font-sm);
+        left: 60px;
+    }
+
+    .timeline-content::before {
+        left: -27px !important;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .posts-grid-small {
+        grid-template-columns: 1fr;
+    }
+
+    .posts-grid-preview {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .cta-buttons .btn-cta,
+    .cta-buttons .btn-primary--dark {
+        width: 100%;
+        text-align: center;
+    }
 }
 
 /* ===========================
@@ -332,6 +497,40 @@
 
     .contact-info-panel {
         margin-top: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .city-pair-header {
+        padding: var(--spacing-lg) 0;
+    }
+
+    .flag-xlarge {
+        font-size: 36px;
+    }
+
+    .connector-large {
+        font-size: 28px;
+    }
+
+    .city-name h1 {
+        font-size: var(--font-2xl);
+    }
+
+    .partnership-story,
+    .city-overview,
+    .partnership-impact,
+    .milestone-section,
+    .partnership-gallery {
+        padding: var(--spacing-xl) 0;
+    }
+
+    .impact-stats-highlight {
+        padding: var(--spacing-lg);
+    }
+
+    .stat-number {
+        font-size: var(--font-3xl);
     }
 }
 

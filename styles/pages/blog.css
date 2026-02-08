@@ -394,6 +394,12 @@
     background-color: var(--gray-100);
 }
 
+.related-posts h2 {
+    text-align: center;
+    color: var(--primary-blue);
+    margin-bottom: var(--spacing-md);
+}
+
 .post-content-layout {
     display: grid;
     grid-template-columns: 1fr 320px;
