@@ -6,6 +6,8 @@
     --primary-yellow: #ffd700;
     --success-green: #28a745;
     --danger-red: #dc3545;
+    --warning-yellow: #ffc107;
+    --info-blue: #17a2b8;
 
     /* Neutral Colors */
     --white: #fff;
@@ -17,6 +19,40 @@
     --gray-500: #666;
     --gray-600: #444;
     --gray-700: #333;
+
+    /* Semantic Aliases (Reference existing colors) */
+    /* Backgrounds */
+    --bg-primary: var(--white);
+    --bg-secondary: var(--gray-100);
+    --bg-dark: var(--black);
+    --bg-accent: var(--primary-blue);
+    --bg-highlight: var(--primary-yellow);
+
+    /* Text Colors */
+    --text-primary: var(--gray-700);
+    --text-secondary: var(--gray-500);
+    --text-muted: var(--gray-400);
+    --text-inverse: var(--white);
+    --text-link: var(--primary-blue);
+
+    /* Borders */
+    --border-default: var(--gray-300);
+    --border-light: var(--gray-200);
+    --border-dark: var(--gray-400);
+    --border-focus: var(--primary-blue);
+    --border-accent: var(--primary-yellow);
+
+    /* State Colors (Semantic) */
+    --color-success: var(--success-green);
+    --color-danger: var(--danger-red);
+    --color-warning: var(--warning-yellow);
+    --color-info: var(--info-blue);
+
+    /* Interactive States */
+    --hover-bg: var(--gray-100);
+    --active-bg: var(--primary-blue);
+    --disabled-bg: var(--gray-200);
+    --disabled-text: var(--gray-400);
 
     /* Spacing */
     --spacing-xs: 5px;
