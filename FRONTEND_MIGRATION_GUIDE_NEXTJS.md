@@ -1,0 +1,323 @@
+# Ukraine Aid International - Frontend Migration Guide (Next.js App Router)
+
+## Project Overview
+
+This repository contains the frontend codebase for **Ukraine Aid International**, a nonprofit organization facilitating aid to Ukrainian cities through sister city partnerships with American and European communities.
+
+The project currently exists as a **static HTML/CSS/JavaScript prototype**. This prototype represents the **approved UX structure, content hierarchy, and page layout** for the production application.
+
+The next frontend phase migrates this prototype to a **Next.js (App Router)** architecture to enable:
+
+- SEO-friendly rendering (server-rendered HTML)
+- Slug-based dynamic routing via file-based routes
+- Server Components + Client Components
+- SSG/ISR/SSR rendering strategies for content pages
+
+**Important:** The backend remains a separate Express API service. We are **not** moving backend logic into Next.js API routes.
+
+---
+
+## Current Project State (HTML Prototype)
+
+### Public Pages
+
+- `index.html` - Homepage with hero, impact stats, latest posts, and sister cities geography
+- `mission-log.html` - Mission reports and news feed with filtering
+- `mission-log-post.html` - Single post view with content sections, gallery, and related posts sidebar
+- `sister-cities.html` - Overview of all sister city partnerships
+- `stamford-kramatorsk.html` - Individual city pair detail page
+- `contact-us.html` - Contact form
+- `donate-now.html` - Donation options and payment methods
+- `login.html` - Admin login page
+
+### Admin Panel
+
+- `admin.html` - Content management interface (prototype)
+    - Mission Reports (posts)
+    - Events
+    - Forms (read-only submissions)
+    - Newsletter subscribers
+
+### Key Characteristics
+
+- **No backend integration yet** - All content is static
+- **No authentication** - Admin panel is a UI draft
+- **No data persistence** - Forms do not submit anywhere in the prototype
+- **Pure frontend structure** - Demonstrates navigation, layout, and content patterns
+
+---
+
+## Goals of Migration to Next.js
+
+### Why Migrate?
+
+1. **SEO & Indexing**
+    - Pre-render mission posts and key pages for search engines and link previews.
+2. **Performance**
+    - Serve static pages where appropriate (SSG), with incremental updates (ISR).
+3. **Scalable Routing**
+    - Use file-based routing for `/mission-log/[slug]`, `/cities/[slug]`, `/admin/...`.
+4. **Maintain Approved UX**
+    - Preserve the existing design and page structure.
+
+### Non-Goals
+
+- **Visual redesign** - Preserve existing layout and styling.
+- **Backend implementation** - Backend remains Express; this guide is frontend-focused.
+- **Feature expansion** - Do not add new features or change data models during migration.
+- **Moving backend logic into Next.js** - No Next.js API routes for core backend behavior.
+
+---
+
+## Mapping HTML Pages to Next.js App Router
+
+Next.js routes are defined by the filesystem under `app/`. Below is the target mapping (JavaScript/JSX shown; TypeScript is optional and not required).
+
+### Public Routes → App Router Pages
+
+| HTML File                  | Next.js Route        | App Router File Path              |
+| -------------------------- | -------------------- | --------------------------------- |
+| `index.html`               | `/`                  | `app/page.jsx`                    |
+| `mission-log.html`         | `/mission-log`       | `app/mission-log/page.jsx`        |
+| `mission-log-post.html`    | `/mission-log/:slug` | `app/mission-log/[slug]/page.jsx` |
+| `sister-cities.html`       | `/sister-cities`     | `app/sister-cities/page.jsx`      |
+| `stamford-kramatorsk.html` | `/cities/:slug`      | `app/cities/[slug]/page.jsx`      |
+| `contact-us.html`          | `/contact`           | `app/contact/page.jsx`            |
+| `donate-now.html`          | `/donate`            | `app/donate/page.jsx`             |
+| `login.html`               | `/login`             | `app/login/page.jsx`              |
+
+### Admin Routes → App Router Pages (Protected in Future)
+
+| Prototype Section | Next.js Route            | App Router File Path                  |
+| ----------------- | ------------------------ | ------------------------------------- |
+| Admin landing     | `/admin`                 | `app/admin/page.jsx`                  |
+| Posts list        | `/admin/posts`           | `app/admin/posts/page.jsx`            |
+| New post          | `/admin/posts/new`       | `app/admin/posts/new/page.jsx`        |
+| Edit post         | `/admin/posts/:id/edit`  | `app/admin/posts/[id]/edit/page.jsx`  |
+| Events list       | `/admin/events`          | `app/admin/events/page.jsx`           |
+| New event         | `/admin/events/new`      | `app/admin/events/new/page.jsx`       |
+| Edit event        | `/admin/events/:id/edit` | `app/admin/events/[id]/edit/page.jsx` |
+| Forms list        | `/admin/forms`           | `app/admin/forms/page.jsx`            |
+| Form detail       | `/admin/forms/:id`       | `app/admin/forms/[id]/page.jsx`       |
+| Newsletter list   | `/admin/newsletter`      | `app/admin/newsletter/page.jsx`       |
+
+**Note:** This replaces all SPA/router concepts. There is **no React Router**.
+
+---
+
+## Next.js Component Model
+
+### Server Components (Default)
+
+- Files in `app/` are **Server Components by default**.
+- Use Server Components for:
+    - Public pages where content is fetched from the Express API
+    - SEO-first pages (mission posts, mission log list, etc.)
+    - Rendering Markdown content (after fetching) using a safe Markdown renderer configuration
+
+**Data fetching:** Use native `fetch()` from Server Components to call the Express API.
+
+### Client Components (When Needed)
+
+Add `"use client"` at the top of a file to make it a Client Component.
+
+Use Client Components for:
+
+- Interactive UI state (filters, accordions, dropdowns)
+- Form input handling
+- Admin pages that require client-side authenticated calls and UI interactivity
+- Any code that depends on browser-only APIs
+
+**Admin HTTP:** Use Axios for client-side calls when needed (e.g., JWT-based admin actions).
+
+---
+
+## Data Fetching Strategy (Express API Consumption)
+
+### Backend Remains Separate
+
+- Next.js must call the Express API over HTTP.
+- All domain rules remain enforced by the backend:
+    - Slug immutability
+    - `status` + `visibility` constraints
+    - Public filtering (`status=published` AND `visibility=public`)
+
+### Public Content Pages
+
+- **Mission Log list**: fetch from `GET /api/posts` (public endpoint).
+- **Mission Post page**: fetch from `GET /api/posts/:slug` (public endpoint).
+
+### Rendering Modes (Recommended)
+
+- **SSG + ISR** for mission posts:
+    - Pre-render for SEO and performance.
+    - Revalidate periodically to capture new missions/edits without a full rebuild.
+- **SSR** for pages where real-time freshness is required (future).
+
+Implementation is Phase 2 work; architecture must support all modes.
+
+---
+
+## Next.js SEO / Metadata Requirements
+
+Use the Next.js Metadata API to generate SEO metadata server-side.
+
+### `generateMetadata()`
+
+- Set title and description per page.
+- Use post title/summary for mission posts.
+- Ensure sharing previews are correct (Open Graph fields as needed).
+
+### `generateStaticParams()` (for SSG/ISR dynamic routes)
+
+For `app/mission-log/[slug]/page.jsx`:
+
+- `generateStaticParams()` should fetch slugs for all **published + public** posts from the Express API.
+- Each slug becomes a statically generated route.
+
+**Important:** This must respect backend filtering rules. Do not generate pages for draft/internal/archived content.
+
+---
+
+## Styling Strategy (Preserve Existing UX)
+
+### Current Approach
+
+The HTML prototype uses a centralized CSS architecture:
+
+- `styles/draft.css` - Main stylesheet importing all modules
+- `styles/base/` - Reset, variables, typography
+- `styles/components/` - Buttons, cards, forms, maps, newsletter
+- `styles/layout/` - Container, header, footer, navigation
+- `styles/pages/` - Page-specific styles (home, blog, admin, etc.)
+- `styles/utilities/` - Responsive breakpoints
+
+### Next.js Migration Options
+
+**Option 1: Global CSS (Recommended for initial migration)**
+
+- Import the existing CSS into the Next.js App Router root layout (e.g., `app/layout.jsx`).
+- Preserve existing class names (e.g., `className="post-card"`).
+- Minimal change, preserves design exactly.
+
+**Option 2: CSS Modules (Later refactor)**
+
+- Convert page/module styles to CSS Modules over time.
+- Not required for initial migration.
+
+**Responsive Design**
+
+All responsive breakpoints defined in `styles/utilities/responsive.css` must be preserved.
+
+---
+
+## Admin Panel Migration Notes (Next.js)
+
+### Entity-Based Structure
+
+The admin panel manages four entities:
+
+1. **Posts** (Mission Reports, News, Updates)
+2. **Events** (Fundraisers, Galas, Community Events)
+3. **Forms** (Contact form submissions)
+4. **Newsletter** (Email subscribers)
+
+### Forms and Newsletter (Read-Only)
+
+- **Forms** - Display submissions, mark as processed (no creation)
+- **Newsletter** - Display subscribers and export CSV for import into an external email platform (no email sending; no unsubscribe lifecycle managed by the website)
+
+### Route-Based Navigation (No Tabs)
+
+- The prototype uses tabs as a temporary navigation mechanism.
+- Next.js uses route-based navigation:
+    - `/admin/posts`, `/admin/events`, `/admin/forms`, `/admin/newsletter`
+- Routes can be bookmarked and shared; browser navigation works correctly.
+
+### Client Components in Admin
+
+Admin pages will typically be **Client Components** because they require:
+
+- Form state management
+- Client-side authenticated API calls (JWT)
+- Interactive tables/actions
+
+---
+
+## Migration Phases
+
+### Phase 1: Next.js Project Setup
+
+1. Initialize Next.js app (App Router).
+2. Establish folder structure:
+    ```
+    app/
+      (public)/
+      admin/
+    styles/
+    components/
+    utils/
+    ```
+3. Copy existing CSS files into the Next.js project.
+4. Import global CSS in `app/layout.jsx`.
+
+### Phase 2: Public Pages Migration
+
+1. Migrate `Home` (`/`).
+2. Migrate `Mission Log` (`/mission-log`) and `Mission Post` (`/mission-log/[slug]`).
+3. Migrate `Sister Cities` and city pair pages.
+4. Migrate `Contact` and `Donate`.
+5. Implement server-side metadata generation.
+
+### Phase 3: Admin Panel Migration
+
+1. Migrate admin layout and pages under `/admin/...`.
+2. Convert the tab-based prototype to route-based pages.
+3. Ensure interactive behavior via Client Components.
+4. Backend integration happens only after Phase 1 backend APIs exist.
+
+### Phase 4: Backend Integration (Future)
+
+- Connect public pages to `GET /api/posts` and `GET /api/posts/:slug`
+- Connect admin pages to protected admin endpoints
+- Add authentication handling (JWT)
+- Add loading/error states and robust validation messaging
+
+---
+
+## What Is Explicitly Out of Scope
+
+### Backend & Infrastructure
+
+- API design and implementation
+- Database schema
+- Authentication and authorization implementation details
+- Email sending (newsletter, contact form notifications)
+- File uploads and storage
+
+### Features Not Yet Defined
+
+- Search functionality
+- User accounts and profiles
+- Comments and moderation
+- Multilingual support (i18n)
+- Analytics and reporting
+
+### Deployment
+
+- Hosting configuration
+- CI/CD pipelines
+- Domain setup
+- SSL certificates
+
+---
+
+## Key Principles for Migration
+
+1. **Preserve UX** - The HTML prototype defines the approved user experience. Do not redesign during migration.
+2. **Incremental Migration** - Migrate one route at a time, test thoroughly before moving on.
+3. **No Scope Creep** - Do not add new features or change data models.
+4. **Backend-First** - Next.js integration starts after backend APIs and rules are stable.
+5. **Route-Based Navigation** - App Router routes replace any tab-based/SPA navigation.
+6. **Optional Fields Stay Optional** - Aid Type, Sister City, and Tags remain optional metadata.
+7. **Public Visibility Rules Remain Enforced by Backend** - Only `published + public` content is publicly accessible.

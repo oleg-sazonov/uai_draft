@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Sister Cities - Ukraine Aid International</title>
-        <link rel="stylesheet" href="styles/index.css" />
+        <link rel="stylesheet" href="styles/draft.css" />
     </head>
     <body>
         <!-- Header -->
@@ -35,23 +35,23 @@
 
                     <nav class="navbar">
                         <ul>
-                            <li class="dropdown">
-                                <a href="#">Meet the Team ▾</a>
-                                <!-- <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#ground-team">Ground Team</a>
-                                    </li>
-                                    <li>
-                                        <a href="#board">Board of Directors</a>
-                                    </li>
-                                </ul> -->
-                            </li>
+                            <li><a href="index.html">Home</a></li>
                             <li><a href="mission-log.html">Blog</a></li>
                             <li>
                                 <a href="sister-cities.html">Sister Cities</a>
                             </li>
                             <li><a href="#sister-states">Sister States</a></li>
-                            <li><a href="#events">Events</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle">About ▾</a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#about">Our Work</a>
+                                    </li>
+                                    <li><a href="#team">Meet the Team</a></li>
+                                    <li><a href="#partners">Partners</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#press">Press</a></li>
                             <li><a href="contact-us.html">Contact Us</a></li>
                             <li>
                                 <a href="donate-now.html" class="btn-donate-nav"
@@ -411,5 +411,9 @@
                 </div>
             </div>
         </footer>
+
+        <!-- Mobile accordion functionality for state map sections -->
+        <script src="js/accordion.js"></script>
+        <script src="js/dropdown.js"></script>
     </body>
 </html>

@@ -1,0 +1,664 @@
+# UAI Website
+
+# Phase 0 -- Architecture & System Design Specification (Updated)
+
+## SEO & Rendering (Authoritative Baselines)
+
+SEO is a core architectural requirement for this content-driven nonprofit site. Public pages must be indexable and must ship correct metadata in server-rendered HTML.
+
+References:
+
+- [SEO_BASELINE.md](SEO_BASELINE.md)
+- [RENDERING_DECISIONS.md](RENDERING_DECISIONS.md)
+
+**Explicit rule:** SEO is handled via **server-rendered metadata** in Next.js (App Router) using route-level metadata (including `generateMetadata` on dynamic routes where needed).
+
+---
+
+# 1. Overview
+
+**Phase 0 defines architecture decisions only.** No backend or frontend implementation occurs in Phase 0.
+
+This phase includes:
+
+- Definition of all core entities
+- Authentication model
+- Full routing structure
+- Draft & visibility logic
+- Admin panel behavior
+- Backend scope definition (Phase 1 preparation)
+- Frontend scope sequencing (Phase 2 preparation)
+- Testing and production hardening sequencing (Phases 3–4 preparation)
+
+The goal is to eliminate structural uncertainty before development.
+
+## 1.1 Updated Project Phase Order (Authoritative)
+
+Replace all previous phase ordering with the following:
+
+- **Phase 0 – Architecture & System Design** (this document)
+    - Architecture decisions only (entities, routes, rules, constraints)
+- **Phase 1 – Backend Implementation**
+    - Backend-first development: database models, validation, auth, APIs
+- **Phase 2 – Next.js Frontend Implementation (App Router)**
+    - UI built after backend APIs exist
+    - Server Components + Client Components
+    - SSR/SSG/ISR rendering strategy (see Section 5.4)
+- **Phase 3 – Testing & Stabilization**
+    - Dedicated QA phase (integration tests, regression, bug fixes)
+- **Phase 4 – Production & Security**
+    - Production readiness and security hardening (rate limiting, logging, secrets, etc.)
+
+---
+
+# 2. Core Entities
+
+The system includes five primary entities:
+
+1.  Posts\
+2.  Events\
+3.  Contact Messages (Forms)\
+4.  Newsletter Subscribers\
+5.  Admin Users
+
+## Sister Cities (Static Content — Intentional Simplification)
+
+**Architectural decision:** Sister Cities content is **static**.
+
+- Sister Cities are **NOT stored in MongoDB**
+- Sister Cities are **NOT managed via the admin panel**
+- Sister Cities are implemented as **static Next.js pages** using **SSG**
+- There are **no CRUD operations** (no create/edit/delete endpoints) for Sister Cities
+
+**Reason (keep it simple):** Sister Cities content changes infrequently and does not justify backend models, admin workflows, validation, and additional security surface area. Keeping it static avoids unnecessary complexity while still meeting SEO and performance requirements.
+
+---
+
+# 2.1 Posts Entity
+
+Posts represent:
+
+- Mission Reports
+- News
+- Updates
+
+Collection: `posts`
+
+## Fields
+
+| Field         | Type              | Description                               |
+| ------------- | ----------------- | ----------------------------------------- |
+| \_id          | ObjectId          | Unique identifier                         |
+| title         | String            | Post title                                |
+| slug          | String            | Unique URL identifier (**required**)      |
+| category      | Enum              | mission-report / news / update            |
+| summary       | String            | Short preview text                        |
+| content       | String (Markdown) | Main content body (Markdown)              |
+| featuredImage | String (URL)      | Main image (optional)                     |
+| gallery       | Array             | Additional images (optional)              |
+| aidType       | String            | Humanitarian aid category (optional)      |
+| sisterCity    | String            | Related sister city (optional)            |
+| likes         | Number            | Total number of likes (default: 0)        |
+| tags          | Array of Strings  | Optional metadata labels                  |
+| status        | Enum              | draft / published                         |
+| visibility    | Enum              | public / internal / archived              |
+| publishedAt   | Date              | Timestamp of first publication (optional) |
+| createdAt     | Date              | Creation timestamp                        |
+| updatedAt     | Date              | Last update                               |
+
+## 2.1.1 Content Field (Markdown) — Formal Definition
+
+The `content` field is **a Markdown string**.
+
+### Rationale (Why Markdown)
+
+- **Simple, predictable storage**: a single string avoids complex “block-based” content schemas.
+- **Easier editing workflow**: Markdown is widely supported and can be edited in basic text areas or lightweight editors.
+- **Portability**: Markdown content is easy to move between systems and environments.
+
+### Rendering Model
+
+- Markdown will be **converted to HTML on the frontend** (Phase 2).
+- The backend stores Markdown only (source of truth), not generated HTML.
+
+### Security / Input Constraints
+
+- **Raw HTML input is not allowed** in `content`.
+    - Do not accept HTML payloads intended to be rendered directly.
+    - If a Markdown parser supports embedded HTML, the frontend must render with HTML disabled or sanitized to prevent injection.
+
+### Structured Media Fields Remain Separate
+
+- `featuredImage` and `gallery` remain **separate structured fields**.
+- Images are not embedded as rich blocks in `content`; they are handled as:
+    - `featuredImage`: primary hero/preview image
+    - `gallery`: additional images (optional)
+
+## 2.1.2 Tags (Optional Metadata)
+
+Tags are optional metadata labels used for lightweight grouping and filtering of Posts.
+
+Rules:
+
+- Tags are optional.
+- Tags are stored as an array of **lowercase strings**.
+- Tags are simple labels (**no separate tag collection**).
+- No tag hierarchy.
+- No tag CRUD interface.
+- No tag slugs.
+- Used only for lightweight filtering.
+- Public filtering via query param: `/api/posts?tag=water`
+- Public API must still enforce: only `status=published` AND `visibility=public` posts are returned.
+
+## 2.1.3 Category vs Tags (Clarification)
+
+Both **category** and **tags** exist and serve different purposes.
+
+- `category` is a **controlled enum** used for the primary content taxonomy.
+    - Category is **required** for Posts.
+    - Category is not free-form.
+- `tags` is an **optional** array of **free-form lowercase strings**.
+    - Tags are **not hierarchical** (no parent/child structure).
+    - Tags do **not** replace categories.
+    - Tags are metadata labels only and do not change publishing rules.
+
+## 2.1.4 PublishedAt (Optional but Recommended)
+
+The `publishedAt` field stores the timestamp when a post is first published.
+
+Behavior Rules:
+
+- While `status=draft`, `publishedAt` is `null`
+- When a post transitions from `draft` to `published`:
+    - `publishedAt` is set to current timestamp
+- If a published post is edited:
+    - `publishedAt` must NOT change
+- If a post is archived:
+    - `publishedAt` remains unchanged (historical record)
+
+Why This Field Is Useful
+
+- Separates creation time from publication time
+- Allows accurate sorting of public posts
+- Enables correct “Published on” display in UI
+- Prepares system for future scheduled publishing
+
+## 2.1.5 Likes (Public Interaction Field)
+
+Posts support a simple public interaction feature: **likes**.
+
+### Field
+
+- `likes`: Number
+- Default value: `0`
+- Must never be negative
+
+### Behavior Rules
+
+- Any public visitor may like or unlike a post.
+- Liking increases the counter by 1.
+- Unliking decreases the counter by 1.
+- The same user cannot increase the counter multiple times without unliking first.
+- The backend must prevent negative values.
+
+### Architectural Simplicity Rule (Phase 1)
+
+- No user accounts are required.
+- No persistent user-like history is stored in the database.
+- The backend increments/decrements the numeric counter.
+- The frontend manages temporary "liked state" per visitor (e.g., localStorage or cookie).
+
+### SEO Impact
+
+- Likes do not affect slug, status, visibility, or sitemap.
+- Likes do not affect rendering strategy (SSG/ISR remains unchanged).
+
+---
+
+# 2.2 Events Entity
+
+Collection: `events`
+
+Events represent fundraisers, awareness events, and community gatherings.
+
+## Recommended Structure (Flexible and Future-Safe)
+
+## Fields
+
+| Field         | Type     | Description                               |
+| ------------- | -------- | ----------------------------------------- |
+| \_id          | ObjectId | Unique ID                                 |
+| title         | String   | Event title                               |
+| slug          | String   | URL identifier (**required**)             |
+| description   | String   | Event details                             |
+| startDate     | Date     | Event start date/time (**required**)      |
+| endDate       | Date     | Event end date/time (optional)            |
+| location      | String   | Location                                  |
+| featuredImage | String   | Main image (optional)                     |
+| likes         | Number   | Total number of likes (default: 0)        |
+| status        | Enum     | draft / published                         |
+| visibility    | Enum     | public / internal / archived              |
+| publishedAt   | Date     | Timestamp of first publication (optional) |
+| createdAt     | Date     | Creation timestamp                        |
+| updatedAt     | Date     | Last update                               |
+
+## 2.2.1 Event Likes
+
+Events support the same like behavior as Posts.
+
+Rules are identical:
+
+- Public visitors can like/unlike.
+- Counter increases/decreases accordingly.
+- Backend prevents negative values.
+- No user account system required.
+- Does not affect event status, visibility, or SEO.
+
+## Behavior Rules
+
+Instead of a single date field, Events support a start and optional end date.
+
+### Single-Day Event
+
+If `endDate` is null:
+
+- Event is treated as a single-day event
+- `startDate` is the only date displayed
+- Sorting is based on `startDate`
+
+### Multi-Day Event
+
+If `endDate` exists:
+
+- Event is treated as a date range
+- Displayed as:
+    - StartDate - EndDate
+- Sorting of upcoming events is based on `startDate`
+
+### Migration Safety
+
+- If previously using `date`, existing records can be mapped:
+  `date` → `startDate`
+- `endDate` remains optional
+- No structural breakage occurs
+
+---
+
+# 2.3 Contact Messages (Forms)
+
+Collection: `contact_messages`
+
+## Fields
+
+| Field     | Type     | Description         |
+| --------- | -------- | ------------------- |
+| \_id      | ObjectId | Unique ID           |
+| name      | String   | Sender name         |
+| email     | String   | Sender email        |
+| message   | Text     | Message content     |
+| status    | Enum     | pending / responded |
+| createdAt | Date     | Submission date     |
+
+### Architectural Note (Authoritative)
+
+This website is **not an email platform**. It only **collects and stores email addresses**.
+
+- Subscription lifecycle (unsubscribe/resubscribe, suppression lists, deliverability) is managed **externally** by an email platform (e.g., **Mailchimp**).
+- Mailchimp (or equivalent) is the **single source of truth** for subscription status.
+- The website does **not** store or manage subscriber status locally and does **not** implement unsubscribe workflows.
+- Re-importing a full CSV to an email platform is safe because email platforms preserve unsubscribe status and suppression rules on their side.
+
+---
+
+# 2.4 Newsletter Subscribers
+
+Collection: `newsletter_subscribers`
+
+## Fields
+
+| Field        | Type     | Description       |
+| ------------ | -------- | ----------------- |
+| \_id         | ObjectId | Unique ID         |
+| email        | String   | Subscriber email  |
+| subscribedAt | Date     | Subscription date |
+
+### Architectural Note (Authoritative)
+
+This website is **not an email platform**. It only **collects and stores email addresses**.
+
+- Subscription lifecycle (unsubscribe/resubscribe, suppression lists, deliverability) is managed **externally** by an email platform (e.g., **Mailchimp**).
+- Mailchimp (or equivalent) is the **single source of truth** for subscription status.
+- The website **does not** store or manage subscriber `status` locally and **does not** implement unsubscribe workflows.
+- Re-importing a full CSV to an email platform is safe: email platforms preserve unsubscribe status and suppression rules on their side.
+
+---
+
+# 2.5 Admin Users Entity
+
+Collection: `admins`
+
+Purpose: Secure access to the admin panel.
+
+## Fields
+
+| Field        | Type            | Description     |
+| ------------ | --------------- | --------------- |
+| \_id         | ObjectId        | Unique ID       |
+| email        | String (unique) | Login email     |
+| passwordHash | String          | Hashed password |
+| role         | Enum            | admin           |
+| isActive     | Boolean         | Account status  |
+| createdAt    | Date            | Creation date   |
+| updatedAt    | Date            | Last update     |
+
+Passwords are stored as hashes (bcrypt).\
+Authentication will be handled via JWT or secure HTTP-only cookies.
+
+---
+
+# 3. Slug Strategy & URL Integrity
+
+This section defines **authoritative slug rules** for **Posts** and **Events**.
+
+## 3.1 Rules
+
+1.  **Slugs are automatically generated from the title.**
+2.  **Slugs must be unique within the collection** (`posts` and `events` independently).
+3.  **Collision handling uses numeric suffixes** appended to the base slug:
+
+    Example:
+    - `winter-relief-mission`
+    - `winter-relief-mission-1`
+    - `winter-relief-mission-2`
+
+4.  **Slugs are immutable after publication.**
+    - Once `status=published`, the slug must not change.
+    - Title edits after publication must not regenerate the slug.
+
+5.  **Slug uniqueness must be enforced at the database level.**
+    - Unique index on `slug` for `posts`
+    - Unique index on `slug` for `events`
+
+6.  **Slug is required** for both Posts and Events (no null/empty slugs).
+
+## 3.2 Why Slug Immutability Matters
+
+- **SEO**: stable URLs preserve search engine ranking and indexing.
+- **Stable URLs**: users can reliably bookmark and revisit content.
+- **External linking safety**: prevents broken links from partners, press, and social shares.
+
+---
+
+# 4. Draft & Visibility Logic
+
+The system separates:
+
+- Status (editorial state)
+- Visibility (display rule)
+
+---
+
+# 4.1 Status
+
+Values:
+
+- draft
+- published
+
+Draft: - Exists in database - Not visible publicly - Editable in admin panel
+
+Published: - Ready for display
+
+---
+
+# 4.2 Visibility
+
+Values:
+
+- public
+- internal
+- archived
+
+Public: - Visible on website
+
+Internal: - Visible only in admin panel
+
+Archived: - Hidden from public - Hidden from default admin view
+
+---
+
+# 4.3 Combined Logic
+
+Status Visibility Result
+
+---
+
+| Status    | Visibility | Result           |
+| --------- | ---------- | ---------------- |
+| draft     | internal   | Only in admin    |
+| published | public     | Visible publicly |
+| published | internal   | Not public       |
+| published | archived   | Hidden           |
+
+## 4.4 API Enforcement Rule (Backend обязательное поведение)
+
+Backend filtering must enforce:
+
+- **Public API:** only records with **`status=published` AND `visibility=public`** are visible.
+- **Admin API (protected):** may access drafts and internal content.
+    - Archived content is accessible to admins but should be excluded from “default” list views unless explicitly requested (e.g., `?includeArchived=true`).
+
+---
+
+# 5. Routing Structure
+
+## 5.1 Public Routes
+
+/\
+/mission-log\
+/mission-log/:slug\
+/sister-cities\
+/sister-cities/:slug\
+/sister-states\
+/about\
+/about/our-work\
+/about/meet-the-team\
+/about/partners\
+/press\
+/contact\
+/donate\
+/faq
+
+---
+
+## 5.2 Authentication Routes
+
+/login\
+/logout
+
+---
+
+## 5.3 Admin Routes (Protected)
+
+/admin\
+/admin/posts\
+/admin/posts/new\
+/admin/posts/:id/edit\
+/admin/events\
+/admin/events/new\
+/admin/events/:id/edit\
+/admin/forms\
+/admin/forms/:id\
+/admin/newsletter
+
+All admin routes require authentication.
+
+---
+
+## 5.4 Frontend Rendering Strategy (Next.js App Router)
+
+The frontend will be implemented using **Next.js (App Router)**. Routing is **file-based** (no React Router).
+
+### Core Principle: Backend Remains a Separate Express API Service
+
+- The backend remains a standalone **Express** service exposing REST endpoints (per `API_CONTRACT.md`).
+- **Do NOT** move backend logic into Next.js API routes.
+- Next.js is a separate frontend application that consumes the Express API over HTTP.
+
+### Cross-Origin Policy (CORS)
+
+- Backend and frontend are separate services by design and may run on separate origins.
+- When deployed cross-origin (different domain/port), the backend must be configured to allow the frontend origin via CORS.
+- Same-origin deployment via reverse proxy (frontend and `/api/*` served under one domain) is allowed and avoids CORS complexity.
+
+### Public Site Rendering
+
+- **Mission Log list** (`/mission-log`) and key landing pages should be rendered to maximize SEO:
+    - Server Components render on the server by default.
+    - Use **SSR** when content must be always fresh (or when personalization is introduced later).
+    - Use **SSG/ISR** when content changes infrequently.
+
+### Mission Posts (Slug-Based)
+
+- Dynamic route: `/mission-log/[slug]` (Next.js segment: `[slug]`)
+- Preferred: **SSG + ISR** for mission posts:
+    - Build static pages for published+public posts.
+    - Periodically revalidate to pick up new/updated posts without full rebuild.
+- Slug immutability rules remain authoritative (Section 3).
+
+### Metadata / SEO
+
+Use Next.js **Metadata API**:
+
+- `generateMetadata()` per route to set:
+    - `<title>`
+    - description
+    - Open Graph / social cards
+    - canonical URL (if applicable)
+- Metadata is generated server-side to support SEO and sharing previews.
+
+### Data Fetching (Server)
+
+- Server Components use **native `fetch()`** to call the Express API.
+- Use Next.js caching controls and revalidation for ISR:
+    - Route-level or fetch-level revalidation (implementation detail in Phase 2).
+
+### No React Router
+
+- All routing is done via the Next.js App Router (file system routes).
+- Admin navigation and deep linking follow `/admin/...` routes (see Section 5.3).
+
+---
+
+# 6. Admin Panel Logic
+
+Posts: - Create - Save as draft - Publish - Edit - Archive
+
+Events: - Create - Publish - Archive
+
+Forms: - View - Mark responded - Archive
+
+Newsletter: - View - Export CSV
+
+Authentication: - Login required - JWT verification middleware - Role
+check (admin only)
+
+---
+
+# 7. Phase 1 -- Backend Implementation (Scope & Architecture)
+
+Phase 1 is **backend-first**. Frontend work (Next.js) begins only after the backend APIs and rules are implemented and stable.
+
+## 7.1 Recommended Folder Structure
+
+```
+src/
+  routes/
+  controllers/
+  services/
+  models/
+  validators/
+  middlewares/
+  utils/
+```
+
+## 7.2 Separation of Concerns (Required Flow)
+
+Enforce the following layering:
+
+1.  **Validation** (runtime)
+    - Validates request payloads and params before business logic runs
+2.  **Controller**
+    - Handles request/response, calls services, returns appropriate status codes
+3.  **Service**
+    - Business rules (status/visibility enforcement, slug rules, etc.)
+4.  **Model**
+    - Database schema and persistence (MongoDB collections as defined)
+
+**Rule:** `validators -> controller -> service -> model` (no skipping layers).
+
+## 7.3 Public API vs Admin API Separation
+
+Backend must clearly separate public and admin surfaces:
+
+- **Public API**
+    - Enforces: only `status=published` + `visibility=public`
+    - No access to drafts/internal/archived
+- **Admin API (protected)**
+    - Allows managing draft/published and all visibility states
+    - Must require authentication + admin role
+
+(Exact route prefixes are implementation detail, but separation must be explicit and testable.)
+
+## 7.4 Backend Language & Validation (No TypeScript)
+
+- Backend will **NOT** use TypeScript.
+- Runtime validation will be implemented using **Zod**.
+- **All request payloads must be validated before reaching controllers.**
+- Validation errors must return **HTTP 400** with a structured error response.
+
+Tag validation note:
+
+- `tags` must be an optional array of **non-empty lowercase strings**
+- normalization to lowercase happens server-side
+
+Example (pseudo):
+
+- `tags: z.array(z.string().min(1)).optional()`
+
+### 7.4.1 Zod Schema Example (Pseudo-code)
+
+```js
+// Example shape only (pseudo-code)
+const PostCreateSchema = z.object({
+    title: z.string().min(1),
+    slug: z.string().min(1), // generated server-side, still validated
+    category: z.enum(["mission-report", "news", "update"]),
+    summary: z.string().min(1),
+    content: z.string().min(1), // Markdown string
+    featuredImage: z.string().url().optional(),
+    gallery: z.array(z.string().url()).optional(),
+    aidType: z.string().optional(),
+    sisterCity: z.string().optional(),
+    tags: z.array(z.string().min(1)).optional(),
+    status: z.enum(["draft", "published"]),
+    visibility: z.enum(["public", "internal", "archived"]),
+});
+```
+
+---
+
+# 8. Phase 0 Completion Criteria
+
+Phase 0 is complete when:
+
+- All entities confirmed
+- Authentication model confirmed
+- Routing confirmed
+- Visibility & draft logic confirmed (including public API enforcement rule)
+- Slug strategy confirmed (generation, uniqueness, immutability, DB enforcement)
+- Admin logic confirmed
+- Backend implementation scope defined (Phase 1)
+- No structural changes pending
+
+Then development moves to **Phase 1 (Backend Implementation)**, followed by **Phase 2 (Next.js Frontend Implementation)**, then **Phase 3 (Testing & Stabilization)**, and finally **Phase 4 (Production & Security)**.

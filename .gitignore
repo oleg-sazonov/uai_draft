@@ -1,0 +1,11 @@
+# Ignore all Markdown documentation by default
+*.md
+
+# Keep these specific Markdown files tracked (allowlist)
+!/ADMIN_PANEL_ARCHITECTURE_NEXTJS.md
+!/ADMIN_WORKFLOW.md
+!/API_CONTRACT_NEXTJS.md
+!/FRONTEND_MIGRATION_GUIDE_NEXTJS.md
+!/PHASE_0_ARCHITECTURE_V3_NEXTJS_EDITION.md
+!/PRODUCT_VISION_NEXTJS.md
+!/TECH_STACK_NEXTJS.md

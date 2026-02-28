@@ -48,6 +48,38 @@ The system should feel like “fill out a form and publish,” not like operatin
 This system is **not** trying to be:
 
 - A full CMS platform with plugins, themes, and workflows
-- A media management system (no image library, tagging, cropping tools)
+- A media management system (no image library, cropping tools)
 - An automation engine (no scheduled publishing, no email campaigns, no notifications)
 - A multi-role editorial platform (no editor/reviewer approval flows)
+
+---
+
+## 6. SEO as a Core Architectural Requirement
+
+This website is content-driven (mission reports, updates, events). That means SEO is not optional: it directly affects how supporters, partners, and journalists discover and verify our work.
+
+Baseline requirements:
+
+- Public pages must be **server-rendered** in Next.js (SSG/ISR/SSR), not client-only.
+- **Slugs are immutable after publication** to keep URLs stable and avoid breaking external links.
+- Every public page must include basic metadata: **title + description**.
+- Sitemaps and robots rules must ensure only **published + public** content is indexable.
+
+See: [SEO_BASELINE.md](SEO_BASELINE.md)
+
+## 7. Frontend Architecture Decision: Next.js (App Router)
+
+The frontend will be built with **Next.js (App Router)** instead of a React SPA.
+
+### Why Next.js
+
+- **SEO & discoverability:** Mission reports and updates must be indexable and shareable with correct metadata.
+- **Performance:** Supports SSG and ISR for fast content pages while still enabling SSR where needed.
+- **Content-first routing:** File-based routing aligns naturally with slug-based content URLs (e.g., `/mission-log/[slug]`).
+- **Server-rendered metadata:** Page titles, descriptions, and social previews are generated server-side.
+
+### Backend-First Remains the Core Approach
+
+- The backend remains a **separate Express API service**.
+- Content rules (status/visibility enforcement, slug immutability) are enforced by the backend.
+- The Next.js frontend consumes the backend API over HTTP and does not replace backend services.
