@@ -2,6 +2,21 @@
 
 This is a lightweight contract to guide Phase 1 backend implementation. It documents intended endpoints and key rules, not internal code structure.
 
+---
+
+## Architectural Invariants
+
+This contract follows the system invariants defined in:
+
+architecture/ARCHITECTURAL_INVARIANTS.md
+
+These invariants define non-negotiable rules for:
+
+- public content visibility
+- slug immutability
+- media lifecycle
+- API filtering behavior
+
 ## Public Endpoints
 
 ### GET /api/posts
@@ -52,43 +67,167 @@ Response:
 }
 ```
 
-## Filtering
+### DELETE /api/posts/:slug/like
 
-### GET /api/posts?tag=water
-
-Returns **published + public** posts where the `tags` array includes the provided tag.
+Decrement like counter for a published + public post.
 
 Notes:
 
-- Tags are stored as lowercase strings; the API should normalize `tag` to lowercase before matching.
-- Filtering does not change public visibility rules: results must still satisfy `status=published` AND `visibility=public`.
+- Must never allow negative values.
+- If the post has `likes = 0`, return HTTP 400.
+
+Response:
+
+```json
+{
+    "likes": 6
+}
+```
+
+### POST /api/events/:slug/like
+
+Increment like counter for a published + public event.
+
+Response:
+
+```json
+{
+    "likes": 7
+}
+```
+
+### DELETE /api/events/:slug/like
+
+Decrement like counter for a published + public event.
+
+Notes:
+
+- Must never allow negative values.
+- If the event has `likes = 0`, return HTTP 400.
+
+Response:
+
+```json
+{
+    "likes": 6
+}
+```
+
+---
+
+### POST /api/contact
+
+Create a new contact message from the public **Contact Us** form.
+
+This is a **public** endpoint.
+
+Behavior:
+
+- Creates a new `ContactMessage` record.
+- Intended for use by the public website route `/contact`.
+
+Request body:
+
+```json
+{
+    "name": "Jane Doe",
+    "email": "jane@example.com",
+    "subject": "General inquiry / Contact us",
+    "message": "Hello — I’d like to learn how to partner with UAI."
+}
+```
+
+Success response:
+
+- HTTP **201**
+
+```json
+{
+    "success": true
+}
+```
+
+Error handling (must follow `ERROR_HANDLING_POLICY.md`):
+
+- Validation errors → HTTP **400** with the standard JSON error shape.
+- Rate limit exceeded → HTTP **429**.
+- Unexpected server errors → HTTP **500** with a generic message (no internal details).
 
 ## Admin Endpoints
 
 These endpoints are protected and only accessible to authenticated admin users.
 
+### Auth
+
+#### POST /api/admin/login
+
+Authenticate an admin user and issue a JWT for use with protected `/api/admin/*` endpoints.
+
+Notes:
+
+- This endpoint authenticates by credentials (email/password) and sets a JWT in an **HttpOnly cookie**.
+- Cookie baseline:
+  - `HttpOnly: true`
+  - `SameSite: Lax`
+  - `Secure: true` in production
+- The `Authorization: Bearer ...` header is **not used** in this baseline.
+- When the frontend calls admin endpoints cross-origin, it must include credentials (`fetch(..., { credentials: "include" })`).
+- Validation errors must return HTTP **400** using the standard JSON error shape defined in `ERROR_HANDLING_POLICY.md`.
+
+### Media
+
+#### POST /api/admin/media/images
+
+Admin-only image upload endpoint.
+
+Behavior:
+
+- Receives `multipart/form-data` with file field `image`.
+- Backend uploads the image to Cloudinary.
+- Returns the Cloudinary `secure_url`.
+
+Success response (example):
+
+```json
+{
+  "data": {
+    "url": "https://res.cloudinary.com/.../image/upload/..."
+  }
+}
+```
+
 ### Posts
 
-- POST /api/posts
+- GET /api/admin/posts
+  List posts (includes draft/published and any visibility state).
+
+- GET /api/admin/posts/:id
+  Get a single post by id.
+
+- POST /api/admin/posts
   Create a post (typically created as draft, then published).
-  Supports optional tags: `tags: string[]` (optional)
 
-- PATCH /api/posts/:id
+- PATCH /api/admin/posts/:id
   Update a post.
-  Supports optional tags: `tags: string[]` (optional)
 
-- DELETE /api/posts/:id
+- DELETE /api/admin/posts/:id
   Delete a post.
 
 ### Events
 
-- POST /api/events
+- GET /api/admin/events
+  List events (includes draft/published and any visibility state).
+
+- GET /api/admin/events/:id
+  Get a single event by id.
+
+- POST /api/admin/events
   Create an event.
 
-- PATCH /api/events/:id
+- PATCH /api/admin/events/:id
   Update an event.
 
-- DELETE /api/events/:id
+- DELETE /api/admin/events/:id
   Delete an event (if supported) or archive via update (implementation detail).
 
 ## Pagination (Applies to list endpoints)
@@ -97,6 +236,8 @@ Pagination is supported for:
 
 - `GET /api/posts`
 - `GET /api/events`
+- `GET /api/admin/posts`
+- `GET /api/admin/events`
 
 ### Pagination Model (Authoritative)
 
@@ -174,6 +315,9 @@ Sorting occurs **after** public filtering (`status=published` AND `visibility=pu
 
 - GET /api/admin/forms  
   List contact messages (includes pending/responded; archived handling is an admin concern).
+
+- GET /api/admin/forms/:id  
+  Get a single contact message by id.
 
 - PATCH /api/admin/forms/:id  
   Update status (e.g., mark responded, archive).

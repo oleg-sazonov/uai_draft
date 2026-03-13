@@ -2,37 +2,40 @@
 
 This document explains how the admin panel is expected to be used by content editors and admins.
 
----
-
 ## Creating a New Post
 
 1. **Open Admin**
     - Go to the Admin panel and log in.
 2. **Click “New Post”**
-    - Choose to create a new post (Mission Report, News, or Update).
+    - Choose to create a new Post and select a canonical category.
 3. **Fill the basic fields**
     - Title
-    - Category
-    - Summary
-    - Featured image (optional)
-    - Gallery images (optional)
-    - Aid type (optional)
-    - Sister city partnership (optional)
-    - Tags (optional; comma-separated)
+    - Category (Field Mission | Sister City & Sister State Partnerships | Events & Community | Organizational Updates | Media & Press)
+    - Content
+    - Featured image (required)
     - Visibility (Public / Internal / Archived)
 
-    Tags are simple labels used for grouping and filtering content.
+    Optional fields:
 
-    Example input:
-    - `water, medical, winter`
+    - Summary
+    - Gallery images
+    - Video URL
+    - Aid type
+    - Partnership
+    - Location
 
 4. **Write the content in Markdown**
     - The main `content` field is written as **Markdown** (not HTML).
 
-5. **Save as Draft**
+5. **Upload media (Cloudinary via backend)**
+    - The admin UI uploads images to the backend API.
+    - The backend uploads to Cloudinary and returns URLs.
+    - MongoDB stores URL references only.
+
+6. **Save as Draft**
     - Use Draft while writing or waiting for approvals outside the system.
 
-6. **Publish**
+7. **Publish**
     - When ready, publish the post.
     - After publishing, the post URL slug becomes stable and should not change.
 
@@ -65,7 +68,8 @@ This document explains how the admin panel is expected to be used by content edi
 2. Click **New Event**
 3. Fill required fields:
     - Title
-    - Date
+    - startDate (required)
+    - endDate (optional)
     - Location
     - Description
     - Visibility (Public / Internal / Archived)

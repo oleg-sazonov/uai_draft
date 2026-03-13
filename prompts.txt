@@ -1,0 +1,29 @@
+AI_CONTEXT: DOCUMENTATION_GUARDIAN
+
+Review the documentation system.
+
+Verify that:
+
+DOCS_INDEX.md
+AI_FILE_MAP.md
+AI_CONTEXT.md
+SPEC_SYNC_RULES.md
+
+are synchronized.
+
+Check whether any documentation files exist that are not referenced in the documentation map.
+
+If such files exist:
+
+1. Suggest where they should be referenced
+2. Update DOCS_INDEX.md
+3. Update AI_FILE_MAP.md if the file is relevant to AI understanding
+4. Ensure cross references exist where appropriate
+
+Output:
+
+DOCUMENTATION_SYSTEM_REPORT
+
+
+
+

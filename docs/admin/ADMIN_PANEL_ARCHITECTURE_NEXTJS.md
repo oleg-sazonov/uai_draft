@@ -10,11 +10,36 @@ The panel currently exists as a **static HTML prototype** that demonstrates the 
 
 ---
 
+## Architectural Invariants
+
+This document follows the system invariants defined in:
+
+architecture/ARCHITECTURAL_INVARIANTS.md
+
+These invariants define non-negotiable rules for:
+
+- public content visibility
+- slug immutability
+- media lifecycle
+- API filtering behavior
+
+---
+
+## Lifecycle Management
+
+Content and media lifecycle behavior is defined in:
+
+[architecture/LIFECYCLE_MANAGEMENT.md](../architecture/LIFECYCLE_MANAGEMENT.md)
+
+This document explains how Posts, Events, media assets, and contact messages behave over time.
+
+---
+
 ## Managed Content Types
 
 The admin panel manages four primary content entities:
 
-1. **Posts** - Mission reports, news articles, and general updates
+1. **Posts** - Core content items published on the public site
 2. **Events** - Fundraisers, galas, community gatherings, and awareness events
 3. **Forms** - Contact form submissions from the public website
 4. **Newsletter** - Email subscription list management
@@ -27,51 +52,43 @@ Each entity has its own dedicated management interface with appropriate creation
 
 ### What Are Posts?
 
-Posts represent the primary content type on the website. They include:
+Posts represent the primary content type on the website.
 
-- **Mission Reports** - Stories from humanitarian missions and aid deliveries
-- **News** - General organizational news and announcements
-- **Updates** - Progress reports, community highlights, and project updates
+Canonical Post categories (authoritative):
 
-All three types share the same content structure and are managed through a unified interface.
+- **Field Mission**
+- **Sister City & Sister State Partnerships**
+- **Events & Community**
+- **Organizational Updates**
+- **Media & Press**
+
+All categories share the same content structure and are managed through a unified interface.
 
 ### Post Fields
 
 **Required Fields:**
 
 - Title
-- Date
-- Category (Mission Report | News | Update)
+- Category (one of the canonical categories listed above)
 - Content (main body text; stored as Markdown)
+- Featured image (Cloudinary URL)
 - Visibility (Public | Internal | Archived)
 
 **Optional Fields:**
 
-- Subtitle
-- Featured image
-- Aid type (Water, Heat, Medical, Food, etc.)
-- Sister city partnership (Kramatorsk-Stamford, etc.)
+- Summary
+- Gallery images (Cloudinary URLs)
 - Video URL
-- Gallery images
-- Tags
+- Aid type
+- Partnership
+- Location
 
-### Tags (Optional Metadata Only)
+### Media Handling (Cloudinary)
 
-Tags are simple string labels used for **grouping and filtering** posts.
-
-- Input is a **comma-separated string** in the post form (example: `water, medical, winter`)
-- The system converts it to an array: `["water", "medical", "winter"]`
-- Tags are stored as **lowercase strings**
-- Tags do **not** affect publishing, visibility, or slug behavior
-
-**Explicitly not included:**
-
-- No tag manager
-- No autocomplete
-- No CRUD screens for tags
-- No tag slugs or hierarchical tag structures
-
-Tags remain plain metadata only.
+- The admin UI uploads images to the backend API.
+- The backend uploads to Cloudinary and returns URLs.
+- MongoDB stores URL references only.
+- The admin UI MUST NOT upload directly to Cloudinary in this architecture.
 
 ### Likes Counter (Read-Only)
 
@@ -105,15 +122,20 @@ Public API rules must still enforce: only `status=published` AND `visibility=pub
 - Optional field used for filtering on the public Mission Log page
 - If not specified, the post is still valid and will appear in "All" views
 
-**Sister City Partnership:**
+**Partnership:**
 
-- Optional field associating content with a specific city pair
+- Optional field associating content with a specific partnership
 - If not specified, the post is considered organization-wide
 
-**Tags:**
+**Location:**
 
-- Optional field used for lightweight filtering/grouping
-- If not specified, the post is still valid and will appear normally
+- Optional field for geographic context
+- If not specified, the post is still valid
+
+**Video URL:**
+
+- Optional field for linking to a related video
+- If not specified, the post is still valid
 
 ### Editing and Deletion
 
@@ -126,6 +148,7 @@ Posts table shows:
 - Title
 - Category
 - Aid type (if specified)
+- Partnership (if specified)
 - Publication date
 - Current status
 - Action buttons (Edit | Delete)
@@ -134,7 +157,7 @@ Posts table shows:
 
 ## Events Management
 
-Events are a distinct content type from Posts. They are time-sensitive and include structured fields like date and location.
+Events are a distinct content type from Posts. They are time-sensitive and include structured fields like `startDate`/`endDate` and location.
 
 Core actions:
 
@@ -214,7 +237,7 @@ Subscription lifecycle (unsubscribe, suppression, deliverability rules) is handl
 
 ### Current State (Prototype)
 
-The HTML prototype uses **tab-based navigation** controlled by JavaScript. Clicking "Mission Reports," "Events," "Forms," or "Newsletter" switches the visible content section.
+The HTML prototype uses **tab-based navigation** controlled by JavaScript. Clicking "Posts," "Events," "Forms," or "Newsletter" switches the visible content section.
 
 ### Production State (Next.js)
 
@@ -373,14 +396,14 @@ The following features are **not part of the current admin panel architecture** 
 
 ### Content Architecture
 
-- **Posts** are the primary content type (mission reports, news, updates)
+- **Posts** are the primary content type (categorized by the canonical Post category set)
 - **Events** are structurally different and time-sensitive
 - **Forms** are read-only submissions
 - **Newsletter** is a simple subscriber list
 
 ### Metadata is Optional
 
-- Aid type, sister city, and tags fields do not affect content validity
+- Optional fields (summary, gallery images, video URL, aid type, partnership, location) do not affect content validity
 - Posts without these fields are still publishable
 - Filtering on the public site handles missing values gracefully
 
@@ -404,7 +427,7 @@ This architecture assumes:
 
 1. Posts, events, forms, and newsletter subscribers are distinct entities
 2. Content editors understand the difference between "visibility" and "status"
-3. Optional metadata fields (aid type, sister city, tags) are used for filtering/grouping, not validation
+3. Optional fields (aid type, partnership, location, summary, gallery images, video URL) are used for filtering/grouping, not validation
 4. Forms and newsletters are managed outside the admin panel (email tools)
 5. The admin panel is implemented in Next.js (App Router) before backend integration is finalized
 
@@ -417,5 +440,5 @@ For developers working on this admin panel:
 1. **Review the HTML prototype** - Open `admin.html` to see the intended UX
 2. **Understand entity relationships** - Posts ≠ Events, Forms are read-only
 3. **Use route-based pages** - Implement `/admin/...` via Next.js App Router
-4. **Respect optional fields** - Aid type, sister city, and tags are not required
+4. **Respect optional fields** - Summary, gallery images, video URL, aid type, partnership, and location are not required
 5. **Follow backend-first sequencing** - Integrate only after APIs and rules are stable

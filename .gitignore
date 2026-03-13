@@ -1,11 +1,96 @@
-# Ignore all Markdown documentation by default
-*.md
+# OS-specific system files
+.DS_Store
+Thumbs.db
 
-# Keep these specific Markdown files tracked (allowlist)
-!/ADMIN_PANEL_ARCHITECTURE_NEXTJS.md
-!/ADMIN_WORKFLOW.md
-!/API_CONTRACT_NEXTJS.md
-!/FRONTEND_MIGRATION_GUIDE_NEXTJS.md
-!/PHASE_0_ARCHITECTURE_V3_NEXTJS_EDITION.md
-!/PRODUCT_VISION_NEXTJS.md
-!/TECH_STACK_NEXTJS.md
+# Log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency folders
+node_modules/
+bower_components/
+
+# Cache and temporary files
+*.cache
+*.tmp
+*.swp
+*.swo
+*.osp
+
+# Environment files
+.env
+.env.*.local
+
+# Build files
+dist/
+build/
+out/
+coverage/
+
+# IDE temporary files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# OS X-specific files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows-specific files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS-specific files
+._*
+
+# TypeScript
+*.tsbuildinfo
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+lerna-debug.log*
+
+# Cache folders and test reports
+.cache/
+coverage/
+.nyc_output/
+jest/
+
+# Binary files and folders for Python projects
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Mac and Linux files
+*.swp
+*.swo
+
+# Libraries and build artifacts
+*.so
+*.dylib
+*.exe
+*.dll
+*.bin
+
+# Test results
+*.out
+*.xml
+*.log
+
+# Docker-specific data
+docker-compose.override.yml
+
+# Documentation
+# docs/
+
+updates-list.txt

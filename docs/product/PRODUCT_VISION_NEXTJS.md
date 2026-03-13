@@ -4,7 +4,7 @@
 
 This project is a content-driven website for **Ukraine Aid International**. Its purpose is to:
 
-- Share mission reports, news, and updates in a clear, consistent format
+- Share posts across the canonical categories (Field Mission, Sister City & Sister State Partnerships, Events & Community, Organizational Updates, Media & Press)
 - Announce events and community activities
 - Collect messages from supporters and partners
 - Build a newsletter subscriber list
@@ -27,7 +27,7 @@ The website should help the organization communicate impact, build trust, and ma
 
 ## 3. Primary Use Cases
 
-- **Publish mission reports** (most important): tell stories, show impact, share photos
+- **Publish Field Mission posts** (most important): tell stories, show impact, share photos
 - **Announce events**: promote fundraisers, awareness events, and gatherings
 - **Collect contact messages**: route general inquiries to the organization
 - **Collect newsletter subscriptions**: grow an email list for outreach
@@ -56,7 +56,7 @@ This system is **not** trying to be:
 
 ## 6. SEO as a Core Architectural Requirement
 
-This website is content-driven (mission reports, updates, events). That means SEO is not optional: it directly affects how supporters, partners, and journalists discover and verify our work.
+This website is content-driven (posts and events). That means SEO is not optional: it directly affects how supporters, partners, and journalists discover and verify our work.
 
 Baseline requirements:
 
@@ -65,7 +65,7 @@ Baseline requirements:
 - Every public page must include basic metadata: **title + description**.
 - Sitemaps and robots rules must ensure only **published + public** content is indexable.
 
-See: [SEO_BASELINE.md](SEO_BASELINE.md)
+See: [seo/SEO_BASELINE.md](../seo/SEO_BASELINE.md)
 
 ## 7. Frontend Architecture Decision: Next.js (App Router)
 
@@ -73,7 +73,7 @@ The frontend will be built with **Next.js (App Router)** instead of a React SPA.
 
 ### Why Next.js
 
-- **SEO & discoverability:** Mission reports and updates must be indexable and shareable with correct metadata.
+- **SEO & discoverability:** Posts must be indexable and shareable with correct metadata.
 - **Performance:** Supports SSG and ISR for fast content pages while still enabling SSR where needed.
 - **Content-first routing:** File-based routing aligns naturally with slug-based content URLs (e.g., `/mission-log/[slug]`).
 - **Server-rendered metadata:** Page titles, descriptions, and social previews are generated server-side.
