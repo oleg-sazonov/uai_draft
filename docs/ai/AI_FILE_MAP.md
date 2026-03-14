@@ -38,6 +38,7 @@ Notes:
 - [../frontend/FRONTEND_ARCHITECTURE.md](../frontend/FRONTEND_ARCHITECTURE.md)
 - [../admin/ADMIN_PANEL_ARCHITECTURE_NEXTJS.md](../admin/ADMIN_PANEL_ARCHITECTURE_NEXTJS.md)
 - [../admin/ADMIN_WORKFLOW.md](../admin/ADMIN_WORKFLOW.md)
+- [../admin/ADMIN_UI_SPEC.md](../admin/ADMIN_UI_SPEC.md)
 - [../deployment/ENVIRONMENT_BASELINE.md](../deployment/ENVIRONMENT_BASELINE.md)
 - [../seo/SEO_BASELINE.md](../seo/SEO_BASELINE.md)
 
