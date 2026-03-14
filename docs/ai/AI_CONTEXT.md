@@ -14,6 +14,28 @@ Primary sources:
 
 ---
 
+## Recommended Reading Order
+
+Fast onboarding reading order:
+
+1. [../DOCS_INDEX.md](../DOCS_INDEX.md)
+2. [AI_CONTEXT.md](AI_CONTEXT.md)
+3. [../architecture/PHASE_0_ARCHITECTURE_V3_NEXTJS_EDITION.md](../architecture/PHASE_0_ARCHITECTURE_V3_NEXTJS_EDITION.md)
+4. [../api/API_CONTRACT_NEXTJS.md](../api/API_CONTRACT_NEXTJS.md)
+5. [../backend/PHASE_1_BACKEND_SPEC.md](../backend/PHASE_1_BACKEND_SPEC.md)
+6. [../frontend/PHASE_2_NEXTJS_FRONTEND_SPEC.md](../frontend/PHASE_2_NEXTJS_FRONTEND_SPEC.md)
+
+Architecture authority order (when docs conflict):
+
+1. [../architecture/PHASE_0_ARCHITECTURE_V3_NEXTJS_EDITION.md](../architecture/PHASE_0_ARCHITECTURE_V3_NEXTJS_EDITION.md)
+2. [../ARCHITECTURE_LOCK.md](../ARCHITECTURE_LOCK.md)
+3. [../architecture/ARCHITECTURAL_INVARIANTS.md](../architecture/ARCHITECTURAL_INVARIANTS.md) and [../architecture/SYSTEM_BOUNDARIES.md](../architecture/SYSTEM_BOUNDARIES.md)
+4. [../api/API_CONTRACT_NEXTJS.md](../api/API_CONTRACT_NEXTJS.md)
+5. [../backend/PHASE_1_BACKEND_SPEC.md](../backend/PHASE_1_BACKEND_SPEC.md)
+6. [../frontend/PHASE_2_NEXTJS_FRONTEND_SPEC.md](../frontend/PHASE_2_NEXTJS_FRONTEND_SPEC.md)
+
+---
+
 ## 1) Project Overview
 
 UAI is a small nonprofit, content-driven website with an admin panel.
@@ -30,10 +52,9 @@ Internet
 Next.js Frontend (App Router)
  ↓ REST API
 Express Backend
- ↓
-MongoDB
- ↓
-Cloudinary (media storage)
+ ↙           ↘
+MongoDB       Cloudinary (media storage)
+	(stores media URLs only)
 ```
 
 The backend enforces publishing/visibility rules and provides the REST API.

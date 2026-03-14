@@ -365,7 +365,24 @@ Media architecture baseline:
 - Admin users upload images by sending multipart uploads to the **Express API**.
 - The backend uploads images to **Cloudinary** and returns a secure URL.
 - MongoDB stores **URLs only** for media fields (no image blobs/buffers).
-- Media lifecycle cleanup (delete replaced/removed assets) is a backend responsibility.
+- Media lifecycle cleanup is a backend responsibility.
+
+Media upload pipeline (authoritative):
+
+```text
+Admin UI
+ ↓
+Express Backend
+ ↓
+Cloudinary
+ ↓
+MongoDB stores media URLs only
+```
+
+Backend media lifecycle cleanup (required):
+
+- Deleting replaced media when an image is updated.
+- Preventing orphan Cloudinary assets when records are edited or deleted.
 
 Reference: [MEDIA_UPLOAD_ARCHITECTURE_CLOUDINARY.md](MEDIA_UPLOAD_ARCHITECTURE_CLOUDINARY.md)
 

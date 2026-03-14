@@ -40,30 +40,22 @@ These files help tools like GitHub Copilot, ChatGPT, and Claude understand the s
 
 Location:
 
-docs/ai/
+- docs/ai/
+- (plus: [SPEC_SYNC_RULES.md](SPEC_SYNC_RULES.md) at the docs root)
 
 Files:
 
 - [ai/AI_CONTEXT.md](ai/AI_CONTEXT.md)
   Machine-readable project overview for AI assistants.
 
-- [ai/AI_WORKFLOW.md](ai/AI_WORKFLOW.md)
-  Standard prompt prefixes for planning, implementation, and reviews.
-
-- [ai/AI_NAVIGATION.md](ai/AI_NAVIGATION.md)
-  Recommended architecture reading order for AI tools.
-
-- [ai/DOCUMENTATION_GUARDIAN.md](ai/DOCUMENTATION_GUARDIAN.md)
-  Automated documentation consistency checks.
-
 - [ai/AI_FILE_MAP.md](ai/AI_FILE_MAP.md)
   Machine-readable map of the full documentation set (AI discoverability).
 
-- [ai/AI_BRIDGE_PROMPT.md](ai/AI_BRIDGE_PROMPT.md)
-  Bridge prompt format for transferring repo-aware analysis between AI tools.
+- [SPEC_SYNC_RULES.md](SPEC_SYNC_RULES.md)
+  Anti-drift rules and the reusable AI Architecture Guardian prompt.
 
-- [ai/AI_COLLABORATION_PROTOCOL.md](ai/AI_COLLABORATION_PROTOCOL.md)
-  Collaboration rules for multi-AI workflows.
+- [ai/AI_COLLABORATION.md](ai/AI_COLLABORATION.md)
+  Collaboration principles, cross-AI handoff template, and authority order.
 
 These files help prevent architecture drift and improve AI-assisted development workflows.
 
@@ -100,10 +92,9 @@ Internet
 Next.js Frontend (App Router)
  ↓ REST API
 Express Backend
- ↓
-MongoDB
- ↓
-Cloudinary (media storage)
+ ↙           ↘
+MongoDB       Cloudinary (media storage)
+  (stores media URLs only)
 ```
 
 Architectural rules (authoritative intent):
