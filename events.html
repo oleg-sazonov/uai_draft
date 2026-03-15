@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Mission Updates - Ukraine Aid International</title>
+        <title>Events - Ukraine Aid International</title>
         <link rel="stylesheet" href="styles/draft.css" />
     </head>
     <body>
@@ -43,9 +43,9 @@
                             </li>
                             <li><a href="events.html">Events</a></li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle">
-                                    Partnerships ▾
-                                </a>
+                                <a href="#" class="dropdown-toggle"
+                                    >Partnerships ▾</a
+                                >
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a href="sister-cities.html"
@@ -62,9 +62,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle">About ▾</a>
                                 <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#about">Our Work</a>
-                                    </li>
+                                    <li><a href="#about">Our Work</a></li>
                                     <li><a href="#team">Meet the Team</a></li>
                                     <li><a href="#partners">Partners</a></li>
                                 </ul>
@@ -81,197 +79,68 @@
             </div>
         </header>
 
-        <!-- Page Header -->
-        <section class="page-header">
+        <!-- Page Hero -->
+        <section class="page-hero">
             <div class="container">
-                <h1>Mission Updates</h1>
+                <h1>Events</h1>
                 <p>
-                    Updates from Ukraine Aid International’s humanitarian
-                    missions, community partnerships, and frontline aid
-                    deliveries.
+                    Fundraisers, community gatherings, and public events
+                    supporting Ukraine.
                 </p>
             </div>
         </section>
 
-        <!-- Filter Section -->
+        <!-- Filter Bar -->
         <section class="blog-filters">
             <div class="container">
-                <div class="filters-wrapper">
-                    <div class="filter-group">
-                        <label for="post-category">Category:</label>
-                        <select id="post-category" name="category">
-                            <option value="all">All Categories</option>
-                            <option value="field-mission">Field Mission</option>
-                            <option value="partnerships">
-                                Sister City &amp; Sister State Partnerships
-                            </option>
-                            <option value="events-community">
-                                Events &amp; Community
-                            </option>
-                            <option value="organizational-updates">
-                                Organizational Updates
-                            </option>
-                            <option value="media-press">
-                                Media &amp; Press
-                            </option>
-                        </select>
-                    </div>
-
-                    <div class="filter-group">
-                        <label for="aid-type">Aid Type:</label>
-                        <select id="aid-type" name="aid_type">
-                            <option value="all">All Aid Types</option>
-                            <option value="water">
-                                Water &amp; Sanitation
-                            </option>
-                            <option value="heat">Heating &amp; Energy</option>
-                            <option value="vehicles">
-                                Vehicles &amp; Transportation
-                            </option>
-                            <option value="child">
-                                Child Support &amp; Education
-                            </option>
-                            <option value="mental">
-                                Mental Health &amp; Counseling
-                            </option>
-                            <option value="medical">Medical Supplies</option>
-                            <option value="food">Food &amp; Nutrition</option>
-                            <option value="shelter">
-                                Shelter &amp; Housing
-                            </option>
-                            <option value="general">
-                                General Humanitarian Aid
-                            </option>
-                        </select>
-                    </div>
-
-                    <div class="filter-group">
-                        <label for="post-partnership">Partnership:</label>
-                        <select id="post-partnership" name="partnership">
-                            <option value="all">All Partnerships</option>
-                            <option value="kramatorsk-stamford">
-                                Kramatorsk 🇺🇦 &amp; Stamford 🇺🇸
-                            </option>
-                            <option value="kostiantynivka-fairfield">
-                                Kostiantynivka 🇺🇦 &amp; Fairfield 🇺🇸
-                            </option>
-                            <option value="lyman-westport">
-                                Lyman 🇺🇦 &amp; Westport 🇺🇸
-                            </option>
-                            <option value="sviatohirsk-easton-ashland">
-                                Sviatohirsk 🇺🇦 &amp; Easton &amp; Ashland 🇺🇸
-                            </option>
-                            <option value="organization">
-                                Organization-wide
-                            </option>
-                        </select>
-                    </div>
-
-                    <div class="filter-group">
-                        <label for="date-filter">Date:</label>
-                        <select id="date-filter" name="date">
-                            <option value="all">All Time</option>
-                            <option value="this-month">This Month</option>
-                            <option value="last-3-months">Last 3 Months</option>
-                            <option value="last-year">Last Year</option>
-                        </select>
-                    </div>
-
-                    <button class="btn-filter">Apply Filters</button>
+                <div class="events-filter-bar" aria-label="Event filters">
+                    <a
+                        class="events-filter-button active"
+                        href="#upcoming-events"
+                    >
+                        Upcoming Events
+                    </a>
+                    <a class="events-filter-button" href="#past-events">
+                        Past Events
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- Posts Grid -->
-        <section class="blog-posts">
+        <!-- Upcoming Events -->
+        <section class="blog-posts event-section" id="upcoming-events">
             <div class="container">
+                <h2 class="event-section-heading">Upcoming Events</h2>
                 <div class="posts-grid">
-                    <!-- Post 1 -->
                     <article class="post-card post-card-v2">
                         <div class="post-image">
                             <img
-                                src="https://via.placeholder.com/400x250?text=Field+Mission"
-                                alt="Field mission aid delivery"
+                                src="https://via.placeholder.com/400x250?text=Fundraising+Gala"
+                                alt="Fundraising gala in Stamford"
                             />
                         </div>
                         <div class="post-content">
                             <div class="post-category-inline">
-                                Field Mission
+                                Upcoming Event
                             </div>
                             <h3>
-                                <a href="mission-log-post.html">
-                                    Winter Relief: 15 Tons of Aid Delivered to
-                                    Kramatorsk
+                                <a href="/events/stamford-fundraising-gala">
+                                    Fundraising Gala in Stamford
                                 </a>
                             </h3>
                             <p class="post-summary">
-                                Our team delivered essential supplies including
-                                food, medical equipment, and winter clothing to
-                                families in Kramatorsk during our January
-                                mission.
+                                An evening of solidarity, community, and direct
+                                humanitarian support for partner cities in
+                                Ukraine.
                             </p>
-
                             <div class="post-details">
                                 <div class="post-detail">
                                     <span class="post-detail-label"
-                                        >Partnership</span
+                                        >Start Date</span
                                     >
-                                    <span class="post-detail-value">
-                                        Kramatorsk 🇺🇦 &amp; Stamford 🇺🇸
-                                    </span>
-                                </div>
-                                <div class="post-detail">
-                                    <span class="post-detail-label"
-                                        >Location</span
+                                    <span class="post-detail-value"
+                                        >March 22, 2026</span
                                     >
-                                    <span class="post-detail-value">
-                                        Kramatorsk, Donetsk Oblast, Ukraine
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="post-footer">
-                                <span class="post-date">January 15, 2026</span>
-                                <a
-                                    href="mission-log-post.html"
-                                    class="read-more"
-                                    >Read more →</a
-                                >
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Post 2 -->
-                    <article class="post-card post-card-v2">
-                        <div class="post-image">
-                            <img
-                                src="https://via.placeholder.com/400x250?text=Event+%26+Community"
-                                alt="Community event"
-                            />
-                        </div>
-                        <div class="post-content">
-                            <div class="post-category-inline">
-                                Events &amp; Community
-                            </div>
-                            <h3>
-                                <a href="mission-log-post.html">
-                                    Upcoming: Fundraising Gala in Stamford
-                                </a>
-                            </h3>
-                            <p class="post-summary">
-                                Join an evening of solidarity and support. All
-                                proceeds go directly to humanitarian aid for our
-                                partners in Ukraine.
-                            </p>
-
-                            <div class="post-details">
-                                <div class="post-detail">
-                                    <span class="post-detail-label"
-                                        >Partnership</span
-                                    >
-                                    <span class="post-detail-value">
-                                        Kramatorsk 🇺🇦 &amp; Stamford 🇺🇸
-                                    </span>
                                 </div>
                                 <div class="post-detail">
                                     <span class="post-detail-label"
@@ -282,210 +151,54 @@
                                     >
                                 </div>
                             </div>
-
-                            <div class="post-footer">
-                                <span class="post-date">February 5, 2026</span>
+                            <div class="event-card-actions">
                                 <a
-                                    href="mission-log-post.html"
+                                    href="/events/stamford-fundraising-gala"
                                     class="read-more"
-                                    >Read more →</a
                                 >
+                                    View event →
+                                </a>
+                                <a
+                                    href="https://example.com/register/stamford-gala"
+                                    class="btn-secondary"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Register
+                                </a>
                             </div>
                         </div>
                     </article>
 
-                    <!-- Post 3 -->
                     <article class="post-card post-card-v2">
                         <div class="post-image">
                             <img
-                                src="https://via.placeholder.com/400x250?text=Medical+Aid"
-                                alt="Medical supplies"
+                                src="https://via.placeholder.com/400x250?text=Community+Aid+Drive"
+                                alt="Community aid drive in Fairfield"
                             />
                         </div>
                         <div class="post-content">
                             <div class="post-category-inline">
-                                Field Mission
+                                Upcoming Event
                             </div>
                             <h3>
-                                <a href="mission-log-post.html">
-                                    Medical Supplies Reach Kostiantynivka
-                                    Hospital
+                                <a href="/events/community-aid-drive-fairfield">
+                                    Community Aid Drive in Fairfield
                                 </a>
                             </h3>
                             <p class="post-summary">
-                                Thanks to generous donations, we delivered
-                                critical medical supplies supporting hundreds of
-                                patients and frontline clinics.
+                                Volunteers and local partners will collect
+                                essential supplies for upcoming humanitarian
+                                shipments.
                             </p>
-
                             <div class="post-details">
                                 <div class="post-detail">
                                     <span class="post-detail-label"
-                                        >Partnership</span
-                                    >
-                                    <span class="post-detail-value">
-                                        Kostiantynivka 🇺🇦 &amp; Fairfield 🇺🇸
-                                    </span>
-                                </div>
-                                <div class="post-detail">
-                                    <span class="post-detail-label"
-                                        >Location</span
-                                    >
-                                    <span class="post-detail-value">
-                                        Kostiantynivka, Donetsk Oblast, Ukraine
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="post-footer">
-                                <span class="post-date">December 28, 2025</span>
-                                <a
-                                    href="mission-log-post.html"
-                                    class="read-more"
-                                    >Read more →</a
-                                >
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Post 4 -->
-                    <article class="post-card post-card-v2">
-                        <div class="post-image">
-                            <img
-                                src="https://via.placeholder.com/400x250?text=Sister+City+Partnership"
-                                alt="Partnership update"
-                            />
-                        </div>
-                        <div class="post-content">
-                            <div class="post-category-inline">
-                                Sister City &amp; Sister State Partnerships
-                            </div>
-                            <h3>
-                                <a href="mission-log-post.html">
-                                    Chicago Schools Partner with Kyiv for
-                                    Cultural Exchange
-                                </a>
-                            </h3>
-                            <p class="post-summary">
-                                A new initiative connects students across
-                                borders through virtual exchanges that build
-                                long-term civic relationships.
-                            </p>
-
-                            <div class="post-details">
-                                <div class="post-detail">
-                                    <span class="post-detail-label"
-                                        >Partnership</span
+                                        >Start Date</span
                                     >
                                     <span class="post-detail-value"
-                                        >Organization-wide</span
+                                        >April 10, 2026</span
                                     >
-                                </div>
-                                <div class="post-detail">
-                                    <span class="post-detail-label"
-                                        >Location</span
-                                    >
-                                    <span class="post-detail-value"
-                                        >Kyiv, Ukraine</span
-                                    >
-                                </div>
-                            </div>
-
-                            <div class="post-footer">
-                                <span class="post-date">December 10, 2025</span>
-                                <a
-                                    href="mission-log-post.html"
-                                    class="read-more"
-                                    >Read more →</a
-                                >
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Post 5 -->
-                    <article class="post-card post-card-v2">
-                        <div class="post-image">
-                            <img
-                                src="https://via.placeholder.com/400x250?text=Aid+Distribution"
-                                alt="Aid distribution"
-                            />
-                        </div>
-                        <div class="post-content">
-                            <div class="post-category-inline">
-                                Field Mission
-                            </div>
-                            <h3>
-                                <a href="mission-log-post.html">
-                                    Thanksgiving Mission: 500 Families Receive
-                                    Food Packages
-                                </a>
-                            </h3>
-                            <p class="post-summary">
-                                Volunteers distributed food packages and basic
-                                necessities to families facing severe winter
-                                conditions.
-                            </p>
-
-                            <div class="post-details">
-                                <div class="post-detail">
-                                    <span class="post-detail-label"
-                                        >Partnership</span
-                                    >
-                                    <span class="post-detail-value">
-                                        Kramatorsk 🇺🇦 &amp; Stamford 🇺🇸
-                                    </span>
-                                </div>
-                                <div class="post-detail">
-                                    <span class="post-detail-label"
-                                        >Location</span
-                                    >
-                                    <span class="post-detail-value"
-                                        >Kramatorsk, Ukraine</span
-                                    >
-                                </div>
-                            </div>
-
-                            <div class="post-footer">
-                                <span class="post-date">November 22, 2025</span>
-                                <a
-                                    href="mission-log-post.html"
-                                    class="read-more"
-                                    >Read more →</a
-                                >
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Post 6 -->
-                    <article class="post-card post-card-v2">
-                        <div class="post-image">
-                            <img
-                                src="https://via.placeholder.com/400x250?text=Organizational+Updates"
-                                alt="Volunteer update"
-                            />
-                        </div>
-                        <div class="post-content">
-                            <div class="post-category-inline">
-                                Organizational Updates
-                            </div>
-                            <h3>
-                                <a href="mission-log-post.html">
-                                    Volunteer Training Day Success
-                                </a>
-                            </h3>
-                            <p class="post-summary">
-                                Over 40 volunteers attended training, preparing
-                                for upcoming missions and partner support.
-                            </p>
-
-                            <div class="post-details">
-                                <div class="post-detail">
-                                    <span class="post-detail-label"
-                                        >Partnership</span
-                                    >
-                                    <span class="post-detail-value">
-                                        Kostiantynivka 🇺🇦 &amp; Fairfield 🇺🇸
-                                    </span>
                                 </div>
                                 <div class="post-detail">
                                     <span class="post-detail-label"
@@ -496,25 +209,186 @@
                                     >
                                 </div>
                             </div>
-
-                            <div class="post-footer">
-                                <span class="post-date">November 5, 2025</span>
+                            <div class="event-card-actions">
                                 <a
-                                    href="mission-log-post.html"
+                                    href="/events/community-aid-drive-fairfield"
                                     class="read-more"
-                                    >Read more →</a
                                 >
+                                    View event →
+                                </a>
+                                <a
+                                    href="https://example.com/register/fairfield-aid-drive"
+                                    class="btn-secondary"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Register
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="post-card post-card-v2">
+                        <div class="post-image">
+                            <img
+                                src="https://via.placeholder.com/400x250?text=Benefit+Concert"
+                                alt="Benefit concert in Westport"
+                            />
+                        </div>
+                        <div class="post-content">
+                            <div class="post-category-inline">
+                                Upcoming Event
+                            </div>
+                            <h3>
+                                <a href="/events/westport-benefit-concert">
+                                    Benefit Concert for Ukrainian Families
+                                </a>
+                            </h3>
+                            <p class="post-summary">
+                                A public concert bringing together local
+                                musicians, donors, and advocates to raise
+                                emergency support.
+                            </p>
+                            <div class="post-details">
+                                <div class="post-detail">
+                                    <span class="post-detail-label"
+                                        >Start Date</span
+                                    >
+                                    <span class="post-detail-value"
+                                        >May 2, 2026</span
+                                    >
+                                </div>
+                                <div class="post-detail">
+                                    <span class="post-detail-label"
+                                        >Location</span
+                                    >
+                                    <span class="post-detail-value"
+                                        >Westport, CT, USA</span
+                                    >
+                                </div>
+                            </div>
+                            <div class="event-card-actions">
+                                <a
+                                    href="/events/westport-benefit-concert"
+                                    class="read-more"
+                                >
+                                    View event →
+                                </a>
+                                <a
+                                    href="https://example.com/register/westport-benefit-concert"
+                                    class="btn-secondary"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Register
+                                </a>
                             </div>
                         </div>
                     </article>
                 </div>
+            </div>
+        </section>
 
-                <!-- Pagination -->
-                <div class="pagination">
-                    <a href="#" class="page-link active">1</a>
-                    <a href="#" class="page-link">2</a>
-                    <a href="#" class="page-link">3</a>
-                    <a href="#" class="page-link">Next →</a>
+        <!-- Past Events -->
+        <section class="blog-posts event-section" id="past-events">
+            <div class="container">
+                <h2 class="event-section-heading">Past Events</h2>
+                <div class="posts-grid">
+                    <article class="post-card post-card-v2">
+                        <div class="post-image">
+                            <img
+                                src="https://via.placeholder.com/400x250?text=Awareness+Forum"
+                                alt="Ukraine awareness forum"
+                            />
+                        </div>
+                        <div class="post-content">
+                            <div class="post-category-inline">Past Event</div>
+                            <h3>
+                                <a href="/events/ukraine-awareness-forum-2025">
+                                    Ukraine Awareness Forum
+                                </a>
+                            </h3>
+                            <p class="post-summary">
+                                Community leaders, educators, and advocates
+                                gathered to discuss local partnership efforts
+                                and long-term aid.
+                            </p>
+                            <div class="post-details">
+                                <div class="post-detail">
+                                    <span class="post-detail-label"
+                                        >Start Date</span
+                                    >
+                                    <span class="post-detail-value"
+                                        >November 14, 2025</span
+                                    >
+                                </div>
+                                <div class="post-detail">
+                                    <span class="post-detail-label"
+                                        >Location</span
+                                    >
+                                    <span class="post-detail-value"
+                                        >New Haven, CT, USA</span
+                                    >
+                                </div>
+                            </div>
+                            <div class="event-card-actions">
+                                <a
+                                    href="/events/ukraine-awareness-forum-2025"
+                                    class="read-more"
+                                >
+                                    View event →
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="post-card post-card-v2">
+                        <div class="post-image">
+                            <img
+                                src="https://via.placeholder.com/400x250?text=Holiday+Market"
+                                alt="Holiday market fundraiser"
+                            />
+                        </div>
+                        <div class="post-content">
+                            <div class="post-category-inline">Past Event</div>
+                            <h3>
+                                <a href="/events/holiday-market-relief-drive">
+                                    Holiday Market Relief Drive
+                                </a>
+                            </h3>
+                            <p class="post-summary">
+                                A winter market fundraiser that helped finance
+                                food, heating supplies, and transport support
+                                for partner cities.
+                            </p>
+                            <div class="post-details">
+                                <div class="post-detail">
+                                    <span class="post-detail-label"
+                                        >Start Date</span
+                                    >
+                                    <span class="post-detail-value"
+                                        >December 6, 2025</span
+                                    >
+                                </div>
+                                <div class="post-detail">
+                                    <span class="post-detail-label"
+                                        >Location</span
+                                    >
+                                    <span class="post-detail-value"
+                                        >Stamford, CT, USA</span
+                                    >
+                                </div>
+                            </div>
+                            <div class="event-card-actions">
+                                <a
+                                    href="/events/holiday-market-relief-drive"
+                                    class="read-more"
+                                >
+                                    View event →
+                                </a>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
@@ -649,7 +523,6 @@
                     </div>
                 </div>
 
-                <!-- Tax & Legal Information -->
                 <div class="footer-legal">
                     <div class="tax-exempt-notice">
                         <p>
