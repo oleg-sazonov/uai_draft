@@ -131,6 +131,19 @@
                                                 placeholder="Enter post title"
                                                 required
                                             />
+                                            <div class="editor-slug-preview">
+                                                <span class="editor-slug-label">
+                                                    Post URL:
+                                                </span>
+                                                <span class="editor-slug-url">
+                                                    https://site.com/mission-updates/
+                                                    <span
+                                                        id="post-slug-preview"
+                                                        class="editor-slug"
+                                                        >your-post-slug</span
+                                                    >
+                                                </span>
+                                            </div>
                                         </div>
 
                                         <div class="form-row">
@@ -216,7 +229,37 @@
                                             <label for="post-content"
                                                 >Content (Markdown) *</label
                                             >
-                                            <div class="editor-toolbar">
+                                            <div
+                                                class="editor-mode-row"
+                                                aria-label="Editor mode"
+                                            >
+                                                <div
+                                                    class="editor-mode-toggle"
+                                                    id="post-editor-toggle"
+                                                    role="tablist"
+                                                >
+                                                    <button
+                                                        type="button"
+                                                        class="editor-mode-btn active"
+                                                        data-mode="edit"
+                                                        aria-selected="true"
+                                                    >
+                                                        Editor
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        class="editor-mode-btn"
+                                                        data-mode="preview"
+                                                        aria-selected="false"
+                                                    >
+                                                        Preview
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="editor-toolbar"
+                                                id="post-editor-toolbar"
+                                            >
                                                 <button
                                                     type="button"
                                                     class="editor-btn"
@@ -274,6 +317,26 @@
                                                 placeholder="Write your post content in Markdown…"
                                                 required
                                             ></textarea>
+                                            <div
+                                                id="post-content-preview"
+                                                class="editor-preview"
+                                                hidden
+                                            ></div>
+                                            <div class="editor-meta-row">
+                                                <div
+                                                    class="editor-autosave-status"
+                                                    id="post-autosave-status"
+                                                    aria-live="polite"
+                                                >
+                                                    Saved
+                                                </div>
+                                                <div
+                                                    class="editor-stats"
+                                                    id="post-editor-stats"
+                                                >
+                                                    0 words • 0 min read
+                                                </div>
+                                            </div>
                                             <small>
                                                 Markdown supported. Raw HTML is
                                                 not allowed.
@@ -305,6 +368,7 @@
                                             <div
                                                 id="post-featured-preview"
                                                 class="file-preview"
+                                                data-dropzone="featured"
                                                 aria-live="polite"
                                             ></div>
                                         </div>
@@ -321,12 +385,14 @@
                                                 multiple
                                             />
                                             <small>
-                                                Optional. Select multiple images
-                                                to see thumbnails.
+                                                Optional. Drag &amp; drop images
+                                                into the preview area and drag
+                                                thumbnails to reorder.
                                             </small>
                                             <div
                                                 id="post-gallery-preview"
                                                 class="file-preview-grid"
+                                                data-dropzone="gallery"
                                                 aria-live="polite"
                                             ></div>
                                         </div>
@@ -526,32 +592,34 @@
                                     </fieldset>
 
                                     <!-- 5. Publish Actions -->
-                                    <div class="form-actions">
-                                        <button
-                                            type="button"
-                                            class="btn-secondary"
-                                        >
-                                            Save Draft
-                                        </button>
-                                        <button
-                                            type="button"
-                                            class="btn-outline"
-                                            onclick="
-                                                window.open(
-                                                    '/preview/posts/{postId}',
-                                                    '_blank'
-                                                )
-                                            "
-                                            title="Saves draft automatically and opens preview in a new tab"
-                                        >
-                                            Preview
-                                        </button>
-                                        <button
-                                            type="submit"
-                                            class="btn-primary"
-                                        >
-                                            Publish
-                                        </button>
+                                    <div class="publish-actions">
+                                        <div class="form-actions">
+                                            <button
+                                                type="button"
+                                                class="btn-secondary"
+                                            >
+                                                Save Draft
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="btn-outline"
+                                                onclick="
+                                                    window.open(
+                                                        '/preview/posts/{postId}',
+                                                        '_blank'
+                                                    )
+                                                "
+                                                title="Saves draft automatically and opens preview in a new tab"
+                                            >
+                                                Preview
+                                            </button>
+                                            <button
+                                                type="submit"
+                                                class="btn-primary"
+                                            >
+                                                Publish
+                                            </button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -807,8 +875,8 @@
                                             <td>archived</td>
                                             <td>
                                                 <span
-                                                    class="status-badge archived"
-                                                    >archived</span
+                                                    class="status-badge published"
+                                                    >published</span
                                                 >
                                             </td>
                                             <td>Nov 20, 2025</td>
@@ -866,9 +934,42 @@
                                                 placeholder="Enter event title"
                                                 required
                                             />
+                                            <div class="editor-slug-preview">
+                                                <span class="editor-slug-label">
+                                                    Event URL:
+                                                </span>
+                                                <span class="editor-slug-url">
+                                                    https://site.com/events/
+                                                    <span
+                                                        id="event-slug-preview"
+                                                        class="editor-slug"
+                                                        >your-event-slug</span
+                                                    >
+                                                </span>
+                                            </div>
                                         </div>
 
                                         <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="event-status"
+                                                    >Status *</label
+                                                >
+                                                <select
+                                                    id="event-status"
+                                                    name="status"
+                                                    required
+                                                >
+                                                    <option
+                                                        value="draft"
+                                                        selected
+                                                    >
+                                                        draft
+                                                    </option>
+                                                    <option value="published">
+                                                        published
+                                                    </option>
+                                                </select>
+                                            </div>
                                             <div class="form-group">
                                                 <label for="event-start-date"
                                                     >Start Date *</label
@@ -904,12 +1005,46 @@
                                                 required
                                             />
                                         </div>
+                                    </fieldset>
+
+                                    <fieldset class="admin-form-card">
+                                        <legend>Content</legend>
 
                                         <div class="form-group">
                                             <label for="event-description"
                                                 >Description (Markdown) *</label
                                             >
-                                            <div class="editor-toolbar">
+                                            <div
+                                                class="editor-mode-row"
+                                                aria-label="Editor mode"
+                                            >
+                                                <div
+                                                    class="editor-mode-toggle"
+                                                    id="event-editor-toggle"
+                                                    role="tablist"
+                                                >
+                                                    <button
+                                                        type="button"
+                                                        class="editor-mode-btn active"
+                                                        data-mode="edit"
+                                                        aria-selected="true"
+                                                    >
+                                                        Editor
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        class="editor-mode-btn"
+                                                        data-mode="preview"
+                                                        aria-selected="false"
+                                                    >
+                                                        Preview
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="editor-toolbar"
+                                                id="event-editor-toolbar"
+                                            >
                                                 <button
                                                     type="button"
                                                     class="editor-btn"
@@ -967,6 +1102,26 @@
                                                 placeholder="Describe the event using Markdown…"
                                                 required
                                             ></textarea>
+                                            <div
+                                                id="event-description-preview"
+                                                class="editor-preview"
+                                                hidden
+                                            ></div>
+                                            <div class="editor-meta-row">
+                                                <div
+                                                    class="editor-autosave-status"
+                                                    id="event-autosave-status"
+                                                    aria-live="polite"
+                                                >
+                                                    Saved
+                                                </div>
+                                                <div
+                                                    class="editor-stats"
+                                                    id="event-editor-stats"
+                                                >
+                                                    0 words • 0 min read
+                                                </div>
+                                            </div>
                                             <small
                                                 >Markdown supported. Raw HTML is
                                                 not allowed.</small
@@ -979,7 +1134,7 @@
 
                                         <div class="form-group">
                                             <label for="event-featured-image">
-                                                Featured Image Upload
+                                                Featured Image
                                             </label>
                                             <input
                                                 type="file"
@@ -992,18 +1147,6 @@
                                                 class="file-preview"
                                                 aria-live="polite"
                                             ></div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="event-registration-link"
-                                                >Registration Link</label
-                                            >
-                                            <input
-                                                type="url"
-                                                id="event-registration-link"
-                                                name="registration_link"
-                                                placeholder="https://..."
-                                            />
                                         </div>
                                     </fieldset>
 
@@ -1035,54 +1178,48 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label for="event-status"
-                                                    >Status *</label
+                                                <label
+                                                    for="event-registration-link"
+                                                    >Registration Link</label
                                                 >
-                                                <select
-                                                    id="event-status"
-                                                    name="status"
-                                                    required
-                                                >
-                                                    <option
-                                                        value="draft"
-                                                        selected
-                                                    >
-                                                        draft
-                                                    </option>
-                                                    <option value="published">
-                                                        published
-                                                    </option>
-                                                </select>
+                                                <input
+                                                    type="url"
+                                                    id="event-registration-link"
+                                                    name="registration_link"
+                                                    placeholder="https://..."
+                                                />
                                             </div>
                                         </div>
                                     </fieldset>
 
-                                    <div class="form-actions">
-                                        <button
-                                            type="button"
-                                            class="btn-secondary"
-                                        >
-                                            Save Draft
-                                        </button>
-                                        <button
-                                            type="button"
-                                            class="btn-outline"
-                                            onclick="
-                                                window.open(
-                                                    '/preview/events/{eventId}',
-                                                    '_blank'
-                                                )
-                                            "
-                                            title="Saves draft automatically and opens preview in a new tab"
-                                        >
-                                            Preview
-                                        </button>
-                                        <button
-                                            type="submit"
-                                            class="btn-primary"
-                                        >
-                                            Create Event
-                                        </button>
+                                    <div class="publish-actions">
+                                        <div class="form-actions">
+                                            <button
+                                                type="button"
+                                                class="btn-secondary"
+                                            >
+                                                Save Draft
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="btn-outline"
+                                                onclick="
+                                                    window.open(
+                                                        '/preview/events/{eventId}',
+                                                        '_blank'
+                                                    )
+                                                "
+                                                title="Saves draft automatically and opens preview in a new tab"
+                                            >
+                                                Preview
+                                            </button>
+                                            <button
+                                                type="submit"
+                                                class="btn-primary"
+                                            >
+                                                Create Event
+                                            </button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -1525,5 +1662,6 @@
 
         <script src="js/admin-tab.js"></script>
         <script src="js/admin-previews.js"></script>
+        <script src="js/admin-editor.js"></script>
     </body>
 </html>
