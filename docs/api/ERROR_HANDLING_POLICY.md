@@ -86,7 +86,7 @@ Recommended `code` values:
 
 ### 2.1 404 handling in dynamic routes
 
-For dynamic public routes (example: `/mission-log/[slug]`):
+For dynamic public routes (example: `/mission-updates/[slug]`):
 
 - If the API returns 404, call `notFound()` in the page component.
 - Treat non-public content the same as missing content:

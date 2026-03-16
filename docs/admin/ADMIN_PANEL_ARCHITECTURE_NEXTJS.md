@@ -117,9 +117,10 @@ Public API rules must still enforce: only `status=published` AND `visibility=pub
 
 ### Optional Metadata Behavior
 
-**Aid Type:**
+**Aid Type(s):**
 
-- Optional field used for filtering on the public Mission Log page
+- Optional array field used for filtering on the public Mission Updates page
+- Multiple values allowed (no duplicates)
 - If not specified, the post is still valid and will appear in "All" views
 
 **Partnership:**

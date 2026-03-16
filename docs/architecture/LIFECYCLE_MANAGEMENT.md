@@ -17,16 +17,29 @@ Lifecycle management is intentionally simple to keep the system lightweight.
 
 # 1 Content Lifecycle
 
-Content entities (Posts and Events) follow a structured lifecycle.
+Content entities (Posts and Events) follow a structured lifecycle controlled by **two independent axes**.
 
-Lifecycle states:
+### Two-Axis Model
 
-Draft → Published → Archived
+**Status axis** (editorial state):
+
+```
+draft  ──►  published
+```
+
+**Visibility axis** (display rule — independent of status):
+
+```
+public  |  internal  |  archived
+```
+
+**Important:** `archived` is a **visibility value**, not a status.
+Content is archived by setting `visibility=archived`, not by changing `status`.
 
 In the current architecture:
 
 - Draft/Published is controlled by `status` (draft/published)
-- Archived is controlled by `visibility` (visibility=archived)
+- Public/Internal/Archived is controlled by `visibility` (public/internal/archived)
 
 ## Draft
 

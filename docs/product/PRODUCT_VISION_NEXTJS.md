@@ -75,7 +75,7 @@ The frontend will be built with **Next.js (App Router)** instead of a React SPA.
 
 - **SEO & discoverability:** Posts must be indexable and shareable with correct metadata.
 - **Performance:** Supports SSG and ISR for fast content pages while still enabling SSR where needed.
-- **Content-first routing:** File-based routing aligns naturally with slug-based content URLs (e.g., `/mission-log/[slug]`).
+- **Content-first routing:** File-based routing aligns naturally with slug-based content URLs (e.g., `/mission-updates/[slug]`).
 - **Server-rendered metadata:** Page titles, descriptions, and social previews are generated server-side.
 
 ### Backend-First Remains the Core Approach

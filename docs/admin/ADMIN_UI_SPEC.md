@@ -145,12 +145,12 @@ Admin UI → Express API → Cloudinary → MongoDB stores URL.
 
 Metadata section contains optional structured fields.
 
-Aid Type  
+Aid Type(s)  
 Partnership  
 Location  
 Visibility
 
-Aid Type may allow multiple selections.
+Aid Type allows multiple selections (array, no duplicates).
 
 ---
 

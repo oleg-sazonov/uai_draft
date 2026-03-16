@@ -41,10 +41,10 @@ app/
 layout.jsx
 page.jsx
 
-mission-log/
+mission-updates/
 page.jsx
 
-mission-log/[slug]/
+mission-updates/[slug]/
 page.jsx
 
 sister-cities/
@@ -98,8 +98,8 @@ Example mappings:
 | File                            | Route              |
 | ------------------------------- | ------------------ |
 | app/page.jsx                    | /                  |
-| app/mission-log/page.jsx        | /mission-log       |
-| app/mission-log/[slug]/page.jsx | /mission-log/:slug |
+| app/mission-updates/page.jsx        | /mission-updates       |
+| app/mission-updates/[slug]/page.jsx | /mission-updates/:slug |
 | app/sister-cities/page.jsx      | /sister-cities     |
 | app/sister-cities/[slug]/page.jsx | /sister-cities/[slug] |
 | app/contact/page.jsx            | /contact           |
@@ -126,9 +126,9 @@ Route rendering matrix:
 
 / → Static Site Generation (SSG)
 
-/mission-log → Incremental Static Regeneration (ISR)
+/mission-updates → Incremental Static Regeneration (ISR)
 
-/mission-log/[slug] → SSG + ISR
+/mission-updates/[slug] → SSG + ISR
 
 /sister-cities → SSG
 

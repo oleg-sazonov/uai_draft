@@ -18,15 +18,10 @@ When multiple AIs are used (e.g., Copilot for repo inspection + another AI for r
 
 ## Architecture Authority Order (Conflict Resolution)
 
-If documents disagree, resolve conflicts in this order:
+Architecture authority order is defined in:
+[AI_IMPLEMENTATION_AUTHORITY.md](AI_IMPLEMENTATION_AUTHORITY.md)
 
-1. `docs/architecture/PHASE_0_ARCHITECTURE_V3_NEXTJS_EDITION.md` (authoritative architecture)
-2. `docs/ARCHITECTURE_LOCK.md` (locked decisions)
-3. `docs/architecture/ARCHITECTURAL_INVARIANTS.md` + `docs/architecture/SYSTEM_BOUNDARIES.md` (non-negotiables and boundaries)
-4. `docs/api/API_CONTRACT_NEXTJS.md` (endpoints, request/response shapes)
-5. `docs/backend/PHASE_1_BACKEND_SPEC.md` (backend implementation spec)
-6. `docs/frontend/PHASE_2_NEXTJS_FRONTEND_SPEC.md` (frontend implementation spec)
-7. Supporting docs (deployment, SEO, admin workflows, etc.)
+If documents disagree, resolve conflicts using the priority table in that document.
 
 ---
 

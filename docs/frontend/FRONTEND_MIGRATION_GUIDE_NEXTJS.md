@@ -56,7 +56,7 @@ The next frontend phase migrates this prototype to a **Next.js (App Router)** ar
 2. **Performance**
     - Serve static pages where appropriate (SSG), with incremental updates (ISR).
 3. **Scalable Routing**
-    - Use file-based routing for `/mission-log/[slug]`, `/sister-cities/[slug]`, `/admin/...`.
+    - Use file-based routing for `/mission-updates/[slug]`, `/sister-cities/[slug]`, `/admin/...`.
 4. **Maintain Approved UX**
     - Preserve the existing design and page structure.
 
@@ -78,8 +78,8 @@ Next.js routes are defined by the filesystem under `app/`. Below is the target m
 | HTML File                  | Next.js Route        | App Router File Path              |
 | -------------------------- | -------------------- | --------------------------------- |
 | `index.html`               | `/`                  | `app/page.jsx`                    |
-| `mission-log.html`         | `/mission-log`       | `app/mission-log/page.jsx`        |
-| `mission-log-post.html`    | `/mission-log/:slug` | `app/mission-log/[slug]/page.jsx` |
+| `mission-log.html`         | `/mission-updates`       | `app/mission-updates/page.jsx`        |
+| `mission-log-post.html`    | `/mission-updates/:slug` | `app/mission-updates/[slug]/page.jsx` |
 | `sister-cities.html`       | `/sister-cities`     | `app/sister-cities/page.jsx`      |
 | `stamford-kramatorsk.html` | `/sister-cities/[slug]` | `app/sister-cities/[slug]/page.jsx` |
 | `contact-us.html`          | `/contact`           | `app/contact/page.jsx`            |
@@ -121,7 +121,7 @@ Sister Cities pages are **static content pages** rendered by Next.js using **SSG
 - Files in `app/` are **Server Components by default**.
 - Use Server Components for:
     - Public pages where content is fetched from the Express API
-    - SEO-first pages (mission posts, mission log list, etc.)
+    - SEO-first pages (mission posts, mission updates list, etc.)
     - Rendering Markdown content (after fetching) using a safe Markdown renderer configuration
 
 **Data fetching:** Use native `fetch()` from Server Components to call the Express API.
@@ -153,7 +153,7 @@ Use Client Components for:
 
 ### Public Content Pages
 
-- **Mission Log list**: fetch from `GET /api/posts` (public endpoint).
+- **Mission Updates list**: fetch from `GET /api/posts` (public endpoint).
 - **Mission Post page**: fetch from `GET /api/posts/:slug` (public endpoint).
 
 ### Rendering Modes (Recommended)
@@ -179,7 +179,7 @@ Use the Next.js Metadata API to generate SEO metadata server-side.
 
 ### `generateStaticParams()` (for SSG/ISR dynamic routes)
 
-For `app/mission-log/[slug]/page.jsx`:
+For `app/mission-updates/[slug]/page.jsx`:
 
 - `generateStaticParams()` should fetch slugs for all **published + public** posts from the Express API.
 - Each slug becomes a statically generated route.
@@ -273,7 +273,7 @@ Admin pages will typically be **Client Components** because they require:
 ### Phase 2: Public Pages Migration
 
 1. Migrate `Home` (`/`).
-2. Migrate `Mission Log` (`/mission-log`) and `Mission Post` (`/mission-log/[slug]`).
+2. Migrate `Mission Updates` (`/mission-updates`) and `Mission Post` (`/mission-updates/[slug]`).
 3. Migrate `Sister Cities` and city pair pages.
 4. Migrate `Contact` and `Donate`.
 5. Implement server-side metadata generation.

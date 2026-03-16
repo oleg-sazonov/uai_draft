@@ -125,7 +125,7 @@ Collection: `posts`
 | featuredImage | String (URL)      | Featured image URL (**required**)                          |
 | gallery       | Array             | Gallery image URLs (optional)                              |
 | videoUrl      | String (URL)      | Optional related video URL                                 |
-| aidType       | String            | Humanitarian aid category (optional)                       |
+| aidTypes      | Array (String)    | Humanitarian aid categories (optional, no duplicates)      |
 | partnership   | String            | Partnership association (optional)                         |
 | location      | String            | Location (optional)                                        |
 | likes         | Number            | Total number of likes (default: 0)                         |
@@ -231,11 +231,12 @@ Events represent fundraisers, awareness events, and community gatherings.
 | \_id          | ObjectId | Unique ID                                 |
 | title         | String   | Event title                               |
 | slug          | String   | URL identifier (**required**)             |
-| description   | String   | Event details                             |
+| description   | String (Markdown) | Event details (Markdown)             |
 | startDate     | Date     | Event start date/time (**required**)      |
 | endDate       | Date     | Event end date/time (optional)            |
 | location      | String   | Location                                  |
 | featuredImage | String   | Main image (optional)                     |
+| registrationLink | String | External registration URL (optional)     |
 | likes         | Number   | Total number of likes (default: 0)        |
 | status        | Enum     | draft / published                         |
 | visibility    | Enum     | public / internal / archived              |
@@ -243,7 +244,18 @@ Events represent fundraisers, awareness events, and community gatherings.
 | createdAt     | Date     | Creation timestamp                        |
 | updatedAt     | Date     | Last update                               |
 
-## 2.2.1 Event Likes
+## 2.2.1 Event Description Rendering
+
+The `description` field is stored as **Markdown**, identical to the `content` field on Posts.
+
+Rendering rules:
+
+- Stored as Markdown in MongoDB
+- Rendered to HTML in the Next.js frontend (Phase 2)
+- Raw HTML input is not allowed
+- The same Markdown pipeline used for Post `content` applies to Event `description`
+
+## 2.2.2 Event Likes
 
 Events support the same like behavior as Posts.
 
@@ -300,6 +312,13 @@ Collection: `contact_messages`
 | message   | Text     | Message content     |
 | status    | Enum     | pending / responded |
 | createdAt | Date     | Submission date     |
+
+### Status Field Clarification
+
+The `status` field in Contact Messages uses the enum `pending | responded`.
+This is **independent** from the `status` field used by Posts and Events (`draft | published`).
+These enums exist in separate MongoDB collections and do not conflict.
+No cross-entity validation is needed.
 
 ### Architectural Note (Authoritative)
 
@@ -461,16 +480,27 @@ Archived: - Hidden from public - Hidden from default admin view
 
 # 4.3 Combined Logic
 
-Status Visibility Result
+Every content record has both a `status` and a `visibility` value.
+The full combination matrix is:
 
----
+| Status    | Visibility | Result                                                                 |
+| --------- | ---------- | ---------------------------------------------------------------------- |
+| draft     | public     | Not visible publicly. Admin only. When published, becomes public.      |
+| draft     | internal   | Admin only.                                                            |
+| draft     | archived   | **Disallowed state.** Validation must reject this combination.         |
+| published | public     | Publicly visible content. Returned by public API endpoints.            |
+| published | internal   | Accessible only internally (admin panel). Not on public pages.         |
+| published | archived   | Hidden historical content. Preserved in DB, hidden from public + default admin views. |
 
-| Status    | Visibility | Result           |
-| --------- | ---------- | ---------------- |
-| draft     | internal   | Only in admin    |
-| published | public     | Visible publicly |
-| published | internal   | Not public       |
-| published | archived   | Hidden           |
+### Public Content Invariant (Authoritative)
+
+A record is publicly visible **if and only if**:
+
+```
+status = published  AND  visibility = public
+```
+
+Both conditions must be true. Either condition alone is insufficient.
 
 ## 4.4 API Enforcement Rule (Backend обязательное поведение)
 
@@ -478,7 +508,12 @@ Backend filtering must enforce:
 
 - **Public API:** only records with **`status=published` AND `visibility=public`** are visible.
 - **Admin API (protected):** may access drafts and internal content.
-    - Archived content is accessible to admins but should be excluded from “default” list views unless explicitly requested (e.g., `?includeArchived=true`).
+    - Archived content is accessible to admins but should be excluded from "default" list views unless explicitly requested (e.g., `?includeArchived=true`).
+
+### Validation Constraint
+
+The combination `status=draft` + `visibility=archived` is invalid.
+Backend Zod validators must reject this combination on create and update operations.
 
 ---
 
@@ -487,8 +522,10 @@ Backend filtering must enforce:
 ## 5.1 Public Routes
 
 /\
-/mission-log\
-/mission-log/:slug\
+/mission-updates\
+/mission-updates/:slug\
+/events\
+/events/:slug\
 /sister-cities\
 /sister-cities/:slug\
 /sister-states\
@@ -546,14 +583,14 @@ The frontend will be implemented using **Next.js (App Router)**. Routing is **fi
 
 ### Public Site Rendering
 
-- **Mission Log list** (`/mission-log`) and key landing pages should be rendered to maximize SEO:
+- **Mission Updates list** (`/mission-updates`) and key landing pages should be rendered to maximize SEO:
     - Server Components render on the server by default.
     - Use **SSR** when content must be always fresh (or when personalization is introduced later).
     - Use **SSG/ISR** when content changes infrequently.
 
 ### Mission Posts (Slug-Based)
 
-- Dynamic route: `/mission-log/[slug]` (Next.js segment: `[slug]`)
+- Dynamic route: `/mission-updates/[slug]` (Next.js segment: `[slug]`)
 - Preferred: **SSG + ISR** for mission posts:
     - Build static pages for published+public posts.
     - Periodically revalidate to pick up new/updated posts without full rebuild.
@@ -669,7 +706,7 @@ const PostCreateSchema = z.object({
     featuredImage: z.string().url(),
     gallery: z.array(z.string().url()).optional(),
     videoUrl: z.string().url().optional(),
-    aidType: z.string().optional(),
+    aidTypes: z.array(z.string()).optional(),
     partnership: z.string().optional(),
     location: z.string().optional(),
     status: z.enum(["draft", "published"]),

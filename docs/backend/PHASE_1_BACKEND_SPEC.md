@@ -9,6 +9,7 @@ Tech:
 - Zod (runtime validation)
 - JWT auth (admin only)
 - **No TypeScript**
+- **ES Modules** (`"type": "module"` in `package.json`)
 
 Goals:
 
@@ -109,11 +110,18 @@ Canonical response shape:
 }
 ```
 
-Public endpoints (examples from contract):
+Public list endpoints (paginated):
 
 - `GET /api/posts`
-- `GET /api/posts/:slug`
 - `GET /api/events`
+
+Public single-resource endpoints (non-paginated):
+
+- `GET /api/posts/:slug`
+- `GET /api/events/:slug`
+
+`GET /api/events/:slug` behaves identically to `GET /api/posts/:slug`:
+returns the event only if `status=published` AND `visibility=public`, otherwise returns 404.
 
 ### 3.1.2 Default sorting rules (public lists)
 
@@ -185,7 +193,7 @@ Optional fields:
 - `summary`
 - `gallery` (array of URL strings)
 - `videoUrl`
-- `aidType`
+- `aidTypes` (array of strings, no duplicates)
 - `partnership`
 - `location`
 
@@ -198,6 +206,37 @@ Lifecycle fields:
 Note on “archived”:
 
 - Posts are archived via `visibility=archived` (not a separate `status` value).
+
+### 3.5 EVENT SCHEMA (Phase 0 authoritative)
+
+This backend spec inherits the canonical Event fields from:
+
+- `docs/architecture/PHASE_0_ARCHITECTURE_V3_NEXTJS_EDITION.md`
+
+Required fields:
+
+- `title`
+- `startDate`
+- `visibility` (`public | internal | archived`)
+
+Optional fields:
+
+- `description`
+- `endDate`
+- `location`
+- `featuredImage` (URL)
+- `registrationLink` (URL)
+
+Lifecycle fields:
+
+- `status` (`draft | published`)
+- `slug`
+- `publishedAt`
+
+### Validation Constraint
+
+The combination `status=draft` + `visibility=archived` is invalid.
+Zod validators must reject this combination on create and update operations for both Posts and Events.
 
 ---
 
@@ -230,6 +269,35 @@ Practical enforcement pattern:
 - Unique index on `slug` for `posts`
 - Unique index on `slug` for `events`
 
+Index definitions:
+
+```js
+// Post schema
+postSchema.index({ slug: 1 }, { unique: true });
+
+// Event schema
+eventSchema.index({ slug: 1 }, { unique: true });
+```
+
+### 4.4 Slug Collision Handling (Concurrency Safe)
+
+A unique index alone does not prevent race conditions when two records with identical titles are created simultaneously.
+
+Slug uniqueness is enforced by **both**:
+
+1. **Database unique index** (hard constraint)
+2. **Service-level retry logic** (handles concurrent collisions)
+
+Slug generation flow:
+
+1. Generate slug from title (e.g., `winter-relief`)
+2. Attempt database insert
+3. If duplicate key error (`E11000`): regenerate slug with numeric suffix (`winter-relief-1`)
+4. Retry insert
+5. Continue incrementing suffix until insert succeeds (`winter-relief-2`, `winter-relief-3`, ...)
+
+This pattern ensures correctness even when two posts with identical titles are published at the same moment.
+
 ---
 
 ## 5) Zod validation enforcement (required)
@@ -250,6 +318,7 @@ Date fields:
 - Events:
     - `startDate`: required Date
     - `endDate`: optional Date
+    - `registrationLink`: optional URL string
 
 Validation error response:
 
@@ -333,6 +402,15 @@ Login endpoint (stricter):
 - Use Zod for runtime safety
 - Keep functions small and testable
 - Add minimal unit tests where rules are easy to regress (slug collision, public filtering)
+
+### Module System (Authoritative)
+
+The backend uses **ES Modules**.
+
+- `package.json` must include `"type": "module"`
+- All code must use `import` / `export` syntax
+- Do **not** use `require()` or `module.exports`
+- All code examples in project documentation must follow this convention
 
 ---
 
@@ -430,7 +508,7 @@ Rule:
 Use the `cors` middleware in Express, and make configuration depend on `NODE_ENV`.
 
 ```js
-const cors = require("cors");
+import cors from "cors";
 
 const isProd = process.env.NODE_ENV === "production";
 const allowedOrigin = isProd

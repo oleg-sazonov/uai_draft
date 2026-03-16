@@ -55,6 +55,30 @@ Notes:
 - This endpoint exists to support Next.js `generateStaticParams`
 - Do not include drafts/internal/archived posts
 
+### GET /api/events/slugs
+
+Returns a list of slugs for events that are eligible for static generation.
+
+**Rule:** only events where `status=published` AND `visibility=public` are returned.
+
+Response shape (example):
+
+```json
+["stamford-fundraising-gala", "fairfield-aid-drive"]
+```
+
+Notes:
+
+- This endpoint exists to support Next.js `generateStaticParams` for `/events/[slug]`
+- Do not include drafts/internal/archived events
+
+### GET /api/events/:slug
+
+Returns a single event by slug.
+
+**Rule:** only returns the event if `status=published` AND `visibility=public`.
+If not available publicly, return 404 (do not leak internal/draft content).
+
 ### POST /api/posts/:slug/like
 
 Increment like counter for a published + public post.
@@ -167,9 +191,9 @@ Notes:
 
 - This endpoint authenticates by credentials (email/password) and sets a JWT in an **HttpOnly cookie**.
 - Cookie baseline:
-  - `HttpOnly: true`
-  - `SameSite: Lax`
-  - `Secure: true` in production
+    - `HttpOnly: true`
+    - `SameSite: Lax`
+    - `Secure: true` in production
 - The `Authorization: Bearer ...` header is **not used** in this baseline.
 - When the frontend calls admin endpoints cross-origin, it must include credentials (`fetch(..., { credentials: "include" })`).
 - Validation errors must return HTTP **400** using the standard JSON error shape defined in `ERROR_HANDLING_POLICY.md`.
@@ -190,9 +214,9 @@ Success response (example):
 
 ```json
 {
-  "data": {
-    "url": "https://res.cloudinary.com/.../image/upload/..."
-  }
+    "data": {
+        "url": "https://res.cloudinary.com/.../image/upload/..."
+    }
 }
 ```
 
@@ -230,14 +254,33 @@ Success response (example):
 - DELETE /api/admin/events/:id
   Delete an event (if supported) or archive via update (implementation detail).
 
-## Pagination (Applies to list endpoints)
+## Pagination (Applies to list endpoints only)
 
-Pagination is supported for:
+Pagination applies **only** to list endpoints that return multiple records.
+
+Paginated endpoints:
 
 - `GET /api/posts`
 - `GET /api/events`
 - `GET /api/admin/posts`
 - `GET /api/admin/events`
+
+Non-paginated endpoints (single-resource):
+
+- `GET /api/posts/:slug`
+- `GET /api/events/:slug`
+
+Single-resource endpoints return a single object, not a paginated response.
+
+Example response for `GET /api/posts/:slug`:
+
+```json
+{
+    "data": { "title": "...", "slug": "...", "content": "..." }
+}
+```
+
+Do **not** wrap single-resource responses in a pagination object.
 
 ### Pagination Model (Authoritative)
 

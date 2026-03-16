@@ -213,8 +213,8 @@ Primary reference: [api/API_CONTRACT_NEXTJS.md](api/API_CONTRACT_NEXTJS.md)
 Rendering model summary:
 
 - `/` → **SSG**
-- `/mission-log` → **ISR**
-- `/mission-log/[slug]` → **SSG + ISR**
+- `/mission-updates` → **ISR**
+- `/mission-updates/[slug]` → **SSG + ISR**
 - `/sister-cities` → **SSG**
 - `/sister-cities/[slug]` → **SSG**
 - `/admin/*` → **client-side only**

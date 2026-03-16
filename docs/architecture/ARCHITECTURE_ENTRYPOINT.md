@@ -82,8 +82,8 @@ Reference: [ARCHITECTURAL_INVARIANTS.md](ARCHITECTURAL_INVARIANTS.md)
 Rendering summary:
 
 - `/` → SSG
-- `/mission-log` → ISR
-- `/mission-log/[slug]` → SSG + ISR
+- `/mission-updates` → ISR
+- `/mission-updates/[slug]` → SSG + ISR
 - `/admin/*` → client-side only
 
 Reference: [RENDERING_DECISIONS.md](RENDERING_DECISIONS.md)

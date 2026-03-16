@@ -25,14 +25,8 @@ Fast onboarding reading order:
 5. [../backend/PHASE_1_BACKEND_SPEC.md](../backend/PHASE_1_BACKEND_SPEC.md)
 6. [../frontend/PHASE_2_NEXTJS_FRONTEND_SPEC.md](../frontend/PHASE_2_NEXTJS_FRONTEND_SPEC.md)
 
-Architecture authority order (when docs conflict):
-
-1. [../architecture/PHASE_0_ARCHITECTURE_V3_NEXTJS_EDITION.md](../architecture/PHASE_0_ARCHITECTURE_V3_NEXTJS_EDITION.md)
-2. [../ARCHITECTURE_LOCK.md](../ARCHITECTURE_LOCK.md)
-3. [../architecture/ARCHITECTURAL_INVARIANTS.md](../architecture/ARCHITECTURAL_INVARIANTS.md) and [../architecture/SYSTEM_BOUNDARIES.md](../architecture/SYSTEM_BOUNDARIES.md)
-4. [../api/API_CONTRACT_NEXTJS.md](../api/API_CONTRACT_NEXTJS.md)
-5. [../backend/PHASE_1_BACKEND_SPEC.md](../backend/PHASE_1_BACKEND_SPEC.md)
-6. [../frontend/PHASE_2_NEXTJS_FRONTEND_SPEC.md](../frontend/PHASE_2_NEXTJS_FRONTEND_SPEC.md)
+Architecture authority order is defined in:
+[AI_IMPLEMENTATION_AUTHORITY.md](AI_IMPLEMENTATION_AUTHORITY.md)
 
 ---
 
@@ -104,8 +98,8 @@ Public routes are server-rendered for SEO; admin routes are client-side only.
 Baseline rendering matrix:
 
 - `/` → SSG
-- `/mission-log` → ISR
-- `/mission-log/[slug]` → SSG + ISR
+- `/mission-updates` → ISR
+- `/mission-updates/[slug]` → SSG + ISR
 - `/sister-cities` → SSG
 - `/sister-cities/[slug]` → SSG
 - `/admin/*` → client-side only

@@ -99,8 +99,8 @@ Rendering strategy:
 | Route               | Rendering   |
 | ------------------- | ----------- |
 | /                   | SSG         |
-| /mission-log        | ISR         |
-| /mission-log/[slug] | SSG + ISR   |
+| /mission-updates        | ISR         |
+| /mission-updates/[slug] | SSG + ISR   |
 | /sister-cities      | SSG         |
 | /admin/\*           | client-only |
 

@@ -45,8 +45,8 @@ This project uses a mix of rendering modes depending on the route’s needs:
     - Example: `/` (stable marketing content), `/sister-cities`
 
 - **ISR (Incremental Static Regeneration):** static pages that periodically revalidate
-    - Example: `/mission-log` (content list changes over time)
-    - Example: `/mission-log/[slug]` (individual posts update occasionally)
+    - Example: `/mission-updates` (content list changes over time)
+    - Example: `/mission-updates/[slug]` (individual posts update occasionally)
 
 - **SSR (Server-Side Rendering):** rendered on each request (always-fresh)
     - Example: any future public route that must never be stale
@@ -74,12 +74,12 @@ Rule of thumb:
 - Use **native `fetch()`** from Server Components.
 - Call the Express API using `NEXT_PUBLIC_API_BASE_URL`.
 
-### Example: server-rendered mission log list (ISR)
+### Example: server-rendered mission updates list (ISR)
 
 ```tsx
-// app/mission-log/page.tsx
+// app/mission-updates/page.tsx
 
-export default async function MissionLogPage() {
+export default async function MissionUpdatesPage() {
     const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
     const response = await fetch(`${apiBaseUrl}/api/posts`, {
@@ -95,11 +95,11 @@ export default async function MissionLogPage() {
 
     return (
         <main>
-            <h1>Mission Log</h1>
+            <h1>Mission Updates</h1>
             <ul>
                 {posts.map((post: { slug: string; title: string }) => (
                     <li key={post.slug}>
-                        <a href={`/mission-log/${post.slug}`}>{post.title}</a>
+                        <a href={`/mission-updates/${post.slug}`}>{post.title}</a>
                     </li>
                 ))}
             </ul>
@@ -112,6 +112,18 @@ Notes:
 
 - The API is responsible for enforcing public visibility rules.
 - If you need SSR (always-fresh) instead of ISR, use `cache: "no-store"`.
+
+### Dynamic route params (SSG + ISR)
+
+For slug-based dynamic routes (`/mission-updates/[slug]`, `/events/[slug]`), the following configuration is required:
+
+```ts
+export const dynamicParams = true;
+```
+
+- `generateStaticParams` provides the initial set of slugs for static generation at build time.
+- `dynamicParams = true` allows newly published slugs to render on-demand via ISR without a full rebuild.
+- After on-demand rendering, the page is cached according to the ISR revalidation interval.
 
 ---
 
@@ -195,7 +207,7 @@ Example structure (simplified):
 app/
   layout.tsx
   page.tsx
-  mission-log/
+  mission-updates/
     page.tsx
     [slug]/
       page.tsx
@@ -208,8 +220,8 @@ app/
 How routing works:
 
 - `app/page.tsx` maps to `/`
-- `app/mission-log/page.tsx` maps to `/mission-log`
-- `app/mission-log/[slug]/page.tsx` maps to `/mission-log/:slug`
+- `app/mission-updates/page.tsx` maps to `/mission-updates`
+- `app/mission-updates/[slug]/page.tsx` maps to `/mission-updates/:slug`
 - `app/admin/page.tsx` maps to `/admin`
 
 `[slug]` indicates a **dynamic route segment**.
@@ -228,7 +240,7 @@ Guidelines:
 Conceptual example:
 
 ```tsx
-// app/mission-log/[slug]/page.tsx
+// app/mission-updates/[slug]/page.tsx
 
 function renderMarkdownToHtml(markdown: string): string {
     // Use the project’s chosen Markdown pipeline (e.g., remark/rehype) in real code.

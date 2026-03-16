@@ -31,10 +31,10 @@ Recommended structure:
 app/
   layout.tsx (or layout.jsx)
   page.tsx                     // /
-  mission-log/
-    page.tsx                   // /mission-log
+  mission-updates/
+    page.tsx                   // /mission-updates
     [slug]/
-      page.tsx                 // /mission-log/[slug]
+      page.tsx                 // /mission-updates/[slug]
   sister-cities/
     page.tsx                   // /sister-cities
   admin/
@@ -136,7 +136,7 @@ If admin screens are client-side and you want a convenient client:
 
 - `/` and `/sister-cities` can use static metadata
 
-### 4.2 Dynamic post page: `/mission-log/[slug]`
+### 4.2 Dynamic post page: `/mission-updates/[slug]`
 
 Use `generateMetadata` to fetch the post and generate:
 
@@ -176,8 +176,8 @@ We rely on an API endpoint that returns slugs for **published + public** posts:
 
 Baseline revalidation:
 
-- `/mission-log` (list): revalidate every 60 seconds
-- `/mission-log/[slug]`: revalidate every 60 seconds
+- `/mission-updates` (list): revalidate every 60 seconds
+- `/mission-updates/[slug]`: revalidate every 60 seconds
 
 Reason:
 
@@ -199,8 +199,8 @@ Use one consistent approach.
 Follow: [architecture/RENDERING_DECISIONS.md](../architecture/RENDERING_DECISIONS.md)
 
 - `/` → SSG
-- `/mission-log` → ISR
-- `/mission-log/[slug]` → SSG + ISR
+- `/mission-updates` → ISR
+- `/mission-updates/[slug]` → SSG + ISR
 - `/sister-cities` → SSG
 - `/admin/*` → Client-side only
 
@@ -216,15 +216,15 @@ Practical implications:
 
 - If `/api/posts/:slug` returns 404 for non-public content, Next.js page must show 404
 - Sitemap generation must only include published/public slugs
-- Mission log list must only show published/public posts
+- Mission updates list must only show published/public posts
 
 See: [seo/SEO_BASELINE.md](../seo/SEO_BASELINE.md)
 
 ### 8.1 Public post rendering: sorting + display date
 
-Mission Log list pages must treat `publishedAt` as the primary publication date.
+Mission Updates list pages must treat `publishedAt` as the primary publication date.
 
-- Sorting: mission-log list pages must render posts sorted by `publishedAt` **descending** (newest first).
+- Sorting: mission-updates list pages must render posts sorted by `publishedAt` **descending** (newest first).
 - Display: use `publishedAt` as the visible publication date.
 - Legacy safety: if `publishedAt` is null, fall back to `createdAt` for display and ordering.
 

@@ -6,7 +6,7 @@ Scope:
 
 - Next.js frontend (App Router) renders public pages
 - Express API provides content (posts/events)
-- We optimize for **indexable public pages** (mission log + posts + sister cities)
+- We optimize for **indexable public pages** (mission updates + posts + sister cities)
 
 Non-goals:
 
@@ -27,8 +27,10 @@ Non-goals:
 **Applies to:**
 
 - `/`
-- `/mission-log`
-- `/mission-log/[slug]`
+- `/mission-updates`
+- `/mission-updates/[slug]`
+- `/events`
+- `/events/[slug]`
 - `/sister-cities`
 - any future public content pages
 
@@ -53,7 +55,8 @@ Backend enforcement:
 
 Frontend assumption:
 
-- The canonical URL for a post is always `/mission-log/[slug]`
+- The canonical URL for a post is always `/mission-updates/[slug]`
+- The canonical URL for an event is always `/events/[slug]`
 
 ---
 
@@ -66,7 +69,7 @@ Every public page must define:
 - Must be meaningful and specific
 - Suggested format:
     - Home: `Ukraine Aid International`
-    - Mission log list: `Mission Log | Ukraine Aid International`
+    - Mission updates list: `Mission Updates | Ukraine Aid International`
     - Post: `${post.title} | Ukraine Aid International`
 - Avoid keyword stuffing
 
@@ -91,8 +94,9 @@ Every public page must define:
 
 Include:
 
-- Static routes: `/`, `/mission-log`, `/sister-cities`, `/contact`, `/donate`
-- Dynamic post routes: `/mission-log/[slug]` for **published + public** posts only
+- Static routes: `/`, `/mission-updates`, `/events`, `/sister-cities`, `/contact`, `/donate`
+- Dynamic post routes: `/mission-updates/[slug]` for **published + public** posts only
+- Dynamic event routes: `/events/[slug]` for **published + public** events only
 
 Exclude:
 
@@ -103,17 +107,23 @@ Exclude:
 
 Use Next.js App Router’s sitemap support:
 
-- `app/sitemap.ts` fetches slugs from the API endpoint: `GET /api/posts/slugs`
+- `app/sitemap.ts` fetches slugs from the API endpoints:
+    - `GET /api/posts/slugs` (for mission updates posts)
+    - `GET /api/events/slugs` (for events)
 - Build absolute URLs using the production site base URL
 
 Clarification (pagination safety):
 
 - Sitemap generation must **never** iterate paginated public list endpoints (e.g., `GET /api/posts?page=...`).
-- It must use the dedicated slug endpoint (`GET /api/posts/slugs`) to avoid pagination coupling and ensure completeness.
+- It must use the dedicated slug endpoints (`GET /api/posts/slugs`, `GET /api/events/slugs`) to avoid pagination coupling and ensure completeness.
 
 **Rule:** The sitemap must only include records that satisfy:
 
 - `status=published` AND `visibility=public`
+
+### 4.3 Sitemap revalidation
+
+The sitemap must use ISR (`revalidate = 60`) so newly published slugs appear within one revalidation cycle. See: [architecture/RENDERING_DECISIONS.md — ISR revalidation strategy](../architecture/RENDERING_DECISIONS.md)
 
 ---
 
