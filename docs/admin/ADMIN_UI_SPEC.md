@@ -181,9 +181,27 @@ Start Date
 End Date (optional)  
 Location  
 Featured Image  
+Gallery Images (optional)  
+Video URL (optional)  
 Registration Link (optional)  
 Status  
 Visibility
+
+## Gallery Images
+
+Same behavior as in the Post editor (Section 5).
+
+Multiple image uploads. Images stored via Cloudinary.
+
+Gallery renders on the public event page only if images exist.
+
+## Video URL
+
+Same behavior as in the Post editor (Section 5).
+
+Single text input. Accepts YouTube or Vimeo URLs only.
+
+Video block renders on the public event page only if a URL is provided.
 
 ---
 

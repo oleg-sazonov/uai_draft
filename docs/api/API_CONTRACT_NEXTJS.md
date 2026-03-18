@@ -251,6 +251,15 @@ Success response (example):
 - PATCH /api/admin/events/:id
   Update an event.
 
+#### Events Media Fields
+
+Event create and update endpoints accept and return the following optional media fields (consistent with Posts):
+
+- `gallery`: `string[]` — Array of Cloudinary image URLs (optional, default `[]`)
+- `videoUrl`: `string` — External video URL, YouTube/Vimeo only (optional)
+
+Public event endpoints (`GET /api/events`, `GET /api/events/:slug`) also include these fields in responses when present.
+
 - DELETE /api/admin/events/:id
   Delete an event (if supported) or archive via update (implementation detail).
 

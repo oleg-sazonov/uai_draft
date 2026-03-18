@@ -236,6 +236,8 @@ Events represent fundraisers, awareness events, and community gatherings.
 | endDate       | Date     | Event end date/time (optional)            |
 | location      | String   | Location                                  |
 | featuredImage | String   | Main image (optional)                     |
+| gallery       | Array (String) | Gallery image URLs (optional)        |
+| videoUrl      | String (URL) | Optional related video URL (YouTube/Vimeo) |
 | registrationLink | String | External registration URL (optional)     |
 | likes         | Number   | Total number of likes (default: 0)        |
 | status        | Enum     | draft / published                         |
@@ -255,7 +257,18 @@ Rendering rules:
 - Raw HTML input is not allowed
 - The same Markdown pipeline used for Post `content` applies to Event `description`
 
-## 2.2.2 Event Likes
+## 2.2.2 Event Media Fields
+
+Events support the same optional media fields as Posts:
+
+- `gallery`: an array of image URLs (Cloudinary). Rendered only if `gallery.length > 0`.
+- `videoUrl`: a single URL string (YouTube/Vimeo). Rendered only if `videoUrl` is non-empty.
+
+These fields follow the same upload, storage, and lifecycle rules defined for Posts (see Section 2.1 and Section 2.6).
+
+See also: **Section 2.6.1 — Shared Media Fields Convention**.
+
+## 2.2.3 Event Likes
 
 Events support the same like behavior as Posts.
 
@@ -404,6 +417,27 @@ Backend media lifecycle cleanup (required):
 - Preventing orphan Cloudinary assets when records are edited or deleted.
 
 Reference: [MEDIA_UPLOAD_ARCHITECTURE_CLOUDINARY.md](MEDIA_UPLOAD_ARCHITECTURE_CLOUDINARY.md)
+
+## 2.6.1 Shared Media Fields Convention
+
+Posts and Events share a common set of optional media fields.
+This is a **documented naming convention**, not a code-level abstraction.
+
+| Field         | Type           | Present On       | Description                              |
+| ------------- | -------------- | ---------------- | ---------------------------------------- |
+| featuredImage | String (URL)   | Posts, Events    | Primary hero/preview image               |
+| gallery       | Array (String) | Posts, Events    | Additional image URLs (Cloudinary)       |
+| videoUrl      | String (URL)   | Posts, Events    | External video URL (YouTube/Vimeo only)  |
+
+Rules:
+
+- Images are uploaded via the admin media pipeline (Admin UI → Express → Cloudinary → URL stored in MongoDB).
+- Videos are **URL-only** — no file upload. The admin enters a YouTube or Vimeo URL.
+- `gallery` renders only if `gallery.length > 0`.
+- `videoUrl` renders only if the value is non-empty.
+- Media lifecycle (replacement, deletion, orphan cleanup) applies identically to both entities.
+
+This convention ensures consistent behavior across entities without introducing shared code abstractions.
 
 ---
 

@@ -160,6 +160,17 @@ When on-demand revalidation is added (see "On-demand revalidation" above), these
 
 ---
 
+## Event Page Media Blocks
+
+Event detail pages (`/events/[slug]`) support optional media blocks consistent with post detail pages:
+
+- **Gallery block**: renders only if `gallery.length > 0`. Same layout and behavior as the post gallery.
+- **Video block**: renders only if `videoUrl` is non-empty. Same embed behavior as the post video block (YouTube/Vimeo iframe).
+
+These blocks are conditional — if the fields are absent or empty, the blocks are not rendered and no empty containers appear in the HTML.
+
+---
+
 ## Notes (baseline constraints)
 
 - Public pages must be server-rendered (SSG/ISR/SSR). See: [seo/SEO_BASELINE.md](../seo/SEO_BASELINE.md)
