@@ -1,0 +1,1680 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Admin Panel - Ukraine Aid International</title>
+        <link rel="stylesheet" href="styles/draft.css" />
+    </head>
+    <body>
+        <!-- Admin Header -->
+        <header class="admin-header">
+            <div class="container">
+                <div class="admin-header-content">
+                    <div class="logo">
+                        <a href="index.html">
+                            <img
+                                class="logo-img"
+                                src="https://i0.wp.com/ukraineaidinternational.org/wp-content/uploads/2023/05/logo-uai.png?fit=654%2C202&ssl=1"
+                                alt="Ukraine Aid International logo"
+                            />
+                        </a>
+                    </div>
+                    <div class="admin-user">
+                        <span>👤 Admin User</span>
+                        <a href="login.html" class="btn-logout">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Admin Content -->
+        <section class="admin-content">
+            <div class="container">
+                <div class="admin-grid admin-grid-v2">
+                    <!-- Sidebar Navigation -->
+                    <aside class="admin-sidebar admin-sidebar-v2">
+                        <h2 class="admin-sidebar-title">Admin Panel</h2>
+                        <nav
+                            aria-label="Admin navigation"
+                            class="admin-sidebar-nav"
+                        >
+                            <button
+                                class="tab-button active"
+                                data-tab="dashboard"
+                            >
+                                Dashboard
+                            </button>
+                            <button class="tab-button" data-tab="posts">
+                                Posts
+                            </button>
+                            <button class="tab-button" data-tab="events">
+                                Events
+                            </button>
+                            <button
+                                class="tab-button"
+                                data-tab="contact-messages"
+                            >
+                                Contact Messages
+                            </button>
+                            <button
+                                class="tab-button"
+                                data-tab="newsletter-subscribers"
+                            >
+                                Newsletter Subscribers
+                            </button>
+                        </nav>
+                        <div class="admin-sidebar-note">
+                            <p>
+                                Prototype-only UI to visually validate the
+                                future admin workflow (no backend).
+                            </p>
+                        </div>
+                    </aside>
+
+                    <!-- Main Admin Area -->
+                    <main class="admin-main">
+                        <!-- Dashboard -->
+                        <div id="dashboard" class="tab-content active">
+                            <div class="form-section">
+                                <h2>Dashboard</h2>
+                                <div class="quick-stats quick-stats-v2">
+                                    <div class="stat-item">
+                                        <strong>Total Posts:</strong> 24
+                                    </div>
+                                    <div class="stat-item">
+                                        <strong>Total Events:</strong> 8
+                                    </div>
+                                    <div class="stat-item">
+                                        <strong
+                                            >Unread Contact Messages:</strong
+                                        >
+                                        12
+                                    </div>
+                                    <div class="stat-item">
+                                        <strong>Newsletter Subscribers:</strong>
+                                        156
+                                    </div>
+                                </div>
+                                <div class="admin-hint">
+                                    <p>
+                                        Use the left navigation to create posts
+                                        and events. Media uploads are simulated
+                                        with file inputs and local preview
+                                        thumbnails.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Posts -->
+                        <div id="posts" class="tab-content">
+                            <div class="form-section">
+                                <h2>Create Post</h2>
+
+                                <form
+                                    class="admin-form"
+                                    onsubmit="return false;"
+                                >
+                                    <small>
+                                        Fields marked with * are required to
+                                        publish.
+                                    </small>
+
+                                    <!-- 1. Post Details -->
+                                    <fieldset class="admin-form-card">
+                                        <legend>Post Details</legend>
+
+                                        <div class="form-group">
+                                            <label for="post-title"
+                                                >Title *</label
+                                            >
+                                            <input
+                                                type="text"
+                                                id="post-title"
+                                                name="title"
+                                                placeholder="Enter post title"
+                                            />
+                                            <div class="editor-slug-preview">
+                                                <span class="editor-slug-label">
+                                                    Post URL:
+                                                </span>
+                                                <span class="editor-slug-url">
+                                                    https://site.com/mission-updates/
+                                                    <span
+                                                        id="post-slug-preview"
+                                                        class="editor-slug"
+                                                        >your-post-slug</span
+                                                    >
+                                                </span>
+                                            </div>
+                                            <small>
+                                                Slug is generated automatically
+                                                on publish and cannot be edited.
+                                            </small>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="post-category"
+                                                    >Category *</label
+                                                >
+                                                <select
+                                                    id="post-category"
+                                                    name="category"
+                                                >
+                                                    <option value="">
+                                                        Select category
+                                                    </option>
+                                                    <option
+                                                        value="field-mission"
+                                                    >
+                                                        Field Mission
+                                                    </option>
+                                                    <option
+                                                        value="partnerships"
+                                                    >
+                                                        Sister City &amp; Sister
+                                                        State Partnerships
+                                                    </option>
+                                                    <option
+                                                        value="events-community"
+                                                    >
+                                                        Events &amp; Community
+                                                    </option>
+                                                    <option
+                                                        value="organizational-updates"
+                                                    >
+                                                        Organizational Updates
+                                                    </option>
+                                                    <option value="media-press">
+                                                        Media &amp; Press
+                                                    </option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="post-status"
+                                                    >Status</label
+                                                >
+                                                <select
+                                                    id="post-status"
+                                                    name="status"
+                                                >
+                                                    <option
+                                                        value="draft"
+                                                        selected
+                                                    >
+                                                        draft
+                                                    </option>
+                                                    <option value="published">
+                                                        published
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="post-summary"
+                                                >Summary</label
+                                            >
+                                            <textarea
+                                                id="post-summary"
+                                                name="summary"
+                                                rows="3"
+                                                placeholder="Short summary shown on Mission Updates cards (recommended 200–300 characters)"
+                                            ></textarea>
+                                        </div>
+                                    </fieldset>
+
+                                    <!-- 2. Content -->
+                                    <fieldset class="admin-form-card">
+                                        <legend>Content</legend>
+
+                                        <div class="form-group">
+                                            <label for="post-content"
+                                                >Content (Markdown) *</label
+                                            >
+                                            <div
+                                                class="editor-mode-row"
+                                                aria-label="Editor mode"
+                                            >
+                                                <div
+                                                    class="editor-mode-toggle"
+                                                    id="post-editor-toggle"
+                                                    role="tablist"
+                                                >
+                                                    <button
+                                                        type="button"
+                                                        class="editor-mode-btn active"
+                                                        data-mode="edit"
+                                                        aria-selected="true"
+                                                    >
+                                                        Editor
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        class="editor-mode-btn"
+                                                        data-mode="preview"
+                                                        aria-selected="false"
+                                                    >
+                                                        Preview
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="editor-toolbar"
+                                                id="post-editor-toolbar"
+                                            >
+                                                <button
+                                                    type="button"
+                                                    class="editor-btn"
+                                                    title="Bold"
+                                                >
+                                                    <strong>B</strong>
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    class="editor-btn"
+                                                    title="Italic"
+                                                >
+                                                    <em>I</em>
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    class="editor-btn"
+                                                    title="Heading 2"
+                                                >
+                                                    H2
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    class="editor-btn"
+                                                    title="Heading 3"
+                                                >
+                                                    H3
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    class="editor-btn"
+                                                    title="List"
+                                                >
+                                                    List
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    class="editor-btn"
+                                                    title="Quote"
+                                                >
+                                                    Quote
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    class="editor-btn"
+                                                    title="Link"
+                                                >
+                                                    Link
+                                                </button>
+                                            </div>
+                                            <textarea
+                                                id="post-content"
+                                                name="content"
+                                                class="content-editor"
+                                                placeholder="Write your post content in Markdown…"
+                                            ></textarea>
+                                            <div
+                                                id="post-content-preview"
+                                                class="editor-preview"
+                                                hidden
+                                            ></div>
+                                            <div class="editor-meta-row">
+                                                <div
+                                                    class="editor-autosave-status"
+                                                    id="post-autosave-status"
+                                                    aria-live="polite"
+                                                >
+                                                    Saved
+                                                </div>
+                                                <div
+                                                    class="editor-stats"
+                                                    id="post-editor-stats"
+                                                >
+                                                    0 words • 0 min read
+                                                </div>
+                                            </div>
+                                            <small>
+                                                Markdown supported. Raw HTML is
+                                                not allowed.
+                                            </small>
+                                        </div>
+                                    </fieldset>
+
+                                    <!-- 3. Media -->
+                                    <fieldset class="admin-form-card">
+                                        <legend>Media</legend>
+
+                                        <div class="form-group">
+                                            <label for="post-featured-image">
+                                                Featured Image *
+                                            </label>
+                                            <input
+                                                type="file"
+                                                id="post-featured-image"
+                                                name="featured_image"
+                                                accept="image/*"
+                                            />
+                                            <small>
+                                                Prototype shows a local preview
+                                                only. Production: Admin UI →
+                                                Express API → Cloudinary.
+                                            </small>
+                                            <div
+                                                id="post-featured-preview"
+                                                class="file-preview"
+                                                data-dropzone="featured"
+                                                aria-live="polite"
+                                            ></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="post-gallery-images">
+                                                Gallery Images
+                                            </label>
+                                            <input
+                                                type="file"
+                                                id="post-gallery-images"
+                                                name="gallery_images"
+                                                accept="image/*"
+                                                multiple
+                                            />
+                                            <small>
+                                                Optional. Drag &amp; drop images
+                                                into the preview area and drag
+                                                thumbnails to reorder.
+                                            </small>
+                                            <div
+                                                id="post-gallery-preview"
+                                                class="file-preview-grid"
+                                                data-dropzone="gallery"
+                                                aria-live="polite"
+                                            ></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="post-video-url"
+                                                >Video URL</label
+                                            >
+                                            <input
+                                                type="url"
+                                                id="post-video-url"
+                                                name="video_url"
+                                                placeholder="https://youtube.com/watch?v=..."
+                                            />
+                                            <small>
+                                                Optional. URL-based video
+                                                support (YouTube, Vimeo, etc.).
+                                            </small>
+                                        </div>
+                                    </fieldset>
+
+                                    <!-- 4. Metadata -->
+                                    <fieldset class="admin-form-card">
+                                        <legend>Metadata</legend>
+
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Aid Types</label>
+                                                <div class="checkbox-group">
+                                                    <label
+                                                        class="checkbox-label"
+                                                    >
+                                                        <input
+                                                            type="checkbox"
+                                                            name="aid_type"
+                                                            value="medical"
+                                                        />
+                                                        Medical Aid
+                                                    </label>
+                                                    <label
+                                                        class="checkbox-label"
+                                                    >
+                                                        <input
+                                                            type="checkbox"
+                                                            name="aid_type"
+                                                            value="food"
+                                                        />
+                                                        Food Assistance
+                                                    </label>
+                                                    <label
+                                                        class="checkbox-label"
+                                                    >
+                                                        <input
+                                                            type="checkbox"
+                                                            name="aid_type"
+                                                            value="heat"
+                                                        />
+                                                        Winterization &amp;
+                                                        Heating Support
+                                                    </label>
+                                                    <label
+                                                        class="checkbox-label"
+                                                    >
+                                                        <input
+                                                            type="checkbox"
+                                                            name="aid_type"
+                                                            value="water"
+                                                        />
+                                                        Water Filtration &amp;
+                                                        Clean Water
+                                                    </label>
+                                                    <label
+                                                        class="checkbox-label"
+                                                    >
+                                                        <input
+                                                            type="checkbox"
+                                                            name="aid_type"
+                                                            value="infrastructure"
+                                                        />
+                                                        Infrastructure Support
+                                                    </label>
+                                                    <label
+                                                        class="checkbox-label"
+                                                    >
+                                                        <input
+                                                            type="checkbox"
+                                                            name="aid_type"
+                                                            value="evacuation"
+                                                        />
+                                                        Evacuation Support
+                                                    </label>
+                                                    <label
+                                                        class="checkbox-label"
+                                                    >
+                                                        <input
+                                                            type="checkbox"
+                                                            name="aid_type"
+                                                            value="humanitarian"
+                                                        />
+                                                        Humanitarian Supplies
+                                                    </label>
+                                                    <label
+                                                        class="checkbox-label"
+                                                    >
+                                                        <input
+                                                            type="checkbox"
+                                                            name="aid_type"
+                                                            value="vehicles"
+                                                        />
+                                                        Vehicles &amp; Transport
+                                                        Support
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="post-partnership"
+                                                    >Partnership</label
+                                                >
+                                                <select
+                                                    id="post-partnership"
+                                                    name="partnership"
+                                                >
+                                                    <option value="">
+                                                        — Not specified —
+                                                    </option>
+                                                    <option
+                                                        value="kramatorsk-stamford"
+                                                    >
+                                                        Kramatorsk 🇺🇦 &amp;
+                                                        Stamford 🇺🇸
+                                                    </option>
+                                                    <option
+                                                        value="kostiantynivka-fairfield"
+                                                    >
+                                                        Kostiantynivka 🇺🇦 &amp;
+                                                        Fairfield 🇺🇸
+                                                    </option>
+                                                    <option
+                                                        value="lyman-westport"
+                                                    >
+                                                        Lyman 🇺🇦 &amp; Westport
+                                                        🇺🇸
+                                                    </option>
+                                                    <option
+                                                        value="sviatohirsk-easton-ashland"
+                                                    >
+                                                        Sviatohirsk 🇺🇦 &amp;
+                                                        Easton &amp; Ashland 🇺🇸
+                                                    </option>
+                                                    <option
+                                                        value="organization"
+                                                    >
+                                                        Organization-wide
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="post-location"
+                                                    >Location</label
+                                                >
+                                                <input
+                                                    type="text"
+                                                    id="post-location"
+                                                    name="location"
+                                                    placeholder="City, region, country"
+                                                />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="post-visibility"
+                                                    >Visibility *</label
+                                                >
+                                                <select
+                                                    id="post-visibility"
+                                                    name="visibility"
+                                                >
+                                                    <option
+                                                        value="public"
+                                                        selected
+                                                    >
+                                                        public
+                                                    </option>
+                                                    <option value="internal">
+                                                        internal
+                                                    </option>
+                                                    <option value="archived">
+                                                        archived
+                                                    </option>
+                                                </select>
+                                                <small
+                                                    >Draft content cannot be
+                                                    archived.</small
+                                                >
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                    <!-- 5. Publish Actions -->
+                                    <div class="publish-actions">
+                                        <div class="form-actions">
+                                            <button
+                                                type="button"
+                                                class="btn-secondary"
+                                            >
+                                                Save Draft
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="btn-outline"
+                                                onclick="
+                                                    window.open(
+                                                        '/preview/posts/{slug}',
+                                                        '_blank'
+                                                    )
+                                                "
+                                                title="Saves draft automatically and opens preview in a new tab"
+                                            >
+                                                Preview
+                                            </button>
+                                            <button
+                                                type="submit"
+                                                class="btn-primary"
+                                            >
+                                                Publish
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="recent-posts-admin">
+                                <h3>Posts</h3>
+
+                                <!-- Posts Filter Bar -->
+                                <div class="admin-filter-bar">
+                                    <div class="filter-group">
+                                        <label for="filter-post-search"
+                                            >Search</label
+                                        >
+                                        <input
+                                            type="text"
+                                            id="filter-post-search"
+                                            placeholder="Search by title…"
+                                        />
+                                    </div>
+                                    <div class="filter-group">
+                                        <label for="filter-post-category"
+                                            >Category</label
+                                        >
+                                        <select id="filter-post-category">
+                                            <option value="">All</option>
+                                            <option value="field-mission">
+                                                Field Mission
+                                            </option>
+                                            <option value="partnerships">
+                                                Sister City &amp; Sister State
+                                                Partnerships
+                                            </option>
+                                            <option value="events-community">
+                                                Events &amp; Community
+                                            </option>
+                                            <option
+                                                value="organizational-updates"
+                                            >
+                                                Organizational Updates
+                                            </option>
+                                            <option value="media-press">
+                                                Media &amp; Press
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="filter-group">
+                                        <label for="filter-post-status"
+                                            >Status</label
+                                        >
+                                        <select id="filter-post-status">
+                                            <option value="">All</option>
+                                            <option value="draft">Draft</option>
+                                            <option value="published">
+                                                Published
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="filter-group">
+                                        <label for="filter-post-visibility"
+                                            >Visibility</label
+                                        >
+                                        <select id="filter-post-visibility">
+                                            <option value="">All</option>
+                                            <option value="public">
+                                                Public
+                                            </option>
+                                            <option value="internal">
+                                                Internal
+                                            </option>
+                                            <option value="archived">
+                                                Archived
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="filter-group">
+                                        <label for="filter-post-aid"
+                                            >Aid Type</label
+                                        >
+                                        <select id="filter-post-aid">
+                                            <option value="">All</option>
+                                            <option value="medical">
+                                                Medical Aid
+                                            </option>
+                                            <option value="food">
+                                                Food Assistance
+                                            </option>
+                                            <option value="heat">
+                                                Winterization &amp; Heating
+                                            </option>
+                                            <option value="water">
+                                                Water &amp; Clean Water
+                                            </option>
+                                            <option value="infrastructure">
+                                                Infrastructure
+                                            </option>
+                                            <option value="evacuation">
+                                                Evacuation
+                                            </option>
+                                            <option value="humanitarian">
+                                                Humanitarian Supplies
+                                            </option>
+                                            <option value="vehicles">
+                                                Vehicles &amp; Transport
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="filter-group">
+                                        <label for="filter-post-partnership"
+                                            >Partnership</label
+                                        >
+                                        <select id="filter-post-partnership">
+                                            <option value="">All</option>
+                                            <option value="kramatorsk-stamford">
+                                                Kramatorsk &amp; Stamford
+                                            </option>
+                                            <option
+                                                value="kostiantynivka-fairfield"
+                                            >
+                                                Kostiantynivka &amp; Fairfield
+                                            </option>
+                                            <option value="lyman-westport">
+                                                Lyman &amp; Westport
+                                            </option>
+                                            <option
+                                                value="sviatohirsk-easton-ashland"
+                                            >
+                                                Sviatohirsk &amp; Easton /
+                                                Ashland
+                                            </option>
+                                            <option value="organization">
+                                                Organization-wide
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="filter-group">
+                                        <label for="filter-post-date-from"
+                                            >Date from</label
+                                        >
+                                        <input
+                                            type="date"
+                                            id="filter-post-date-from"
+                                        />
+                                    </div>
+                                    <div class="filter-group">
+                                        <label for="filter-post-date-to"
+                                            >Date to</label
+                                        >
+                                        <input
+                                            type="date"
+                                            id="filter-post-date-to"
+                                        />
+                                    </div>
+                                    <button class="btn-filter">Apply</button>
+                                </div>
+
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Category</th>
+                                            <th>Visibility</th>
+                                            <th>Status</th>
+                                            <th>Published</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                Winter Relief: 15 Tons of Aid
+                                                Delivered
+                                            </td>
+                                            <td>Field Mission</td>
+                                            <td>public</td>
+                                            <td>
+                                                <span
+                                                    class="status-badge published"
+                                                    >published</span
+                                                >
+                                            </td>
+                                            <td>Jan 15, 2026</td>
+                                            <td class="table-actions">
+                                                <button class="btn-edit">
+                                                    Edit
+                                                </button>
+                                                <button
+                                                    class="btn-outline-sm"
+                                                    onclick="
+                                                        window.open(
+                                                            '/preview/posts/1',
+                                                            '_blank'
+                                                        )
+                                                    "
+                                                >
+                                                    Preview
+                                                </button>
+                                                <button class="btn-warning-sm">
+                                                    Archive
+                                                </button>
+                                                <button
+                                                    class="btn-delete-sm"
+                                                    disabled
+                                                    title="Must be archived before deleting"
+                                                >
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Volunteer Training Day Success
+                                            </td>
+                                            <td>Organizational Updates</td>
+                                            <td>public</td>
+                                            <td>
+                                                <span class="status-badge draft"
+                                                    >draft</span
+                                                >
+                                            </td>
+                                            <td>—</td>
+                                            <td class="table-actions">
+                                                <button class="btn-edit">
+                                                    Edit
+                                                </button>
+                                                <button
+                                                    class="btn-outline-sm"
+                                                    onclick="
+                                                        window.open(
+                                                            '/preview/posts/2',
+                                                            '_blank'
+                                                        )
+                                                    "
+                                                >
+                                                    Preview
+                                                </button>
+                                                <button class="btn-warning-sm">
+                                                    Archive
+                                                </button>
+                                                <button
+                                                    class="btn-delete-sm"
+                                                    disabled
+                                                    title="Must be archived before deleting"
+                                                >
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Medical Supply Chain Update Q4
+                                            </td>
+                                            <td>Media &amp; Press</td>
+                                            <td>archived</td>
+                                            <td>
+                                                <span
+                                                    class="status-badge published"
+                                                    >published</span
+                                                >
+                                            </td>
+                                            <td>Nov 20, 2025</td>
+                                            <td class="table-actions">
+                                                <button class="btn-edit">
+                                                    Edit
+                                                </button>
+                                                <button
+                                                    class="btn-outline-sm"
+                                                    onclick="
+                                                        window.open(
+                                                            '/preview/posts/3',
+                                                            '_blank'
+                                                        )
+                                                    "
+                                                >
+                                                    Preview
+                                                </button>
+                                                <button
+                                                    class="btn-warning-sm"
+                                                    disabled
+                                                >
+                                                    Archive
+                                                </button>
+                                                <button class="btn-delete-sm">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Events -->
+                        <div id="events" class="tab-content">
+                            <div class="form-section">
+                                <h2>Create Event</h2>
+
+                                <form
+                                    class="admin-form"
+                                    onsubmit="return false;"
+                                >
+                                    <small>
+                                        Fields marked with * are required to
+                                        publish.
+                                    </small>
+
+                                    <fieldset class="admin-form-card">
+                                        <legend>Event Details</legend>
+
+                                        <div class="form-group">
+                                            <label for="event-title"
+                                                >Title *</label
+                                            >
+                                            <input
+                                                type="text"
+                                                id="event-title"
+                                                name="title"
+                                                placeholder="Enter event title"
+                                            />
+                                            <div class="editor-slug-preview">
+                                                <span class="editor-slug-label">
+                                                    Event URL:
+                                                </span>
+                                                <span class="editor-slug-url">
+                                                    https://site.com/events/
+                                                    <span
+                                                        id="event-slug-preview"
+                                                        class="editor-slug"
+                                                        >your-event-slug</span
+                                                    >
+                                                </span>
+                                            </div>
+                                            <small>
+                                                Slug is generated automatically
+                                                on publish and cannot be edited.
+                                            </small>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="event-status"
+                                                    >Status</label
+                                                >
+                                                <select
+                                                    id="event-status"
+                                                    name="status"
+                                                >
+                                                    <option
+                                                        value="draft"
+                                                        selected
+                                                    >
+                                                        draft
+                                                    </option>
+                                                    <option value="published">
+                                                        published
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="event-start-date"
+                                                    >Start Date *</label
+                                                >
+                                                <input
+                                                    type="date"
+                                                    id="event-start-date"
+                                                    name="start_date"
+                                                />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="event-end-date"
+                                                    >End Date (optional)</label
+                                                >
+                                                <input
+                                                    type="date"
+                                                    id="event-end-date"
+                                                    name="end_date"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="event-location"
+                                                >Location *</label
+                                            >
+                                            <input
+                                                type="text"
+                                                id="event-location"
+                                                name="location"
+                                                placeholder="Venue / city"
+                                            />
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset class="admin-form-card">
+                                        <legend>Content</legend>
+
+                                        <div class="form-group">
+                                            <label for="event-description"
+                                                >Description (Markdown) *</label
+                                            >
+                                            <div
+                                                class="editor-mode-row"
+                                                aria-label="Editor mode"
+                                            >
+                                                <div
+                                                    class="editor-mode-toggle"
+                                                    id="event-editor-toggle"
+                                                    role="tablist"
+                                                >
+                                                    <button
+                                                        type="button"
+                                                        class="editor-mode-btn active"
+                                                        data-mode="edit"
+                                                        aria-selected="true"
+                                                    >
+                                                        Editor
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        class="editor-mode-btn"
+                                                        data-mode="preview"
+                                                        aria-selected="false"
+                                                    >
+                                                        Preview
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="editor-toolbar"
+                                                id="event-editor-toolbar"
+                                            >
+                                                <button
+                                                    type="button"
+                                                    class="editor-btn"
+                                                    title="Bold"
+                                                >
+                                                    <strong>B</strong>
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    class="editor-btn"
+                                                    title="Italic"
+                                                >
+                                                    <em>I</em>
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    class="editor-btn"
+                                                    title="Heading 2"
+                                                >
+                                                    H2
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    class="editor-btn"
+                                                    title="Heading 3"
+                                                >
+                                                    H3
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    class="editor-btn"
+                                                    title="List"
+                                                >
+                                                    List
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    class="editor-btn"
+                                                    title="Quote"
+                                                >
+                                                    Quote
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    class="editor-btn"
+                                                    title="Link"
+                                                >
+                                                    Link
+                                                </button>
+                                            </div>
+                                            <textarea
+                                                id="event-description"
+                                                name="description"
+                                                class="content-editor"
+                                                placeholder="Describe the event using Markdown…"
+                                            ></textarea>
+                                            <div
+                                                id="event-description-preview"
+                                                class="editor-preview"
+                                                hidden
+                                            ></div>
+                                            <div class="editor-meta-row">
+                                                <div
+                                                    class="editor-autosave-status"
+                                                    id="event-autosave-status"
+                                                    aria-live="polite"
+                                                >
+                                                    Saved
+                                                </div>
+                                                <div
+                                                    class="editor-stats"
+                                                    id="event-editor-stats"
+                                                >
+                                                    0 words • 0 min read
+                                                </div>
+                                            </div>
+                                            <small
+                                                >Markdown supported. Raw HTML is
+                                                not allowed.</small
+                                            >
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset class="admin-form-card">
+                                        <legend>Event Media</legend>
+
+                                        <div class="form-group">
+                                            <label for="event-featured-image">
+                                                Featured Image
+                                            </label>
+                                            <input
+                                                type="file"
+                                                id="event-featured-image"
+                                                name="featured_image"
+                                                accept="image/*"
+                                            />
+                                            <div
+                                                id="event-featured-preview"
+                                                class="file-preview"
+                                                aria-live="polite"
+                                            ></div>
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset class="admin-form-card">
+                                        <legend>Event Metadata</legend>
+
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="event-visibility"
+                                                    >Visibility *</label
+                                                >
+                                                <select
+                                                    id="event-visibility"
+                                                    name="visibility"
+                                                >
+                                                    <option
+                                                        value="public"
+                                                        selected
+                                                    >
+                                                        public
+                                                    </option>
+                                                    <option value="internal">
+                                                        internal
+                                                    </option>
+                                                    <option value="archived">
+                                                        archived
+                                                    </option>
+                                                </select>
+                                                <small
+                                                    >Draft content cannot be
+                                                    archived.</small
+                                                >
+                                            </div>
+                                            <div class="form-group">
+                                                <label
+                                                    for="event-registration-link"
+                                                    >Registration Link</label
+                                                >
+                                                <input
+                                                    type="url"
+                                                    id="event-registration-link"
+                                                    name="registration_link"
+                                                    placeholder="https://..."
+                                                />
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                    <div class="publish-actions">
+                                        <div class="form-actions">
+                                            <button
+                                                type="button"
+                                                class="btn-secondary"
+                                            >
+                                                Save Draft
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="btn-outline"
+                                                onclick="
+                                                    window.open(
+                                                        '/preview/events/{eventId}',
+                                                        '_blank'
+                                                    )
+                                                "
+                                                title="Saves draft automatically and opens preview in a new tab"
+                                            >
+                                                Preview
+                                            </button>
+                                            <button
+                                                type="submit"
+                                                class="btn-primary"
+                                            >
+                                                Create Event
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="form-section">
+                                <h2>Event Preview (Prototype)</h2>
+                                <div class="entity-preview" id="event-preview">
+                                    <div
+                                        class="entity-preview-media"
+                                        id="event-preview-media"
+                                    >
+                                        <div
+                                            class="entity-preview-media-placeholder"
+                                        >
+                                            Featured image preview
+                                        </div>
+                                    </div>
+                                    <div class="entity-preview-body">
+                                        <div
+                                            class="entity-preview-title"
+                                            id="event-preview-title"
+                                        >
+                                            Your event title will appear here
+                                        </div>
+                                        <div
+                                            class="entity-preview-meta"
+                                            id="event-preview-meta"
+                                        >
+                                            Start date → End date • Location
+                                        </div>
+                                        <div
+                                            class="entity-preview-desc"
+                                            id="event-preview-desc"
+                                        >
+                                            Short description preview.
+                                        </div>
+                                        <div class="entity-preview-actions">
+                                            <a href="#" class="btn-secondary"
+                                                >Register</a
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                                <small>
+                                    This is a visual-only preview to validate
+                                    the event entity layout.
+                                </small>
+                            </div>
+
+                            <!-- Events Table with Filters -->
+                            <div class="recent-posts-admin">
+                                <h3>Events</h3>
+
+                                <div class="admin-filter-bar">
+                                    <div class="filter-group">
+                                        <label for="filter-event-search"
+                                            >Search</label
+                                        >
+                                        <input
+                                            type="text"
+                                            id="filter-event-search"
+                                            placeholder="Search by title…"
+                                        />
+                                    </div>
+                                    <div class="filter-group">
+                                        <label for="filter-event-status"
+                                            >Status</label
+                                        >
+                                        <select id="filter-event-status">
+                                            <option value="">All</option>
+                                            <option value="draft">Draft</option>
+                                            <option value="published">
+                                                Published
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="filter-group">
+                                        <label for="filter-event-visibility"
+                                            >Visibility</label
+                                        >
+                                        <select id="filter-event-visibility">
+                                            <option value="">All</option>
+                                            <option value="public">
+                                                Public
+                                            </option>
+                                            <option value="internal">
+                                                Internal
+                                            </option>
+                                            <option value="archived">
+                                                Archived
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="filter-group">
+                                        <label for="filter-event-timing"
+                                            >Timing</label
+                                        >
+                                        <select id="filter-event-timing">
+                                            <option value="">All</option>
+                                            <option value="upcoming">
+                                                Upcoming
+                                            </option>
+                                            <option value="past">Past</option>
+                                        </select>
+                                    </div>
+                                    <div class="filter-group">
+                                        <label for="filter-event-date"
+                                            >Date from</label
+                                        >
+                                        <input
+                                            type="date"
+                                            id="filter-event-date"
+                                        />
+                                    </div>
+                                    <button class="btn-filter">Apply</button>
+                                </div>
+
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Start Date</th>
+                                            <th>Location</th>
+                                            <th>Visibility</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                Fundraising Gala in Stamford
+                                            </td>
+                                            <td>Mar 22, 2026</td>
+                                            <td>Stamford, CT</td>
+                                            <td>public</td>
+                                            <td>
+                                                <span
+                                                    class="status-badge published"
+                                                    >published</span
+                                                >
+                                            </td>
+                                            <td class="table-actions">
+                                                <button class="btn-edit">
+                                                    Edit
+                                                </button>
+                                                <button
+                                                    class="btn-outline-sm"
+                                                    onclick="
+                                                        window.open(
+                                                            '/preview/events/1',
+                                                            '_blank'
+                                                        )
+                                                    "
+                                                >
+                                                    Preview
+                                                </button>
+                                                <button class="btn-warning-sm">
+                                                    Archive
+                                                </button>
+                                                <button
+                                                    class="btn-delete-sm"
+                                                    disabled
+                                                    title="Must be archived before deleting"
+                                                >
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Community Aid Drive</td>
+                                            <td>Apr 10, 2026</td>
+                                            <td>Fairfield, CT</td>
+                                            <td>public</td>
+                                            <td>
+                                                <span class="status-badge draft"
+                                                    >draft</span
+                                                >
+                                            </td>
+                                            <td class="table-actions">
+                                                <button class="btn-edit">
+                                                    Edit
+                                                </button>
+                                                <button
+                                                    class="btn-outline-sm"
+                                                    onclick="
+                                                        window.open(
+                                                            '/preview/events/2',
+                                                            '_blank'
+                                                        )
+                                                    "
+                                                >
+                                                    Preview
+                                                </button>
+                                                <button class="btn-warning-sm">
+                                                    Archive
+                                                </button>
+                                                <button
+                                                    class="btn-delete-sm"
+                                                    disabled
+                                                    title="Must be archived before deleting"
+                                                >
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Contact Messages -->
+                        <div id="contact-messages" class="tab-content">
+                            <div class="form-section">
+                                <h2>Contact Messages</h2>
+
+                                <!-- Contact Messages Filter Bar -->
+                                <div class="admin-filter-bar">
+                                    <div class="filter-group">
+                                        <label for="filter-contact-search"
+                                            >Search</label
+                                        >
+                                        <input
+                                            type="text"
+                                            id="filter-contact-search"
+                                            placeholder="Email or subject…"
+                                        />
+                                    </div>
+                                    <div class="filter-group">
+                                        <label for="filter-contact-status"
+                                            >Status</label
+                                        >
+                                        <select id="filter-contact-status">
+                                            <option value="">All</option>
+                                            <option value="pending">
+                                                Pending
+                                            </option>
+                                            <option value="responded">
+                                                Responded
+                                            </option>
+                                            <option value="archived">
+                                                Archived
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="filter-group">
+                                        <label for="filter-contact-date-from"
+                                            >Date from</label
+                                        >
+                                        <input
+                                            type="date"
+                                            id="filter-contact-date-from"
+                                        />
+                                    </div>
+                                    <div class="filter-group">
+                                        <label for="filter-contact-date-to"
+                                            >Date to</label
+                                        >
+                                        <input
+                                            type="date"
+                                            id="filter-contact-date-to"
+                                        />
+                                    </div>
+                                    <button class="btn-filter">Apply</button>
+                                </div>
+
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Subject</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Jan 17, 2026</td>
+                                            <td>John Smith</td>
+                                            <td>john@example.com</td>
+                                            <td>
+                                                Join an existing Friendship City
+                                            </td>
+                                            <td>
+                                                <span
+                                                    class="status-badge pending"
+                                                    >pending</span
+                                                >
+                                            </td>
+                                            <td class="table-actions">
+                                                <button class="btn-edit">
+                                                    View
+                                                </button>
+                                                <button class="btn-outline-sm">
+                                                    Respond
+                                                </button>
+                                                <button class="btn-warning-sm">
+                                                    Archive
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jan 15, 2026</td>
+                                            <td>Michael Brown</td>
+                                            <td>michael@example.com</td>
+                                            <td>General inquiry</td>
+                                            <td>
+                                                <span
+                                                    class="status-badge published"
+                                                    >responded</span
+                                                >
+                                            </td>
+                                            <td class="table-actions">
+                                                <button class="btn-edit">
+                                                    View
+                                                </button>
+                                                <button
+                                                    class="btn-outline-sm"
+                                                    disabled
+                                                >
+                                                    Respond
+                                                </button>
+                                                <button class="btn-warning-sm">
+                                                    Archive
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dec 28, 2025</td>
+                                            <td>Sarah Lee</td>
+                                            <td>sarah@example.com</td>
+                                            <td>Donation receipt request</td>
+                                            <td>
+                                                <span
+                                                    class="status-badge archived"
+                                                    >archived</span
+                                                >
+                                            </td>
+                                            <td class="table-actions">
+                                                <button class="btn-edit">
+                                                    View
+                                                </button>
+                                                <button
+                                                    class="btn-outline-sm"
+                                                    disabled
+                                                >
+                                                    Respond
+                                                </button>
+                                                <button
+                                                    class="btn-warning-sm"
+                                                    disabled
+                                                >
+                                                    Archive
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Newsletter Subscribers -->
+                        <div id="newsletter-subscribers" class="tab-content">
+                            <div class="form-section">
+                                <h2>Newsletter Subscribers</h2>
+
+                                <!-- Newsletter Filter Bar -->
+                                <div class="admin-filter-bar">
+                                    <div class="filter-group">
+                                        <label for="filter-newsletter-search"
+                                            >Email search</label
+                                        >
+                                        <input
+                                            type="text"
+                                            id="filter-newsletter-search"
+                                            placeholder="Search by email…"
+                                        />
+                                    </div>
+                                    <div class="filter-group">
+                                        <label for="filter-newsletter-date-from"
+                                            >Date from</label
+                                        >
+                                        <input
+                                            type="date"
+                                            id="filter-newsletter-date-from"
+                                        />
+                                    </div>
+                                    <div class="filter-group">
+                                        <label for="filter-newsletter-date-to"
+                                            >Date to</label
+                                        >
+                                        <input
+                                            type="date"
+                                            id="filter-newsletter-date-to"
+                                        />
+                                    </div>
+                                    <button class="btn-filter">Apply</button>
+                                    <button class="btn-primary">
+                                        Export CSV
+                                    </button>
+                                </div>
+
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Email</th>
+                                            <th>Subscribe Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>subscriber1@example.com</td>
+                                            <td>Jan 10, 2026</td>
+                                        </tr>
+                                        <tr>
+                                            <td>subscriber2@example.com</td>
+                                            <td>Jan 8, 2026</td>
+                                        </tr>
+                                        <tr>
+                                            <td>subscriber3@example.com</td>
+                                            <td>Jan 5, 2026</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer admin-footer">
+            <div class="container">
+                <p>&copy; 2026 Ukraine Aid International - Admin Panel</p>
+            </div>
+        </footer>
+
+        <script src="js/admin-tab.js"></script>
+        <script src="js/admin-previews.js"></script>
+        <script src="js/admin-editor.js"></script>
+    </body>
+</html>

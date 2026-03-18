@@ -1501,6 +1501,7 @@ textarea.content-editor {
     margin-bottom: 15px;
 }
 
+.latest-posts .posts-grid,
 .posts-grid-preview {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -1677,7 +1678,9 @@ textarea.content-editor {
     font-size: var(--font-sm);
     font-weight: 600;
     cursor: pointer;
-    transition: border-color 0.2s, background-color 0.2s;
+    transition:
+        border-color 0.2s,
+        background-color 0.2s;
 }
 
 .like-button:hover {
@@ -2212,6 +2215,7 @@ textarea.content-editor {
 .related-posts-sidebar {
     position: sticky;
     top: 120px;
+    /* margin-top: 40px; */
     background-color: var(--white);
     margin-bottom: var(--spacing-lg);
     padding: var(--spacing-md);
@@ -2297,7 +2301,7 @@ textarea.content-editor {
 }
 
 .sidebar-cta {
-    /* margin-top: var(--spacing-lg); */
+    margin-top: var(--spacing-lg);
     /* padding-top: var(--spacing-lg); */
     /* border-top: 2px solid var(--gray-200); */
     text-align: center;
@@ -3316,6 +3320,15 @@ textarea.content-editor {
     margin-bottom: 18px;
 }
 
+.contact-info-panel .social-icon {
+    background-color: var(--primary-blue);
+    color: var(--white);
+}
+
+.contact-info-panel .social-icon:hover {
+    background-color: var(--primary-blue-dark);
+}
+
 /* City Pair Page Styles */
 
 /* Breadcrumb */
@@ -4079,6 +4092,7 @@ textarea.content-editor {
         grid-template-columns: 1fr;
     }
 
+    .latest-posts .posts-grid,
     .posts-grid-preview {
         grid-template-columns: 1fr;
     }
@@ -4185,6 +4199,7 @@ textarea.content-editor {
         grid-template-columns: 1fr;
     }
 
+    .latest-posts .posts-grid,
     .posts-grid-preview {
         grid-template-columns: 1fr;
     }
