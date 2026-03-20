@@ -100,18 +100,21 @@ Events follow a slightly different lifecycle due to time-based behavior.
 
 Event states:
 
-Draft → Published → Past Event
+Draft → Published → Past Event (presentation only)
 
 Rules:
 
 - Draft events behave like draft posts.
-- Published events appear on the public Events page.
-- When the event date passes, the event is automatically considered a **Past Event**.
+- Published events appear on the public Events page **only when `visibility=public`**.
+- When the event date passes, the event is treated as a **Past Event** for display purposes.
+
+**Important:** "Past Event" is NOT a stored lifecycle state. It is a frontend presentation label derived from the event's `startDate`. It does NOT override visibility rules. A past event is publicly visible if and only if `status=published` AND `visibility=public`.
 
 Past events:
 
-- remain publicly visible
-- appear in the Past Events section
+- remain in the database unchanged
+- remain publicly visible **if and only if `status=published` AND `visibility=public`**
+- appear in the Past Events section of the public site under the same public content rules
 - remain part of the organization's historical record
 
 Events are not automatically deleted.

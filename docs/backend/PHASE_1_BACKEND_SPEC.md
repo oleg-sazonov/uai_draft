@@ -128,7 +128,7 @@ returns the event only if `status=published` AND `visibility=public`, otherwise 
 Default sorting must be applied **before pagination** on public list endpoints.
 
 - Posts list (`GET /api/posts`): sort by `publishedAt` **descending** (newest published first)
-- Events list (`GET /api/events`): upcoming events sorted by `startDate` **ascending** (soonest first)
+- Events list (`GET /api/events`): sorted by `startDate` **ascending** (soonest first). Returns **all** public events (upcoming and past); the frontend splits the list by comparing `startDate` to the current date.
 
 ### 3.2 Admin API (protected)
 
@@ -225,6 +225,8 @@ Optional fields:
 - `endDate`
 - `location`
 - `featuredImage` (URL)
+- `gallery` (array of URL strings)
+- `videoUrl`
 - `registrationLink` (URL)
 
 Lifecycle fields:

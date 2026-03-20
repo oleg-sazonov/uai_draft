@@ -16,7 +16,6 @@ This document explains how the admin panel is expected to be used by content edi
     - Visibility (Public / Internal / Archived)
 
     Optional fields:
-
     - Summary
     - Gallery images
     - Video URL
@@ -69,11 +68,15 @@ This document explains how the admin panel is expected to be used by content edi
 3. Fill required fields:
     - Title
     - startDate (required)
-    - endDate (optional)
+    - Visibility (Public / Internal / Archived)
+4. Add optional fields if applicable:
+    - endDate
     - Location
     - Description
-    - Visibility (Public / Internal / Archived)
-4. Add optional fields if available
+    - Featured image
+    - Gallery images
+    - Video URL
+    - Registration link
 5. Save as Draft (if supported) or Publish when ready
 6. Archived events are hidden from the public site but remain stored.
 

@@ -114,26 +114,26 @@ Collection: `posts`
 
 ## Fields
 
-| Field         | Type              | Description                                                |
-| ------------- | ----------------- | ---------------------------------------------------------- |
-| \_id          | ObjectId          | Unique identifier                                          |
-| title         | String            | Post title                                                 |
-| slug          | String            | Unique URL identifier (**required**)                       |
-| category      | Enum              | Field Mission | Sister City & Sister State Partnerships | Events & Community | Organizational Updates | Media & Press |
-| summary       | String            | Short preview text (optional)                              |
-| content       | String (Markdown) | Main content body (Markdown)                               |
-| featuredImage | String (URL)      | Featured image URL (**required**)                          |
-| gallery       | Array             | Gallery image URLs (optional)                              |
-| videoUrl      | String (URL)      | Optional related video URL                                 |
-| aidTypes      | Array (String)    | Humanitarian aid categories (optional, no duplicates)      |
-| partnership   | String            | Partnership association (optional)                         |
-| location      | String            | Location (optional)                                        |
-| likes         | Number            | Total number of likes (default: 0)                         |
-| status        | Enum              | draft / published                                          |
-| visibility    | Enum              | public / internal / archived                               |
-| publishedAt   | Date              | Timestamp of first publication (optional)                  |
-| createdAt     | Date              | Creation timestamp                                         |
-| updatedAt     | Date              | Last update                                                |
+| Field         | Type              | Description                                           |
+| ------------- | ----------------- | ----------------------------------------------------- | --------------------------------------- | ------------------ | ---------------------- | ------------- |
+| \_id          | ObjectId          | Unique identifier                                     |
+| title         | String            | Post title                                            |
+| slug          | String            | Unique URL identifier (**required**)                  |
+| category      | Enum              | Field Mission                                         | Sister City & Sister State Partnerships | Events & Community | Organizational Updates | Media & Press |
+| summary       | String            | Short preview text (optional)                         |
+| content       | String (Markdown) | Main content body (Markdown)                          |
+| featuredImage | String (URL)      | Featured image URL (**required**)                     |
+| gallery       | Array             | Gallery image URLs (optional)                         |
+| videoUrl      | String (URL)      | Optional related video URL                            |
+| aidTypes      | Array (String)    | Humanitarian aid categories (optional, no duplicates) |
+| partnership   | String            | Partnership association (optional)                    |
+| location      | String            | Location (optional)                                   |
+| likes         | Number            | Total number of likes (default: 0)                    |
+| status        | Enum              | draft / published                                     |
+| visibility    | Enum              | public / internal / archived                          |
+| publishedAt   | Date              | Timestamp of first publication (optional)             |
+| createdAt     | Date              | Creation timestamp                                    |
+| updatedAt     | Date              | Last update                                           |
 
 ## 2.1.1 Content Field (Markdown) — Formal Definition
 
@@ -226,25 +226,25 @@ Events represent fundraisers, awareness events, and community gatherings.
 
 ## Fields
 
-| Field         | Type     | Description                               |
-| ------------- | -------- | ----------------------------------------- |
-| \_id          | ObjectId | Unique ID                                 |
-| title         | String   | Event title                               |
-| slug          | String   | URL identifier (**required**)             |
-| description   | String (Markdown) | Event details (Markdown)             |
-| startDate     | Date     | Event start date/time (**required**)      |
-| endDate       | Date     | Event end date/time (optional)            |
-| location      | String   | Location                                  |
-| featuredImage | String   | Main image (optional)                     |
-| gallery       | Array (String) | Gallery image URLs (optional)        |
-| videoUrl      | String (URL) | Optional related video URL (YouTube/Vimeo) |
-| registrationLink | String | External registration URL (optional)     |
-| likes         | Number   | Total number of likes (default: 0)        |
-| status        | Enum     | draft / published                         |
-| visibility    | Enum     | public / internal / archived              |
-| publishedAt   | Date     | Timestamp of first publication (optional) |
-| createdAt     | Date     | Creation timestamp                        |
-| updatedAt     | Date     | Last update                               |
+| Field            | Type              | Description                                |
+| ---------------- | ----------------- | ------------------------------------------ |
+| \_id             | ObjectId          | Unique ID                                  |
+| title            | String            | Event title                                |
+| slug             | String            | URL identifier (**required**)              |
+| description      | String (Markdown) | Event details (Markdown) (optional)        |
+| startDate        | Date              | Event start date/time (**required**)       |
+| endDate          | Date              | Event end date/time (optional)             |
+| location         | String            | Location (optional)                        |
+| featuredImage    | String            | Main image (optional)                      |
+| gallery          | Array (String)    | Gallery image URLs (optional)              |
+| videoUrl         | String (URL)      | Optional related video URL (YouTube/Vimeo) |
+| registrationLink | String            | External registration URL (optional)       |
+| likes            | Number            | Total number of likes (default: 0)         |
+| status           | Enum              | draft / published                          |
+| visibility       | Enum              | public / internal / archived               |
+| publishedAt      | Date              | Timestamp of first publication (optional)  |
+| createdAt        | Date              | Creation timestamp                         |
+| updatedAt        | Date              | Last update                                |
 
 ## 2.2.1 Event Description Rendering
 
@@ -423,11 +423,11 @@ Reference: [MEDIA_UPLOAD_ARCHITECTURE_CLOUDINARY.md](MEDIA_UPLOAD_ARCHITECTURE_C
 Posts and Events share a common set of optional media fields.
 This is a **documented naming convention**, not a code-level abstraction.
 
-| Field         | Type           | Present On       | Description                              |
-| ------------- | -------------- | ---------------- | ---------------------------------------- |
-| featuredImage | String (URL)   | Posts, Events    | Primary hero/preview image               |
-| gallery       | Array (String) | Posts, Events    | Additional image URLs (Cloudinary)       |
-| videoUrl      | String (URL)   | Posts, Events    | External video URL (YouTube/Vimeo only)  |
+| Field         | Type           | Present On    | Description                             |
+| ------------- | -------------- | ------------- | --------------------------------------- |
+| featuredImage | String (URL)   | Posts, Events | Primary hero/preview image              |
+| gallery       | Array (String) | Posts, Events | Additional image URLs (Cloudinary)      |
+| videoUrl      | String (URL)   | Posts, Events | External video URL (YouTube/Vimeo only) |
 
 Rules:
 
@@ -517,13 +517,13 @@ Archived: - Hidden from public - Hidden from default admin view
 Every content record has both a `status` and a `visibility` value.
 The full combination matrix is:
 
-| Status    | Visibility | Result                                                                 |
-| --------- | ---------- | ---------------------------------------------------------------------- |
-| draft     | public     | Not visible publicly. Admin only. When published, becomes public.      |
-| draft     | internal   | Admin only.                                                            |
-| draft     | archived   | **Disallowed state.** Validation must reject this combination.         |
-| published | public     | Publicly visible content. Returned by public API endpoints.            |
-| published | internal   | Accessible only internally (admin panel). Not on public pages.         |
+| Status    | Visibility | Result                                                                                |
+| --------- | ---------- | ------------------------------------------------------------------------------------- |
+| draft     | public     | Not visible publicly. Admin only. When published, becomes public.                     |
+| draft     | internal   | Admin only.                                                                           |
+| draft     | archived   | **Disallowed state.** Validation must reject this combination.                        |
+| published | public     | Publicly visible content. Returned by public API endpoints.                           |
+| published | internal   | Accessible only internally (admin panel). Not on public pages.                        |
 | published | archived   | Hidden historical content. Preserved in DB, hidden from public + default admin views. |
 
 ### Public Content Invariant (Authoritative)

@@ -167,27 +167,29 @@
                                                         Select category
                                                     </option>
                                                     <option
-                                                        value="field-mission"
+                                                        value="Field Mission"
                                                     >
                                                         Field Mission
                                                     </option>
                                                     <option
-                                                        value="partnerships"
+                                                        value="Sister City &amp; Sister State Partnerships"
                                                     >
                                                         Sister City &amp; Sister
                                                         State Partnerships
                                                     </option>
                                                     <option
-                                                        value="events-community"
+                                                        value="Events &amp; Community"
                                                     >
                                                         Events &amp; Community
                                                     </option>
                                                     <option
-                                                        value="organizational-updates"
+                                                        value="Organizational Updates"
                                                     >
                                                         Organizational Updates
                                                     </option>
-                                                    <option value="media-press">
+                                                    <option
+                                                        value="Media &amp; Press"
+                                                    >
                                                         Media &amp; Press
                                                     </option>
                                                 </select>
@@ -651,22 +653,26 @@
                                         >
                                         <select id="filter-post-category">
                                             <option value="">All</option>
-                                            <option value="field-mission">
+                                            <option value="Field Mission">
                                                 Field Mission
                                             </option>
-                                            <option value="partnerships">
+                                            <option
+                                                value="Sister City &amp; Sister State Partnerships"
+                                            >
                                                 Sister City &amp; Sister State
                                                 Partnerships
                                             </option>
-                                            <option value="events-community">
+                                            <option
+                                                value="Events &amp; Community"
+                                            >
                                                 Events &amp; Community
                                             </option>
                                             <option
-                                                value="organizational-updates"
+                                                value="Organizational Updates"
                                             >
                                                 Organizational Updates
                                             </option>
-                                            <option value="media-press">
+                                            <option value="Media &amp; Press">
                                                 Media &amp; Press
                                             </option>
                                         </select>
@@ -1007,7 +1013,7 @@
 
                                         <div class="form-group">
                                             <label for="event-location"
-                                                >Location *</label
+                                                >Location</label
                                             >
                                             <input
                                                 type="text"
@@ -1023,7 +1029,7 @@
 
                                         <div class="form-group">
                                             <label for="event-description"
-                                                >Description (Markdown) *</label
+                                                >Description (Markdown)</label
                                             >
                                             <div
                                                 class="editor-mode-row"
@@ -1157,6 +1163,46 @@
                                                 class="file-preview"
                                                 aria-live="polite"
                                             ></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="event-gallery-images">
+                                                Gallery Images
+                                            </label>
+                                            <input
+                                                type="file"
+                                                id="event-gallery-images"
+                                                name="gallery_images"
+                                                accept="image/*"
+                                                multiple
+                                            />
+                                            <small>
+                                                Optional. Drag &amp; drop images
+                                                into the preview area and drag
+                                                thumbnails to reorder.
+                                            </small>
+                                            <div
+                                                id="event-gallery-preview"
+                                                class="file-preview-grid"
+                                                data-dropzone="gallery"
+                                                aria-live="polite"
+                                            ></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="event-video-url"
+                                                >Video URL</label
+                                            >
+                                            <input
+                                                type="url"
+                                                id="event-video-url"
+                                                name="video_url"
+                                                placeholder="https://youtube.com/watch?v=..."
+                                            />
+                                            <small>
+                                                Optional. URL-based video
+                                                support (YouTube, Vimeo, etc.).
+                                            </small>
                                         </div>
                                     </fieldset>
 

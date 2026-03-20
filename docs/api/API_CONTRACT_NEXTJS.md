@@ -38,6 +38,8 @@ Returns a list of events for the public website.
 
 **Rule:** only events where `status=published` AND `visibility=public` are returned.
 
+**Important:** This endpoint returns **all** matching events — both upcoming and past. The frontend is responsible for splitting the list into "Upcoming" and "Past" sections based on `startDate` relative to the current date. The backend does not filter by timing.
+
 ### GET /api/posts/slugs
 
 Returns a list of slugs for posts that are eligible for static generation.
@@ -223,7 +225,8 @@ Success response (example):
 ### Posts
 
 - GET /api/admin/posts
-  List posts (includes draft/published and any visibility state).
+  List posts (includes draft/published; **excludes archived by default**).
+  Use `?includeArchived=true` to include archived records.
 
 - GET /api/admin/posts/:id
   Get a single post by id.
@@ -237,16 +240,70 @@ Success response (example):
 - DELETE /api/admin/posts/:id
   Delete a post.
 
+#### Admin Posts Filter Query Parameters
+
+All filter parameters are optional. Omitted parameters apply no constraint.
+
+| Parameter          | Type   | Behavior                                                                 |
+| ------------------ | ------ | ------------------------------------------------------------------------ |
+| `search`           | string | Case-insensitive substring match against `title`                         |
+| `category`         | string | Exact match against `category` (canonical enum value)                    |
+| `status`           | string | `draft` \| `published`                                                   |
+| `visibility`       | string | `public` \| `internal` \| `archived`                                     |
+| `aidType`          | string | Match posts where `aidTypes` array contains this value                   |
+| `partnership`      | string | Exact match against `partnership`                                        |
+| `dateFrom`         | string | ISO 8601 date. Return posts with `createdAt >= dateFrom`                 |
+| `dateTo`           | string | ISO 8601 date. Return posts with `createdAt <= dateTo`                   |
+| `includeArchived`  | string | `true` to include `visibility=archived` records (excluded by default)    |
+| `page`             | number | 1-based page number (default: `1`)                                       |
+| `limit`            | number | Records per page (default: `10`, max: `50`)                              |
+
+Default sort: `updatedAt` **descending** (most recently edited first).
+
+Filters are combined with AND logic. Pagination is applied after filtering and sorting.
+
 ### Events
 
 - GET /api/admin/events
-  List events (includes draft/published and any visibility state).
+  List events (includes draft/published; **excludes archived by default**).
+  Use `?includeArchived=true` to include archived records.
 
 - GET /api/admin/events/:id
   Get a single event by id.
 
+#### Admin Events Filter Query Parameters
+
+All filter parameters are optional. Omitted parameters apply no constraint.
+
+| Parameter          | Type   | Behavior                                                                 |
+| ------------------ | ------ | ------------------------------------------------------------------------ |
+| `search`           | string | Case-insensitive substring match against `title`                         |
+| `status`           | string | `draft` \| `published`                                                   |
+| `visibility`       | string | `public` \| `internal` \| `archived`                                     |
+| `timing`           | string | `upcoming` (startDate >= now) \| `past` (startDate < now). No default.   |
+| `dateFrom`         | string | ISO 8601 date. Return events with `startDate >= dateFrom`                |
+| `includeArchived`  | string | `true` to include `visibility=archived` records (excluded by default)    |
+| `page`             | number | 1-based page number (default: `1`)                                       |
+| `limit`            | number | Records per page (default: `10`, max: `50`)                              |
+
+Default sort: `startDate` **ascending** (soonest first).
+
+Filters are combined with AND logic. Pagination is applied after filtering and sorting.
+
 - POST /api/admin/events
   Create an event.
+
+  Minimum required body fields:
+
+  ```json
+  {
+    "title": "string",
+    "startDate": "ISO 8601 date string",
+    "visibility": "public | internal | archived"
+  }
+  ```
+
+  Optional fields: `description`, `endDate`, `location`, `featuredImage`, `gallery`, `videoUrl`, `registrationLink`, `status`.
 
 - PATCH /api/admin/events/:id
   Update an event.
@@ -259,6 +316,43 @@ Event create and update endpoints accept and return the following optional media
 - `videoUrl`: `string` — External video URL, YouTube/Vimeo only (optional)
 
 Public event endpoints (`GET /api/events`, `GET /api/events/:slug`) also include these fields in responses when present.
+
+#### Field Naming & Mapping (UI → Model)
+
+Admin form inputs use snake_case; canonical model fields use camelCase. The backend must map these before validation, persistence, and API responses.
+
+| Admin form field   | Canonical model field | Notes                                      |
+| ------------------ | --------------------- | ------------------------------------------ |
+| `title`            | `title`               | No transformation needed                   |
+| `category`         | `category`             | See "Post Category Values" below           |
+| `status`           | `status`               | No transformation needed                   |
+| `visibility`       | `visibility`           | No transformation needed                   |
+| `summary`          | `summary`              | No transformation needed                   |
+| `content`          | `content`              | No transformation needed                   |
+| `description`      | `description`          | No transformation needed (Events only)     |
+| `location`         | `location`             | No transformation needed                   |
+| `partnership`      | `partnership`          | No transformation needed                   |
+| `featured_image`   | `featuredImage`        |                                            |
+| `gallery_images`   | `gallery`              |                                            |
+| `video_url`        | `videoUrl`             |                                            |
+| `start_date`       | `startDate`            | Events only                                |
+| `end_date`         | `endDate`              | Events only                                |
+| `registration_link`| `registrationLink`     | Events only                                |
+| `aid_type`         | `aidTypes`             | Collected as array from checkbox group      |
+
+API responses (both public and admin) must use camelCase field names only.
+
+#### Post Category Values (Authoritative)
+
+Post `category` uses canonical **display-string** enum values as defined in Phase 0:
+
+- `Field Mission`
+- `Sister City & Sister State Partnerships`
+- `Events & Community`
+- `Organizational Updates`
+- `Media & Press`
+
+These are the values stored in MongoDB and accepted/returned by the API. The admin UI must submit and receive these exact strings. Slug-like shorthand values (e.g., `field-mission`, `partnerships`) are **not valid** and must be rejected by Zod validation.
 
 - DELETE /api/admin/events/:id
   Delete an event (if supported) or archive via update (implementation detail).

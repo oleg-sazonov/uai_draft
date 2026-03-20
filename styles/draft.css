@@ -2302,7 +2302,7 @@ textarea.content-editor {
 
 .sidebar-cta {
     margin-top: var(--spacing-lg);
-    /* padding-top: var(--spacing-lg); */
+    padding-top: var(--spacing-lg);
     /* border-top: 2px solid var(--gray-200); */
     text-align: center;
 }
