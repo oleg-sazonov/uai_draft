@@ -8,6 +8,7 @@
     const slugEl = document.getElementById("post-slug-preview");
     const statusEl = document.getElementById("post-status");
     const postCategoryEl = document.getElementById("post-category");
+    const postFormEl = titleEl && titleEl.form;
     const summaryEl = document.getElementById("post-summary");
     const contentEl = document.getElementById("post-content");
     const previewEl = document.getElementById("post-content-preview");
@@ -15,6 +16,7 @@
     const toggleEl = document.getElementById("post-editor-toggle");
     const statsEl = document.getElementById("post-editor-stats");
     const autosaveEl = document.getElementById("post-autosave-status");
+    const partnershipEl = document.getElementById("post-partnership");
 
     const eventTitleEl = document.getElementById("event-title");
     const eventSlugEl = document.getElementById("event-slug-preview");
@@ -371,6 +373,46 @@
         }, 700);
     }
 
+    function toPartnershipArray(value) {
+        if (Array.isArray(value)) {
+            const firstValue = value.find(function (item) {
+                return typeof item === "string" && item.trim();
+            });
+
+            return firstValue ? [firstValue.trim()] : undefined;
+        }
+
+        if (typeof value !== "string") return undefined;
+
+        const trimmedValue = value.trim();
+        return trimmedValue ? [trimmedValue] : undefined;
+    }
+
+    function syncPartnershipField(value) {
+        const partnershipValues = toPartnershipArray(value);
+        var selectedValue = partnershipValues ? partnershipValues[0] : "";
+
+        if (partnershipEl) {
+            var checkboxes = partnershipEl.querySelectorAll
+                ? partnershipEl.querySelectorAll('input[name="partnership"]')
+                : [];
+
+            if (checkboxes.length > 0) {
+                Array.from(checkboxes).forEach(function (cb) {
+                    cb.checked = cb.value === selectedValue;
+                });
+            } else {
+                partnershipEl.value = selectedValue;
+            }
+
+            partnershipEl.partnershipValue = partnershipValues;
+        }
+
+        if (postFormEl) {
+            postFormEl.partnershipValue = partnershipValues;
+        }
+    }
+
     function makeDropzone(container, input, options) {
         if (!container || !input) return;
 
@@ -512,9 +554,36 @@
         markDirty("post");
     });
 
+    if (partnershipEl) {
+        partnershipEl.addEventListener("change", function (e) {
+            var target = e.target;
+            if (
+                target &&
+                target.type === "checkbox" &&
+                target.name === "partnership"
+            ) {
+                if (target.checked) {
+                    Array.from(
+                        partnershipEl.querySelectorAll(
+                            'input[name="partnership"]'
+                        )
+                    ).forEach(function (cb) {
+                        if (cb !== target) cb.checked = false;
+                    });
+                    syncPartnershipField(target.value);
+                } else {
+                    syncPartnershipField("");
+                }
+            } else {
+                syncPartnershipField(partnershipEl.value);
+            }
+            markDirty("post");
+        });
+    }
+
     Array.from(
         document.querySelectorAll(
-            '#posts input[name="aid_type"], #posts select[name="partnership"], #posts input[name="location"], #posts input[name="video_url"], #posts select[name="visibility"]'
+            '#posts input[name="aid_type"], #posts input[name="location"], #posts input[name="video_url"], #posts select[name="visibility"]'
         )
     ).forEach((el) => {
         const eventName =
@@ -654,10 +723,29 @@
         saveDraft("event");
     }, AUTOSAVE_INTERVAL_MS);
 
+    if (postFormEl) {
+        postFormEl.getPartnershipValue = function () {
+            return toPartnershipArray(
+                partnershipEl && partnershipEl.partnershipValue
+            );
+        };
+
+        postFormEl.setPartnershipValue = function (value) {
+            syncPartnershipField(value);
+        };
+    }
+
     updateSlug();
     updateStats();
     setMode("edit");
     setAutosaveStatus("post", "Saved");
+    (function initPartnership() {
+        if (!partnershipEl) return;
+        var checked = partnershipEl.querySelector(
+            'input[name="partnership"]:checked'
+        );
+        syncPartnershipField(checked ? checked.value : "");
+    })();
     decorateGalleryThumbs();
     updateEventSlug();
     updateEventStats();
