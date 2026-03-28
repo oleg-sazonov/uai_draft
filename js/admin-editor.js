@@ -375,11 +375,15 @@
 
     function toPartnershipArray(value) {
         if (Array.isArray(value)) {
-            const firstValue = value.find(function (item) {
-                return typeof item === "string" && item.trim();
-            });
+            const validValues = value
+                .filter(function (item) {
+                    return typeof item === "string" && item.trim();
+                })
+                .map(function (item) {
+                    return item.trim();
+                });
 
-            return firstValue ? [firstValue.trim()] : undefined;
+            return validValues.length > 0 ? validValues : undefined;
         }
 
         if (typeof value !== "string") return undefined;
@@ -390,7 +394,6 @@
 
     function syncPartnershipField(value) {
         const partnershipValues = toPartnershipArray(value);
-        var selectedValue = partnershipValues ? partnershipValues[0] : "";
 
         if (partnershipEl) {
             var checkboxes = partnershipEl.querySelectorAll
@@ -399,10 +402,14 @@
 
             if (checkboxes.length > 0) {
                 Array.from(checkboxes).forEach(function (cb) {
-                    cb.checked = cb.value === selectedValue;
+                    cb.checked = partnershipValues
+                        ? partnershipValues.includes(cb.value)
+                        : false;
                 });
             } else {
-                partnershipEl.value = selectedValue;
+                partnershipEl.value = partnershipValues
+                    ? partnershipValues[0]
+                    : "";
             }
 
             partnershipEl.partnershipValue = partnershipValues;
@@ -562,18 +569,15 @@
                 target.type === "checkbox" &&
                 target.name === "partnership"
             ) {
-                if (target.checked) {
+                syncPartnershipField(
                     Array.from(
                         partnershipEl.querySelectorAll(
-                            'input[name="partnership"]'
+                            'input[name="partnership"]:checked'
                         )
-                    ).forEach(function (cb) {
-                        if (cb !== target) cb.checked = false;
-                    });
-                    syncPartnershipField(target.value);
-                } else {
-                    syncPartnershipField("");
-                }
+                    ).map(function (cb) {
+                        return cb.value;
+                    })
+                );
             } else {
                 syncPartnershipField(partnershipEl.value);
             }
@@ -741,10 +745,15 @@
     setAutosaveStatus("post", "Saved");
     (function initPartnership() {
         if (!partnershipEl) return;
-        var checked = partnershipEl.querySelector(
-            'input[name="partnership"]:checked'
+        syncPartnershipField(
+            Array.from(
+                partnershipEl.querySelectorAll(
+                    'input[name="partnership"]:checked'
+                )
+            ).map(function (cb) {
+                return cb.value;
+            })
         );
-        syncPartnershipField(checked ? checked.value : "");
     })();
     decorateGalleryThumbs();
     updateEventSlug();
