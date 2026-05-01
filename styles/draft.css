@@ -22,6 +22,11 @@ body {
     --primary-blue: #0057b7;
     --primary-blue-dark: #004494;
     --primary-yellow: #ffd700;
+
+    /* --primary-blue: #3fa9f5;
+    --primary-blue-dark: #3dabe2;
+    --primary-yellow: #fbd605; */
+
     --success-green: #28a745;
     --danger-red: #dc3545;
 
@@ -3018,6 +3023,11 @@ textarea.content-editor {
 }
 
 .status-badge.published {
+    background-color: var(--success-green);
+    color: var(--white);
+}
+
+.status-badge.responded {
     background-color: var(--success-green);
     color: var(--white);
 }

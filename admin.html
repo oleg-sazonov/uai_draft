@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Admin Panel - Ukraine Aid International</title>
-        <link rel="stylesheet" href="styles/draft.css" />
+        <link rel="stylesheet" href="../styles/draft.css" />
     </head>
     <body>
         <!-- Admin Header -->
@@ -514,17 +514,17 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label>Partnership</label>
+                                                <label>Partnerships</label>
                                                 <div
                                                     class="checkbox-group"
-                                                    id="post-partnership"
+                                                    id="post-partnerships"
                                                 >
                                                     <label
                                                         class="checkbox-label"
                                                     >
                                                         <input
                                                             type="checkbox"
-                                                            name="partnership"
+                                                            name="partnerships"
                                                             value="kramatorsk-ukraine-stamford-ct-usa"
                                                         />
                                                         Kramatorsk (Ukraine) -
@@ -535,7 +535,7 @@
                                                     >
                                                         <input
                                                             type="checkbox"
-                                                            name="partnership"
+                                                            name="partnerships"
                                                             value="lyman-ukraine-westport-ct-usa"
                                                         />
                                                         Lyman (Ukraine) -
@@ -546,7 +546,7 @@
                                                     >
                                                         <input
                                                             type="checkbox"
-                                                            name="partnership"
+                                                            name="partnerships"
                                                             value="lyman-ukraine-marigny-le-lozon-normandy-france"
                                                         />
                                                         Lyman (Ukraine) -
@@ -558,7 +558,7 @@
                                                     >
                                                         <input
                                                             type="checkbox"
-                                                            name="partnership"
+                                                            name="partnerships"
                                                             value="sumy-ukraine-sacramento-ca-usa"
                                                         />
                                                         Sumy (Ukraine) -
@@ -569,7 +569,7 @@
                                                     >
                                                         <input
                                                             type="checkbox"
-                                                            name="partnership"
+                                                            name="partnerships"
                                                             value="izium-ukraine-greenwich-ct-usa"
                                                         />
                                                         Izium (Ukraine) -
@@ -580,7 +580,7 @@
                                                     >
                                                         <input
                                                             type="checkbox"
-                                                            name="partnership"
+                                                            name="partnerships"
                                                             value="sviatohirsk-ukraine-easton-ct-usa"
                                                         />
                                                         Sviatohirsk (Ukraine) -
@@ -591,7 +591,7 @@
                                                     >
                                                         <input
                                                             type="checkbox"
-                                                            name="partnership"
+                                                            name="partnerships"
                                                             value="sviatohirsk-ukraine-ashland-or-usa"
                                                         />
                                                         Sviatohirsk (Ukraine) -
@@ -602,7 +602,7 @@
                                                     >
                                                         <input
                                                             type="checkbox"
-                                                            name="partnership"
+                                                            name="partnerships"
                                                             value="kostiantynivka-ukraine-fairfield-ct-usa"
                                                         />
                                                         Kostiantynivka (Ukraine)
@@ -613,7 +613,7 @@
                                                     >
                                                         <input
                                                             type="checkbox"
-                                                            name="partnership"
+                                                            name="partnerships"
                                                             value="druzhkivka-ukraine-ridgefield-ct-usa"
                                                         />
                                                         Druzhkivka (Ukraine) -
@@ -624,7 +624,7 @@
                                                     >
                                                         <input
                                                             type="checkbox"
-                                                            name="partnership"
+                                                            name="partnerships"
                                                             value="siversk-ukraine-weston-ct-usa"
                                                         />
                                                         Siversk (Ukraine) -
@@ -635,7 +635,7 @@
                                                     >
                                                         <input
                                                             type="checkbox"
-                                                            name="partnership"
+                                                            name="partnerships"
                                                             value="zazymia-ukraine-pound-ridge-ny-usa"
                                                         />
                                                         Zazymia (Ukraine) -
@@ -646,7 +646,7 @@
                                                     >
                                                         <input
                                                             type="checkbox"
-                                                            name="partnership"
+                                                            name="partnerships"
                                                             value="donetsk-oblast-ukraine-state-of-connecticut-usa"
                                                         />
                                                         Donetsk Oblast (Ukraine)
@@ -830,7 +830,7 @@
                                             <option value="evacuation">
                                                 Evacuation
                                             </option>
-                                            <option value="humanitarian">
+                                            <option value="general">
                                                 Humanitarian Supplies
                                             </option>
                                             <option value="vehicles">
@@ -839,30 +839,70 @@
                                         </select>
                                     </div>
                                     <div class="filter-group">
-                                        <label for="filter-post-partnership"
-                                            >Partnership</label
+                                        <label for="filter-post-partnerships"
+                                            >Partnerships</label
                                         >
-                                        <select id="filter-post-partnership">
+                                        <select id="filter-post-partnerships">
                                             <option value="">All</option>
-                                            <option value="kramatorsk-stamford">
+                                            <option
+                                                value="kramatorsk-ukraine-stamford-ct-usa"
+                                            >
                                                 Kramatorsk &amp; Stamford
                                             </option>
                                             <option
-                                                value="kostiantynivka-fairfield"
+                                                value="lyman-ukraine-westport-ct-usa"
                                             >
-                                                Kostiantynivka &amp; Fairfield
-                                            </option>
-                                            <option value="lyman-westport">
                                                 Lyman &amp; Westport
                                             </option>
                                             <option
-                                                value="sviatohirsk-easton-ashland"
+                                                value="lyman-ukraine-marigny-le-lozon-normandy-france"
                                             >
-                                                Sviatohirsk &amp; Easton /
-                                                Ashland
+                                                Lyman &amp; Marigny-Le-Lozon
                                             </option>
-                                            <option value="organization">
-                                                Organization-wide
+                                            <option
+                                                value="sumy-ukraine-sacramento-ca-usa"
+                                            >
+                                                Sumy &amp; Sacramento
+                                            </option>
+                                            <option
+                                                value="izium-ukraine-greenwich-ct-usa"
+                                            >
+                                                Izium &amp; Greenwich
+                                            </option>
+                                            <option
+                                                value="sviatohirsk-ukraine-easton-ct-usa"
+                                            >
+                                                Sviatohirsk &amp; Easton
+                                            </option>
+                                            <option
+                                                value="sviatohirsk-ukraine-ashland-or-usa"
+                                            >
+                                                Sviatohirsk &amp; Ashland
+                                            </option>
+                                            <option
+                                                value="kostiantynivka-ukraine-fairfield-ct-usa"
+                                            >
+                                                Kostiantynivka &amp; Fairfield
+                                            </option>
+                                            <option
+                                                value="druzhkivka-ukraine-ridgefield-ct-usa"
+                                            >
+                                                Druzhkivka &amp; Ridgefield
+                                            </option>
+                                            <option
+                                                value="siversk-ukraine-weston-ct-usa"
+                                            >
+                                                Siversk &amp; Weston
+                                            </option>
+                                            <option
+                                                value="zazymia-ukraine-pound-ridge-ny-usa"
+                                            >
+                                                Zazymia &amp; Pound Ridge
+                                            </option>
+                                            <option
+                                                value="donetsk-oblast-ukraine-state-of-connecticut-usa"
+                                            >
+                                                Donetsk Oblast &amp; Connecticut
                                             </option>
                                         </select>
                                     </div>
@@ -1619,6 +1659,9 @@
                                             <option value="responded">
                                                 Responded
                                             </option>
+                                            <option value="closed">
+                                                Closed
+                                            </option>
                                         </select>
                                     </div>
                                     <div class="filter-group">
@@ -1654,6 +1697,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <!-- status: pending -->
                                         <tr>
                                             <td>Jan 17, 2026</td>
                                             <td>John Smith</td>
@@ -1672,10 +1716,11 @@
                                                     View
                                                 </button>
                                                 <button class="btn-outline-sm">
-                                                    Respond
+                                                    Mark as Responded
                                                 </button>
                                             </td>
                                         </tr>
+                                        <!-- status: responded -->
                                         <tr>
                                             <td>Jan 15, 2026</td>
                                             <td>Michael Brown</td>
@@ -1683,7 +1728,7 @@
                                             <td>General inquiry</td>
                                             <td>
                                                 <span
-                                                    class="status-badge published"
+                                                    class="status-badge responded"
                                                     >responded</span
                                                 >
                                             </td>
@@ -1691,11 +1736,28 @@
                                                 <button class="btn-edit">
                                                     View
                                                 </button>
-                                                <button
-                                                    class="btn-outline-sm"
-                                                    disabled
+                                                <button class="btn-outline-sm">
+                                                    Close
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <!-- status: closed -->
+                                        <tr>
+                                            <td>Jan 10, 2026</td>
+                                            <td>Sarah Lee</td>
+                                            <td>sarah@example.com</td>
+                                            <td>Donation Question</td>
+                                            <td>
+                                                <span class="status-badge draft"
+                                                    >closed</span
                                                 >
-                                                    Respond
+                                            </td>
+                                            <td class="table-actions">
+                                                <button class="btn-edit">
+                                                    View
+                                                </button>
+                                                <button class="btn-delete">
+                                                    Delete
                                                 </button>
                                             </td>
                                         </tr>
@@ -1781,8 +1843,8 @@
             </div>
         </footer>
 
-        <script src="js/admin-tab.js"></script>
-        <script src="js/admin-previews.js"></script>
-        <script src="js/admin-editor.js"></script>
+        <script src="../js/admin-tab.js"></script>
+        <script src="../js/admin-previews.js"></script>
+        <script src="../js/admin-editor.js"></script>
     </body>
 </html>
