@@ -19,13 +19,13 @@ body {
 /* CSS Variables */
 :root {
     /* Colors */
-    --primary-blue: #0057b7;
+    /* --primary-blue: #0057b7;
     --primary-blue-dark: #004494;
-    --primary-yellow: #ffd700;
+    --primary-yellow: #ffd700; */
 
-    /* --primary-blue: #3fa9f5;
+    --primary-blue: #3fa9f5;
     --primary-blue-dark: #3dabe2;
-    --primary-yellow: #fbd605; */
+    --primary-yellow: #fbd605;
 
     --success-green: #28a745;
     --danger-red: #dc3545;
