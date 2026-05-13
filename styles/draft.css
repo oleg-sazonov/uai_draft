@@ -361,6 +361,23 @@ a:hover {
     line-height: 1.6;
 }
 
+.irs-form-link {
+    display: inline-block;
+    margin-top: var(--spacing-sm);
+    font-size: var(--font-sm);
+    color: var(--primary-yellow);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition:
+        color 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.irs-form-link:hover {
+    color: var(--white);
+    opacity: 0.85;
+}
+
 .footer-bottom {
     text-align: center;
     padding-top: var(--spacing-md);
